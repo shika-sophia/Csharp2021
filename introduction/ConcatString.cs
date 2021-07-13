@@ -25,6 +25,7 @@ namespace Intoroducion
     class ConcatString
     {
         private void Main(string[] args)
+        //static void Main(string[] args)
         {
             var sw = new Stopwatch();
             sw.Start();

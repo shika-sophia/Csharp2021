@@ -8,7 +8,8 @@ namespace Introduction
 {
     class HelloName
     {
-        static void Main(string[] args)
+        private void Main(string[] args)
+        //static void Main(string[] args)
         {
             Console.WriteLine("あなたの名前は？");
             string name = Console.ReadLine();
