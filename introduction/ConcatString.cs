@@ -6,7 +6,7 @@
  *          
  * @reference ◆C# 処理時間計測 Stopwatch 入門
  * @URL       http://s170199.ppp.asahi-net.or.jp/tech/cs/Stopwatch.html
- * @content System.Diagnostics.StopWatchクラスで処理速度を計測
+ * @content System.Diagnostics.Stopwatchクラスで処理速度を計測
  * 
  * @author shika
  * @date 2021-07-13
