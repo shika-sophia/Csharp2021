@@ -4,7 +4,7 @@
  * @content 第３章 演算子 / p80 / List 3-1, 3-2
  *          String結合時の
  *          「+」演算子と StringBuilder, Stream 処理速度比較
- * @see VisualStudio: Csharp2021/introduction/ConcatString.cs
+ * @see VisualStudio: Csharp2021/Introduction/ConcatString.cs
  * @author shika
  * @date 2021-07-13
  */
@@ -36,6 +36,7 @@ public class ConcatString {
 //        }
 //        String result = bld.toString();
 
+        //---- StringBuilder + Stream.generate() ----
         Stream.generate(() -> "いろは")
             .limit(TIMES)
             .forEach(bld::append);
