@@ -1,7 +1,7 @@
 ﻿/**
  * @title CsharpBegin / introduction / MultiplyMatrix.cs
  * @reference 山田祥寛 『独習 C＃ [新版] 』 翔泳社, 2017
- * @content 第４章 制御構文 / 九九表を表示(java版)
+ * @content 第４章 制御構文 / 九九表を表示(C#版)
  * @content nested for文
  * @content string.Format()
  *          {0,2:##} 0番目, 2文字(右詰め) : ## 数値2桁(空白補完せず)
