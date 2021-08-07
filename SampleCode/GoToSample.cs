@@ -1,5 +1,5 @@
 ﻿/**
- * @title CsharpBegin / SanpleCode / GotoSample.cs
+ * @title CsharpBegin / SampleCode / GotoSample.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content 第４章 制御構文 / p138 / List 4-29, 4-30
  *          goto命令, for + goto, switch + goto
