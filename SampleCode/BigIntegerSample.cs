@@ -24,8 +24,8 @@ namespace CsharpBegin.SampleCode
 {
     class BigIntegerSample
     {
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             //---- long / BigInteger 切替 ----
             //long result = 1;
