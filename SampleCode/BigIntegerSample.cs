@@ -1,5 +1,5 @@
 ﻿/**
- * @title CsharpBegin / SampleCode / GotoSample.cs
+ * @title CsharpBegin / SampleCode / BigIntegerSample.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content 第５章 標準ライブラリ / p203 /  5-49
  *          BigIntegerクラス 階乗の表示
