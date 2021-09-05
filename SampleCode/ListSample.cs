@@ -1,7 +1,7 @@
 ﻿/**
  * @title CsharpBegin / SampleCode / ListSample.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
- * @content 第６章 コレクション / p215 /  6-1, 6-2, 6-3
+ * @content 第６章 コレクション / p215, p219 /  6-1, 6-2, 6-3
  *          List, Enumerator, ListMember, list[0]
  *       
  * @author shika
@@ -18,9 +18,11 @@ namespace CsharpBegin.SampleCode
 {
     class ListSample
     {
-        //internal void Main(string[] args)
-        static void Main(string[] args)
+        internal void Main(string[] args)
+        //static void Main(string[] args)
         {
+            var here = new ListSample();
+
             //---- List ----
             var list = new List<string>
             {
@@ -50,7 +52,7 @@ namespace CsharpBegin.SampleCode
 
             list2.Insert(2, 7);
             list2.Add(120);
-            ShowListInt(list2);
+            here.ShowListInt(list2);
 
             Console.WriteLine("Count: " + list2.Count);
             Console.WriteLine("list[0]: " + list2[0]);
@@ -58,15 +60,15 @@ namespace CsharpBegin.SampleCode
             Console.WriteLine("IndexOf(30): " + list2.IndexOf(30));
             Console.WriteLine("LastIndexOf(120): " + list2.LastIndexOf(120));
             Console.WriteLine("Remove(60): " + list2.Remove(60));
-            ShowListInt(list2);
+            here.ShowListInt(list2);
 
             //---- AddRange(IEnumerable<T>), GetRange(int, int), Reserve() ----
             list2.AddRange(list3);
-            ShowListInt(list2);
-            ShowListInt(list2.GetRange(2, 4));
+            here.ShowListInt(list2);
+            here.ShowListInt(list2.GetRange(2, 4));
 
             list2.Reverse();
-            ShowListInt(list2);
+            here.ShowListInt(list2);
 
             //---- CopyTo(int index, T[], int aryStart, int aryCount) ----
             var ary2 = new int[3];
@@ -75,7 +77,7 @@ namespace CsharpBegin.SampleCode
             Console.WriteLine();
         }//Main()
 
-        private static void ShowListInt(List<int> list)
+        private void ShowListInt(List<int> list)
         {
             foreach (var v in list)
             {
