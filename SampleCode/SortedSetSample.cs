@@ -17,8 +17,8 @@ namespace CsharpBegin.SampleCode
 {
     class SortedSetSample
     {
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             var here = new SortedSetSample();
             SortedSet<int> sorted = new SortedSet<int> { 30, 60, 10, 15 };
