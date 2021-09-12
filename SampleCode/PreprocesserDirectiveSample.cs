@@ -1,13 +1,11 @@
 ﻿/**
  * @title CsharpBegin / SampleCode / PreprocesserDirectiveSample.cs
- * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
+ * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 *          
  * @content 第４章 制御構文 / p141 / List 4-32, 4-33
  *          ◆プリプロセッサ・ディレクティブ
  *          コンパイラに対する命令を「#」で記述
  *          #define: ファイル先頭にのみ記述可
  *            DEBUG | TESTED デバッグ時 | テスト時のみ有効
- *            [VS]ソリューション -> プロジェクト名 -> 右クリック
- *            -> [プロパティ] -> [ビルド] -> DEBUG変数(既定で有効)
  *            
  *          【考察】
  *           デバッグ時(= 実行時)のみ表示。
@@ -15,10 +13,13 @@
  *            
  *          #if: 条件分岐
  *          #region: 折りたたみ可能なブロック
- *       
+ *          
+ * @prepare [VS]ソリューション -> プロジェクト名 -> 右クリック
+ *          -> [プロパティ] -> [ビルド] -> DEBUG変数(既定で有効)
  * @author shika
  * @date 
  */
+
 #define DEBUG
 using System;
 using System.Collections.Generic;
