@@ -31,8 +31,8 @@ namespace CsharpBegin.SampleCode
 {
     class PreprocesserDirectiveSample
     {
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
 #if DEBUG
             Console.WriteLine("デバッグ時のみ表示");
