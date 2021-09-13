@@ -1,5 +1,5 @@
 ﻿/**
- * @title CsharpBegin / SampleCode / GotoSample.cs
+ * @title CsharpBegin / SampleCode / MathSample.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content 第５章 標準ライブラリ / p202 /  5-48
  *          Mathクラスの staticメソッド
