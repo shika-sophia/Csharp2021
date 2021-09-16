@@ -21,8 +21,8 @@ namespace CsharpBegin.SampleCode
 {
     class StringFormatSample
     {
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             Console.WriteLine(
                 String.Format("{0}は{1}、{2}歳です。",

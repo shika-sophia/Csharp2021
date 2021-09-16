@@ -30,8 +30,8 @@ namespace CsharpBegin.SampleCode
 {
     class StringTreatSample
     {
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             //---- Substring() ----
             var str1 = "WINGSプロジェクト";
