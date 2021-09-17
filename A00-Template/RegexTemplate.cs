@@ -53,7 +53,7 @@ namespace CsharpBegin.A00_Template
             //---- IsMatch() ----
             foreach(var data in dataAry)
             {
-                Console.WriteLine(here.regexTel.IsMatch(data) ? data : "-- unmatch --");
+                Console.WriteLine(here.regexTel.IsMatch(data) ? data : "// unmatch //");
             }
 
             //---- Match() ----
@@ -77,10 +77,10 @@ namespace CsharpBegin.A00_Template
 
             Console.WriteLine("Count: " + matches.Count);
             Console.WriteLine("matches[0]: " + matches[0]);
-            foreach(Match match3 in matches)
+            foreach(Match m in matches)
             {
                 Console.WriteLine(
-                    $"位置: {match3.Index} / 文字数: {match3.Length} / マッチ文字列: {match3.Value}");
+                    $"位置: {m.Index} / 文字数: {m.Length} / マッチ文字列: {m.Value}");
             }
         }//Main()
     }//class
@@ -89,7 +89,7 @@ namespace CsharpBegin.A00_Template
 /*
 090-0000-0000
 045-000-0000
--- unmatch --
+// unmatch //
 
 //---- Match() ----
 位置: 6 / 文字数: 13 / マッチ文字列: 090-0000-0000
