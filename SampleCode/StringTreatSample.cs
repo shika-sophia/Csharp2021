@@ -17,6 +17,10 @@
  *          //---- Join() ----
  *          string String.Join(string separator, string[])
  *          
+ *          //---- Replace() ----
+ *          string string.Replace(char old, char new)
+ *          string string.Replace(string old, string new)
+ *          
  * @author shika
  * @date 2021-09-15
  */
