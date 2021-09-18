@@ -72,8 +72,8 @@ namespace CsharpBegin.A00_Template
         Regex regexSingle = new Regex(@"^.+", RegexOptions.Singleline);
         Regex regexCouple = new Regex(@"^.+", RegexOptions.Multiline | RegexOptions.IgnoreCase);   
 
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             var here = new RegexTemplate();
             var dataAry = new[] { "090-0000-0000", "045-000-0000", "184-0000" };
