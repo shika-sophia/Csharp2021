@@ -42,6 +42,7 @@ namespace CsharpBegin.A00_Template
         DateTime now = DateTime.Now;
         DateTime today = DateTime.Today;
         DateTime dateTime = new DateTime(2021, 09, 19, 18, 20, 35);
+
         static void Main(string[] args)
         //internal void Main(string[] args)
         {
