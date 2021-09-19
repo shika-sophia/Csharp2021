@@ -1,5 +1,5 @@
 ﻿/**
- * @title CsharpBegin / A00_Template / RegexTemplate.cs
+ * @title CsharpBegin / A00_Template / DateTimeTemplate.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content 第５章 標準ライブラリ DateTime / p177 / List 5-28 ～
  *   ◆System.DateTime / System.Globalization.CultureInfo
