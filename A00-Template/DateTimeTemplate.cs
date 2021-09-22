@@ -63,6 +63,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -79,8 +80,8 @@ namespace CsharpBegin.A00_Template
         CultureInfo cultureEn = new CultureInfo("en-US"); //en英語 - USアメリカ
         CultureInfo cultureDe = new CultureInfo("de-DE"); //deドイツ語 - DEドイツ
 
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             var here = new DateTimeTemplate();
             Console.WriteLine("Now: " + here.now);
