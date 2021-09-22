@@ -39,7 +39,7 @@
  *   CultureInfo.DateTimeFormat.Calendar = //プロパティにカレンダークラスをセット
  *       JapaneseCalendar new JapaneseCalendar()
  *   
- *   //---- AddXxxx(), Add(), Subtract() ----
+ *   //---- AddXxxx(), Add(), Subtract(),「+, -, ==, <=」----
  *   DateTime dateTime.AddXxxx(T);
  *       Xxxx: Years / Months / Days / Hours / Minutes / Seconds / Milliseconds / Ticks
  *       T: int / double / long
@@ -48,9 +48,18 @@
  *       new TimeSpan([int days], int hours, int minutes, int seconds, [,int milliseconds]);
  *       new TimeSpan(long ticks)
  *   TimeSpan dateTime.Subtract(DateTime);
+ *   string timeSpan.ToString(string format, IFormatProvider);
+ *   
+ *   ◆System.Diagnostics.StopWatch
+ *   http://s170199.ppp.asahi-net.or.jp/tech/cs/Stopwatch.html
+ *   new StopWatch()
+ *   void stopWatch.Start()
+ *   void stopWatch.Stop()
+ *   TimeSpan stopwatch.Elapsed; //差分を取得
+ *   double timeSpan.TotalMilliseconds // トータルミリ秒をdoubleで取得
  *   
  * @author shika
- * @date 2021-09-19, 09-20
+ * @date 2021-09-19, 09-20, 09-22
  */
 using System;
 using System.Collections.Generic;
@@ -127,6 +136,24 @@ namespace CsharpBegin.A00_Template
             jpCalendar.DateTimeFormat.Calendar = new JapaneseCalendar();
             Console.WriteLine(dt6.ToString("ggyy年MM月dd日(ddd) tt:mm:ss", jpCalendar));
 
+            //---- AddXxxx(), Add(), Subtract(),「+, -, ==, <=」 ----
+            var dt7 = new DateTime(2018, 02, 15, 17, 32, 24);
+            var span7 = new TimeSpan(3, 13, 30, 0);
+            Console.WriteLine(dt7.AddMonths(-3));
+            Console.WriteLine(dt7.AddDays(20));
+            Console.WriteLine(dt7.Add(span7));
+            Console.WriteLine(dt7.Subtract(span7));
+
+            var dt8 = here.now;
+            var span8 = dt7.Subtract(dt8);
+            Console.WriteLine(span8.ToString("c"));
+            Console.WriteLine(span8.ToString(@"d\.%h\:%m\:%s"));
+
+            Console.WriteLine(dt7 + span7);
+            Console.WriteLine(dt7 - span7);
+            Console.WriteLine(dt7 == dt8);
+            Console.WriteLine(dt7 <= dt8);
+
         }//Main()
     }//class
 }
@@ -165,4 +192,17 @@ Monday, September 20, 2021 7:12 PM
 
 //---- JapaneseCalendar ----
 令和03年09月20日(月) 午後:12:24
+
+//---- AddXxxx(), Add(), Subtract(),「+, -, ==, <=」 ----
+2017/11/15 17:32:24  //AddMonths(3)
+2018/03/07 17:32:24  //AddDays(20)
+2018/02/19 7:02:24   //Add(span)
+2018/02/12 4:02:24   //Subtract(span)
+-1315.00:11:50.3345681  //span8.Tostring("C")
+1315.0:11:50  //span8.ToString(@"d\.%h\:%m\:%s")
+
+2018/02/19 7:02:24  //dt7 + span7
+2018/02/12 4:02:24  //dt7 - span7
+False  //dt7 == dt8
+True   //dt7 <= dt8
  */
