@@ -1,7 +1,7 @@
 ﻿/**
  * @title CsharpBegin / SampleCode / StreamWriterReaderSample.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
- * @content 第５章 標準ライブラリ File / p187 / List 5-41 ～
+ * @content 第５章 標準ライブラリ File / p187 / List 5-41 ～ 5-42
  *   ◆using(オブジェクト生成式){ }
  *   ◆System.IO.StreamWriter
  *   new StreamWriter(

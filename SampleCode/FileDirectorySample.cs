@@ -1,7 +1,7 @@
 ﻿/**
  * @title CsharpBegin / SampleCode / FileDirectorySample.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
- * @content 第５章 標準ライブラリ File / p197 / List 5-44 ～
+ * @content 第５章 標準ライブラリ File / p197 / List 5-44 ～ 5-45
  *   ◆System.IO.FileInfo
  *   new FileInfo(string filePath);
  *   string fileInfo.Name
