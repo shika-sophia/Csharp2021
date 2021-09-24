@@ -20,6 +20,9 @@
  *   bool streamReader.EndOfStream //while文
  *   void streamReader.ReadLine()  //while文内
  *   
+ *   ◆System.IO.FileStream
+ *   new FileStream(string path, FileMode); //データをバイト列として扱う
+ *   
  * @author shika
  * @date 2021-09-23
  */
