@@ -33,8 +33,8 @@
  *   DirectoryInfo dirInfo.CreateSubdirectory(string name);
  *   void dirInfo.MoveTo(string forFileName);
  *   void dirInfo.Delete([bool]) 
- *       //false(既定値): 配下にファイル/ディレクトリが存在する場合 IOException
- *       //true: 配下のファイル/ディレクトリごと削除
+ *       false(既定値): 配下にファイル/ディレクトリが存在する場合 IOException
+ *       true: 配下のファイル/ディレクトリごと削除
  *       
  *   ◆static File / Directoryクラス
  *   
