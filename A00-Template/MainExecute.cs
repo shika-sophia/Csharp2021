@@ -1,10 +1,24 @@
-﻿using System;
+﻿/**
+ * @title CsharpBegin / A00-Template / MainExecute.cs
+ * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
+ * @content MainExecute
+ *   VS仕様で static Main()は１つのみなので、
+ *   各クラスは internal Main()とコメントアウトで切替して利用中。
+ *   
+ *   DirectoryInfoで プロジェクト内のファイルを検索し、
+ *   最新更新ファイルをインスタンス化。
+ *   internal Main()を呼び出して実行するプログラム。
+ *       
+ * @author shika
+ * @date 2021-09-25
+*/
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Dispatcher;
+using System.Management;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,7 +58,12 @@ namespace CsharpBegin.A00_Template
             Console.WriteLine("lastFile: " + lastFile.FullName);
             Type exeClass = Type.GetType(lastFile.Name);
 
-            
+            //【註】exeClassで System.NullReferenceExceptionが発生
+            //Console.WriteLine(exeClass.ToString());
+            //object instance = Activator.CreateInstance(exeClass);
+
+            //MethodInfo main = exeClass.GetMethod("Main", new[] { typeof(string[]) });
+            //main.Invoke(instance, new object[] { args });
         }//Main()
         
     }//class
