@@ -58,6 +58,7 @@ namespace CsharpBegin.SampleCode
             string dir = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Data\";
             string fileName1 = @"iroha.txt";
 
+            //---- FileInfo ----
             var fileInfo = new FileInfo(dir + fileName1);
             Console.WriteLine(fileInfo.Name);
             Console.WriteLine(fileInfo.Exists);
@@ -71,6 +72,7 @@ namespace CsharpBegin.SampleCode
             //copyInfo.MoveTo(dir + "irohaRename.txt");
             //copyInfo.Delete();
 
+            //----- DirectoryInfo ----
             DirectoryInfo dirInfo = new DirectoryInfo(dir);
             Console.WriteLine(dirInfo.Name);
             Console.WriteLine(dirInfo.Exists);
@@ -92,6 +94,7 @@ namespace CsharpBegin.SampleCode
 }
 
 /*
+//---- FileInfo ----
 iroha.txt
 True
 C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Data
@@ -99,6 +102,8 @@ False
 2021/09/23 18:27:28
 2021/09/23 17:52:50
 112
+
+//----- DirectoryInfo ----
 Data
 True
 CsharpBegin
