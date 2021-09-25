@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Dispatcher;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +18,8 @@ namespace CsharpBegin.A00_Template
             string dir = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\";
             DirectoryInfo dirInfo = new DirectoryInfo(dir);
             DirectoryInfo[] dirAry = dirInfo.GetDirectories("*", SearchOption.AllDirectories);
+            DateTime lastTime = new DateTime(1, 1, 1, 0, 0, 0);
+            FileInfo lastFile = null;
 
             foreach(DirectoryInfo info in dirAry)
             {
@@ -25,10 +29,21 @@ namespace CsharpBegin.A00_Template
                     FileInfo[] fileAry = info.GetFiles();
                     foreach (FileInfo file in fileAry)
                     {
-                        Console.WriteLine("  └ " + file);                       
-                    }
+                        Console.WriteLine("  └ " + file);
+
+                        DateTime tempLastTime = file.LastWriteTime;
+                        if (lastTime <= tempLastTime)
+                        {
+                            lastTime = tempLastTime;
+                            lastFile = file;
+                        }
+                    }//foreach fileAry
                 }//if
             }//foreach dirAry
+
+            Console.WriteLine("lastFile: " + lastFile.FullName);
+            Type exeClass = Type.GetType(lastFile.Name);
+
             
         }//Main()
         
@@ -90,4 +105,8 @@ System.Diagnostics.StackTrace
 ◆Debug
 ◆Release
 ◆TempPE
+
+lastFile:
+C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\
+SampleCode\FileDirectorySample.cs
  */
