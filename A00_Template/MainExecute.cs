@@ -1,5 +1,5 @@
 ﻿/**
- * @title CsharpBegin / A00-Template / MainExecute.cs
+ * @title CsharpBegin / A00_Template / MainExecute.cs
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content MainExecute
  *   VS仕様で static Main()は１つのみなので、
@@ -74,10 +74,14 @@ namespace CsharpBegin.A00_Template
             string useClass = lastDir + lastFile.Name.Replace(".cs", "");
             Type exeClass = Type.GetType(useClass);
             Console.WriteLine(exeClass);
+
             object instance = Activator.CreateInstance(exeClass);
             Console.WriteLine(instance.ToString());
-            MethodInfo main = exeClass.GetMethod("Main", new[] { typeof(string[]) });
-            //main.Invoke(instance, args);
+
+            MethodInfo main = exeClass.GetMethod(
+                "Main", BindingFlags.NonPublic, null, CallingConventions.HasThis,
+                new[] { typeof(string[]) }, null);
+            main.Invoke(instance, args);
         }//Main()
 
         private static string MakeLastDir(FileInfo lastFile)
@@ -165,4 +169,7 @@ usingで使う クラスの完全修飾名なので、区切り文字は「.」
 【考察】main.Invoke(instance, args);
 System.NullReferenceException: 
     オブジェクト参照がオブジェクト インスタンスに設定されていません。
+対象オブジェクト mainが nullの様子。
+GetMethod()は publicのメソッドのみを抽出するので、
+internal Main()は抽出できず、nullとなる。
  */
