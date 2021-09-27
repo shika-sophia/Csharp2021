@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsharpBegin.Tempate
+namespace CsharpBegin.A00_Template
 {
     class MainTemplate
     {
