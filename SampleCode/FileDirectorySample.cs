@@ -37,9 +37,11 @@
  *       true: 配下のファイル/ディレクトリごと削除
  *       
  *   ◆static File / Directoryクラス
- *   
+ *   同様のメソッド
+ * 
+ * @see Utility / MainExecuteDiv / MainExecute.cs
  * @author shika
- * @date 2021-09-24
+ * @date 2021-09-27
  */
 using System;
 using System.Collections.Generic;
