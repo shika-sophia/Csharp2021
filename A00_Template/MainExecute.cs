@@ -9,8 +9,19 @@
  *   最新更新ファイルをインスタンス化。
  *   internal Main()を呼び出して実行するプログラム。
  *       
+ * @refernce ◆Microsoft Document / Type.GetMethod メソッド
+ *   https://docs.microsoft.com/ja-jp/dotnet/api/system.type.getmethod?view=net-5.0#System_Type_GetMethod_System_String_System_Int32_System_Reflection_BindingFlags_System_Reflection_Binder_System_Reflection_CallingConventions_System_Type___System_Reflection_ParameterModifier___
+ *   
+ *   public System.Reflection.MethodInfo
+ *   GetMethod (string name, [int genericParameterCount,]
+ *     System.Reflection.BindingFlags bindingAttr,
+ *     System.Reflection.Binder? binder,
+ *     [System.Reflection.CallingConventions callConvention,]
+ *     Type[] types,
+ *     System.Reflection.ParameterModifier[]? modifiers);
+ *   
  * @author shika
- * @date 2021-09-25
+ * @date 2021-09-28
 */
 using System;
 using System.Collections.Generic;
