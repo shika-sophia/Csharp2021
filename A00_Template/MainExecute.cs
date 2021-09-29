@@ -21,7 +21,7 @@
  *     System.Reflection.ParameterModifier[]? modifiers);
  *   
  * @author shika
- * @date 2021-09-28
+ * @date 2021-09-29
 */
 using System;
 using System.Collections.Generic;
@@ -37,8 +37,8 @@ namespace CsharpBegin.A00_Template
 {
     class MainExecute
     {
-        static void Main(string[] args)
-        //internal void Main(string[] args)
+        //static void Main(string[] args)
+        internal void Main(string[] args)
         {
             string dir = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\";
             DirectoryInfo dirInfo = new DirectoryInfo(dir);
