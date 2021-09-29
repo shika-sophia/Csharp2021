@@ -88,10 +88,11 @@ namespace CsharpBegin.A00_Template
 
             object instance = Activator.CreateInstance(exeClass);
             Console.WriteLine(instance.ToString());
-
+            
             MethodInfo main = exeClass.GetMethod(
-                "Main", BindingFlags.NonPublic, null, CallingConventions.HasThis,
-                new[] { typeof(string[]) }, null);
+                "Main", BindingFlags.NonPublic, null, 
+                new[] { typeof(string[]) }, new ParameterModifier[] { });
+            Console.WriteLine(main.ToString());
             main.Invoke(instance, args);
         }//Main()
 
@@ -183,4 +184,8 @@ System.NullReferenceException:
 対象オブジェクト mainが nullの様子。
 GetMethod()は publicのメソッドのみを抽出するので、
 internal Main()は抽出できず、nullとなる。
+
+そこで、GetMethod()引数、BindingFlags.NonPiblicを利用するも、
+引数 Binderが抽象クラスのため扱えず nullを代入。
+結果は上記と同様。
  */
