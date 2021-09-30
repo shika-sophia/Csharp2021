@@ -87,12 +87,11 @@ namespace CsharpBegin.A00_Template
             Console.WriteLine(exeClass);
 
             object instance = Activator.CreateInstance(exeClass);
+            //IMain instance = (IMain) Activator.CreateInstance(exeClass);
+            //IMain.Main(args);
             Console.WriteLine(instance.ToString());
-            
-            MethodInfo main = exeClass.GetMethod(
-                "Main", BindingFlags.NonPublic, null, 
-                new[] { typeof(string[]) }, new ParameterModifier[] { });
-            Console.WriteLine(main.ToString());
+
+            MethodInfo main = exeClass.GetMethod("Main", new[] { typeof(string[]) });
             main.Invoke(instance, args);
         }//Main()
 
@@ -105,6 +104,7 @@ namespace CsharpBegin.A00_Template
             return lastDir;
         }//MakeLastDir
     }//class
+
 }
 
 /*
@@ -178,8 +178,13 @@ usingで使う クラスの完全修飾名なので、区切り文字は「.」
         "CsharpBegin.A00_Template." +
         lastFile.Name.Replace(".cs", ""));
 
-【考察】main.Invoke(instance, args);
-System.NullReferenceException: 
+【考察】
+MethodInfo main = exeClass.GetMethod(
+    "Main", BindingFlags.NonPublic, null, 
+    new[] { typeof(string[]) }, new ParameterModifier[] { });
+Console.WriteLine(main.ToString());
+main.Invoke(instance, args);
+=> System.NullReferenceException: 
     オブジェクト参照がオブジェクト インスタンスに設定されていません。
 対象オブジェクト mainが nullの様子。
 GetMethod()は publicのメソッドのみを抽出するので、
