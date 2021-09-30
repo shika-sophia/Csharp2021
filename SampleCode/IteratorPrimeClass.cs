@@ -33,8 +33,8 @@ namespace CsharpBegin.SampleCode
 {
     class IteratorPrimeClass
     {
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             int max = 100; //この数までの素数を表示
             var prime = new PrimeClass(max);
