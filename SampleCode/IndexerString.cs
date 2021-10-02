@@ -18,8 +18,8 @@ namespace CsharpBegin.SampleCode
 {
     class IndexerString
     {
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var jpMonthAry = new JapanMonthArray();
             Console.WriteLine(jpMonthAry["如月"]);
