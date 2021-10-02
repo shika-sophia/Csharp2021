@@ -24,7 +24,3 @@ namespace CsharpBegin.A00_Template
     }//class
 }
 
-/*
-2
-如月
- */
