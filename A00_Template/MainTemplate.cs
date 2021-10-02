@@ -17,9 +17,14 @@ namespace CsharpBegin.A00_Template
     class MainTemplate
     {
         //static void Main(string[] args)
-        internal void Main(string[] args)
+        public void Main(string[] args)
         {
             
         }//Main()
     }//class
 }
+
+/*
+2
+如月
+ */
