@@ -50,7 +50,7 @@ namespace CsharpBegin.SampleCode
 
             foreach (int v in dataAry)
             {
-                Console.Write($"{v},");
+                Console.Write($"{v}, ");
                 here.ArrayMaxMIn(v, ref tempMax, ref tempMin);
             }//foreach
             Console.WriteLine();
@@ -105,7 +105,7 @@ x = 5, y = 3: resultMax = 5
 x = 5, y = 3: resultMin = 3
 
 //---- ArrayMaxMin() ----
-dataAry: 10,2,3,
+dataAry: 10, 2, 3,
 dataAry max = 10
 dataAry min = 2
 
