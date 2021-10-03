@@ -19,8 +19,8 @@ namespace CsharpBegin.SampleCode
 {
     class RefReturnOut
     {
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var here = new RefReturnOut();
             var dataAry = new[] { 1, 2, 3 };
@@ -51,7 +51,7 @@ namespace CsharpBegin.SampleCode
             foreach (int v in dataAry)
             {
                 Console.Write($"{v},");
-                here.ArrayMaxMIn(ref tempMax, ref tempMin, v);
+                here.ArrayMaxMIn(v, ref tempMax, ref tempMin);
             }//foreach
             Console.WriteLine();
             Console.WriteLine($"dataAry max = {tempMax}");
@@ -78,7 +78,8 @@ namespace CsharpBegin.SampleCode
             }
         }//OutMaxMin()
 
-        private void ArrayMaxMIn(ref int tempMax, ref int tempMin, int v)
+        private void ArrayMaxMIn(
+            int v, ref int tempMax, ref int tempMin)
         {
             if (tempMax <= v)
             {
@@ -112,5 +113,5 @@ dataAry min = 2
 TempMaxMIn(v, tempMax, tempMin, out tempMax, out tempMin);
 のように引数で渡して、かつ outするなら refにしたほうがいい。
   ↓
-TempMaxMIn(ref tempMax, ref tempMin, v);
+TempMaxMIn(v, ref tempMax, ref tempMin);
  */
