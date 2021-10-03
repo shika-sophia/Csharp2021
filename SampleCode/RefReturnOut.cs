@@ -51,7 +51,7 @@ namespace CsharpBegin.SampleCode
             foreach (int v in dataAry)
             {
                 Console.Write($"{v}, ");
-                here.ArrayMaxMIn(v, ref tempMax, ref tempMin);
+                here.ArrayMaxMin(v, ref tempMax, ref tempMin);
             }//foreach
             Console.WriteLine();
             Console.WriteLine($"dataAry max = {tempMax}");
@@ -78,7 +78,7 @@ namespace CsharpBegin.SampleCode
             }
         }//OutMaxMin()
 
-        private void ArrayMaxMIn(
+        private void ArrayMaxMin(
             int v, ref int tempMax, ref int tempMin)
         {
             if (tempMax <= v)
@@ -89,7 +89,7 @@ namespace CsharpBegin.SampleCode
             {
                 tempMin = v;
             }
-        }//ArrayMaxMIn()
+        }//ArrayMaxMin()
     }//class
 }
 
