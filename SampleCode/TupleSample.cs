@@ -3,6 +3,13 @@
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content 第７章 オブジェクト基本 Tuple / p305 / List 7-45
  *   ◆Tuple タプル / チュープル
+ *   (T name1, T name2) T:値型, 構造体のみ
+ *   
+ *   ◆無名タプル (T, T)と型名のみで定義
+ *   ここでは tupleをリテラルで定義
+ *   内部的に struct System.TupleValue を生成
+ *   TupleValueのフィールド Item1, Item2, ... にアクセス。
+ *   可読性の観点から、利用すべきではない。
  *       
  * @author shika
  * @date 2021-10-05
@@ -38,7 +45,7 @@ namespace CsharpBegin.SampleCode
             Console.WriteLine($"{nameof(resultMin)}: {resultMin}");
 
             //無名タプル
-            var tuple = (16, 105);
+            var tuple = (16, 105); 
             //(int, int) tuple = (11, 24);
             Console.WriteLine($"tuple: {tuple.Item1}");
             Console.WriteLine($"tuple: {tuple.Item2}");
