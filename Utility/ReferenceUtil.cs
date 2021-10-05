@@ -28,6 +28,10 @@ namespace CsharpBegin.Utility
                     bookList.Add(book);
                     //Console.WriteLine($"doneSeek: {doneSeek}");
                 }
+                else
+                {
+                    bookList.Add("(No reference / 参考文献なし)");
+                }
             }//foreach key
 
             return bookList;
