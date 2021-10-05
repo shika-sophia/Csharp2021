@@ -17,28 +17,32 @@ namespace CsharpBegin.Utility
                 "山田祥寛『独習 Python』 翔泳社, 2020"
             };
         
-        public string SeekBook(string dir)
+        public List<string> SeekBook(string dir)
         {            
-            string book = "";
+            List<string> bookList = new List<string>();
             foreach(string key in ReferenceDic.Keys)
             {
                 if (dir.Contains(key))
                 {
-                    bool doneSeek = ReferenceDic.TryGetValue(key, out book);
+                    bool doneSeek = ReferenceDic.TryGetValue(key, out string book);
+                    bookList.Add(book);
                     //Console.WriteLine($"doneSeek: {doneSeek}");
                 }
             }//foreach key
 
-            return book;
+            return bookList;
         }//SeekBook()
 
         ////====== Test Main ======
         //static void Main(string[] args)
         //{
         //    var here = new ReferenceUtil();
-        //    string dir = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Utility\ReferenceUtil.cs";
+        //    string dir = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Python\ReferenceUtil.cs";
         //    Console.WriteLine($"Directory: {dir}");
-        //    Console.WriteLine($"Reference: {here.SeekBook(dir)}");
+        //    foreach(string book in here.SeekBook(dir))
+        //    {
+        //        Console.WriteLine($"Reference: {book}");
+        //    }
         //}//Main()
     }//class
 }
@@ -49,4 +53,7 @@ Directory: C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Utility\Referenc
 doneSeek: True
 Reference: 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
 
+Directory: C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Python\ReferenceUtil.cs
+Reference: 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
+Reference: 山田祥寛『独習 Python』 翔泳社, 2020
  */
