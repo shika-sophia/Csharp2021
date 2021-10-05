@@ -61,16 +61,16 @@ namespace CsharpBegin.Utility.FileDocumentDiv
             return document;
         }//BuildDocument();
 
-        //====== Test Main() ======
-        static void Main(string[] args)
-        //public void Main(string[] args)
-        {
-            string dir = @"CsharpBegin\Utility\Python\FileDocument.cs";
-            var here = new FileDocument(dir);
+        ////====== Test Main() ======
+        //static void Main(string[] args)
+        ////public void Main(string[] args)
+        //{
+        //    string dir = @"CsharpBegin\Utility\Python\FileDocument.cs";
+        //    var here = new FileDocument(dir);
 
-            //---- Test BuildDocument() ----
-            Console.WriteLine(here.document);
-        }//Main()
+        //    //---- Test BuildDocument() ----
+        //    Console.WriteLine(here.document);
+        //}//Main()
 
     }//class
 }
