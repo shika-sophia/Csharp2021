@@ -28,11 +28,12 @@ namespace CsharpBegin.Utility
                     bookList.Add(book);
                     //Console.WriteLine($"doneSeek: {doneSeek}");
                 }
-                else
-                {
-                    bookList.Add("(No reference / 参考文献なし)");
-                }
             }//foreach key
+
+            if (bookList.Count == 0)
+            {
+                bookList.Add("( No Reference / 参考文献なし )");
+            }
 
             return bookList;
         }//SeekBook()
@@ -42,8 +43,9 @@ namespace CsharpBegin.Utility
         //{
         //    var here = new ReferenceUtil();
         //    string dir = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Python\ReferenceUtil.cs";
+        //    //string dir = "";
         //    Console.WriteLine($"Directory: {dir}");
-        //    foreach(string book in here.SeekBook(dir))
+        //    foreach (string book in here.SeekBook(dir))
         //    {
         //        Console.WriteLine($"Reference: {book}");
         //    }
@@ -60,4 +62,7 @@ Reference: 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
 Directory: C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Python\ReferenceUtil.cs
 Reference: 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
 Reference: 山田祥寛『独習 Python』 翔泳社, 2020
+
+Directory:
+Reference: ( No Reference / 参考文献なし )
  */
