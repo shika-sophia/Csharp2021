@@ -54,7 +54,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 bld.Append($" *@date {now.ToString("yyyy-MM-dd")} \n");
                 bld.Append(@" */").Append("\n");
 
-                Console.WriteLine($"bld.Length: {bld.Length}");
+                //Console.WriteLine($"bld.Length: {bld.Length}");
                 document = bld.ToString();
             }
 
