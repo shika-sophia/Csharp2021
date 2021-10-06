@@ -62,7 +62,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 if(String.IsNullOrEmpty(fileName)){ break; }
             }//for
 
-            absDir = fileName;
+            this.absDir = fileName;
             return fileName;
         }//SeekDir()
 
@@ -87,7 +87,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 bld.Append(@" */").Append("\n");
 
                 //Console.WriteLine($"bld.Length: {bld.Length}");
-                document = bld.ToString();
+                this.document = bld.ToString();
             }
 
             return document;
