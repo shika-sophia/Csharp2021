@@ -6,22 +6,6 @@
  *     すでに documentがあれば、処理なし。
  *     documentが未挿入なら、ファイル先頭に挿入し、
  *     既述のコードを Appendする。
- *
- *@class FileDocument
- *       / ◇ReferenceUtil referance,
- *         - string absDir, //絶対パス
- *         - string relDir, //projectからの相対パス
- *         - string content,
- *         + string document /
- *       + new FileDocument(string) 
- *       - string SeekDir() 
- *           //static Main()を実行した fileName(絶対パス)を抽出。
- *       - string BuildDocument()
- *           //documentを作成     
- *         
- *@class ReferenceUtil
- *       / - Dictionary<string,string> fileDic /
- *       + List<string> SeekBook(string dir)
  *       
  *@author shika
  *@date 2021-10-07
@@ -38,7 +22,6 @@ namespace CsharpBegin.Utility.FileDocumentDiv
     class InsertDocument
     {
         private FileDocument doc;
-        private bool existDoc = false;
         private string contentAll;
 
         public InsertDocument() : this("") { }
@@ -56,41 +39,74 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         public void InsertExe()
         {
             string absDir = doc.absDir;
-            string relDir = doc.relDir;
 
-            //using (var fs = new FileStream(absDir, FileMode.Open))
-            using (var reader = new StreamReader(absDir))
-            using (var writer = new StreamWriter(absDir, append: false))
-            {                
+            using (var fs = new FileStream(absDir, FileMode.Open))
+            using (var reader = new StreamReader(fs))
+            {
+                var bld = new StringBuilder(10000);
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
                     if (line.Contains(@"/**"))
                     {
-                        existDoc = true;
-                        break;
+                        Console.WriteLine("<!> the document already has existed.");
+                        bld.Clear();
+                        return;
                     }
-                }//while                
 
-                if (existDoc)
-                {
-                    return;
-                }
-                
+                    bld.Append(line).Append("\n");
+                }//while                            
+
+                contentAll = bld.ToString();
+                reader.Close();
+                fs.Close();
+            }
+
+            using (var writer = new StreamWriter(absDir, append: false))
+            {                                
                 string document = doc.document;
-                contentAll = reader.ReadToEnd();
-                writer.WriteLine(document);
-                writer.WriteLine(contentAll);
+                writer.Write(document);
+                writer.Write(contentAll);
+                writer.Close();
             }//using
 
         }//InsertExe()
 
+        ////====== Test Main() / by fix path ======
         //static void Main(string[] args)
         ////public void Main(string[] args)
         //{
         //    string path = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Data\iroha.txt";
-        //    new InsertDocument("", path).InsertExe();
+        //    new InsertDocument("いろは歌", path).InsertExe();
         //}//Main()
 
     }//class
 }
+
+/*
+//====== Test Main() / by fix path ======
+//---- 1st ----
+/＊＊
+ *@title CsharpBegin / Data / iroha.txt 
+ *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@content  
+ * 
+ *@author shika 
+ *@date 2021-10-09 
+ ＊/
+
+いろはにほへと
+ちりぬるを
+わかよたれそ
+つねならむ
+うゐのおくやま
+けふこえて
+あさきゆめみし
+ゑひもせす
+
+//---- 2nd ----
+<!> the document already has existed.
+
+//---- with content ----
+@content いろは歌 
+ */
