@@ -8,10 +8,10 @@ namespace CsharpBegin.Utility.FileDocumentDiv
 {
     class MainInsertTemplate
     {
-        static void Main(string[] args)
-        {
-            new InsertDocument("").InsertExe();
-        }
+        //static void Main(string[] args)
+        //{
+        //    new InsertDocument("").InsertExe();
+        //}
     }//class
 }
 
