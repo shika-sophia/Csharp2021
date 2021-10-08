@@ -2,22 +2,7 @@
  *@title CsharpBegin / Utility / FileDocumentDiv / FileDocument.cs
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  *@content ファイル先頭の documentation commentを作成するクラス
- *@class FileDocument
- *       / ◇ReferenceUtil referance,
- *         - string absDir, //絶対パス
- *         - string relDir, //projectからの相対パス
- *         - string content,
- *         + string document /
- *       + new FileDocument(string) 
- *       - string SeekDir() 
- *           //static Main()を実行した fileName(絶対パス)を抽出。
- *       - string BuildDocument()
- *           //documentを作成     
- *         
- *@class ReferenceUtil
- *       / - Dictionary<string,string> fileDic /
- *       + List<string> SeekBook(string dir)
- *       
+ *
  *@author shika       
  *@date 2021-10-07
  */
@@ -34,20 +19,41 @@ namespace CsharpBegin.Utility.FileDocumentDiv
     {
         private ReferenceUtil reference = new ReferenceUtil();
         private DateTime now = DateTime.Now;
-        private string absDir; //絶対パス
-        private string relDir; //projectからの相対パス
-        private string content;
-        public string document; 
+        internal string absDir; //絶対パス
+        internal string relDir; //projectからの相対パス
+        internal string content;
+        internal string document;
 
         public FileDocument() : this("") { }
 
         public FileDocument(string content)
         {
             this.absDir = SeekDir();
-            this.relDir = absDir.Substring(
-                absDir.LastIndexOf(@"CsharpBegin\"));            
-            this.content = content;            
+            this.relDir = AbsoluteToRelative(absDir);
+            this.content = content;
             this.document = BuildDocument();
+        }
+
+        public FileDocument(string content, string path)
+        {
+            if (path.Contains("C:"))
+            {
+                this.absDir = path;
+                this.relDir = AbsoluteToRelative(absDir);
+            }
+            else
+            {
+                this.absDir = SeekDir();
+                this.relDir = path;
+            }
+            this.content = content;
+            this.document = BuildDocument();
+        }
+
+        private string AbsoluteToRelative(string absDir)
+        {
+            return absDir.Substring(
+                absDir.LastIndexOf(@"CsharpBegin\"));
         }
 
         public string SeekDir()
