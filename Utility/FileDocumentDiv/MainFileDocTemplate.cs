@@ -12,7 +12,7 @@
  *         継承ではなく、委譲(=集約)によってクラス間を連結。
  *         各フィールドに必要なクラスのインスタンスを保持。
  *
- *@class MainFileDocTemplate / ◆Main() [STAThread]
+ *@class MainFileDocTemplate / ◆Main() [EntryPoint]
  *@class InsertDocument
  *       / ◇FileDocument doc,
  *         - string contentAll /
