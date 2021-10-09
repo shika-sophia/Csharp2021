@@ -1,7 +1,8 @@
 /* ---- Template ----
     static void Main(string[] args)
     {
-        new InsertDocument("").InsertExe();
+        new Utility.FileDocumentDiv.InsertDocument("").InsertExe();
+        Console.WriteLine("<○> This document has inserted.");
     }//Main()
 /*
 /**
@@ -60,7 +61,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         //static void Main(string[] args)
         public void Main(string[] args)
         {
-            new InsertDocument("").InsertExe();
+            new Utility.FileDocumentDiv.InsertDocument("").InsertExe();            
         }//Main()
     }//class
 }

@@ -70,6 +70,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 writer.Close();
             }//using
 
+            Console.WriteLine("<○> This document has inserted.");
         }//InsertExe()
 
         ////====== Test Main() / by fix path ======
