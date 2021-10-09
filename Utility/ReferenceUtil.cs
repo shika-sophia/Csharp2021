@@ -1,4 +1,13 @@
-﻿using System;
+/**
+ *@title CsharpBegin / Utility / ReferenceUtil.cs 
+ *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@content 参考文献をディレクトリをkeyとして自動検索するクラス 
+ * 
+ *@author shika 
+ *@date 2021-10-09 
+ */
+using CsharpBegin.Utility.FileDocumentDiv;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +46,7 @@ namespace CsharpBegin.Utility
 
             return bookList;
         }//SeekBook()
-
+        
         ////====== Test Main ======
         //static void Main(string[] args)
         //{
