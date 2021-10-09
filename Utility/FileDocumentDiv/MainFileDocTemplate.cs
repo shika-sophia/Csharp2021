@@ -5,10 +5,10 @@
     }//Main()
 /*
 /**
- *@title CsharpBegin / Utility / FileDocumentDiv / MainInsertTemplate.cs 
+ *@title CsharpBegin / Utility / FileDocumentDiv / MainFileDocTemplate.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@content documentを自動生成する Main()
- *         ここの documenntも自動生成されたものに加筆。
+ *         ここの documentも自動生成されたものに加筆。
  *         継承ではなく、委譲(=集約)によってクラス間を連結。
  *         各フィールドに必要なクラスのインスタンスを保持。
  *
