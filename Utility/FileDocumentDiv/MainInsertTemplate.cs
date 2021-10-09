@@ -1,8 +1,7 @@
 /* ---- Template ----
     static void Main(string[] args)
     {
-        new Utility.FileDocumentDiv.InsertDocument("").InsertExe();
-        Console.WriteLine("<○> This document has inserted.");
+        new Utility.FileDocumentDiv.InsertDocument("").InsertExe();        
     }//Main()
 /*
 /**
