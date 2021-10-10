@@ -22,6 +22,8 @@ namespace CsharpBegin.Utility
             {
                 ["CsharpBegin"] =
                 "山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017",
+                ["Java"] =
+                "山田祥寛『独習 Java [新版] 』 翔泳社, 2019",
                 ["Python"] = 
                 "山田祥寛『独習 Python』 翔泳社, 2020"
             };

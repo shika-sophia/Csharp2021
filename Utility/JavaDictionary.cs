@@ -52,8 +52,8 @@ namespace CsharpBegin.Utility
             }
         }//ShowDic()
 
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var here = new JavaDictionary();
             here.ShowDic();
