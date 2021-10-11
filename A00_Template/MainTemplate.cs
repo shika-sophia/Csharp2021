@@ -19,7 +19,13 @@ namespace CsharpBegin.A00_Template
         //static void Main(string[] args)
         public void Main(string[] args)
         {
-            
+           
+        }//Main()
+
+        //static void Main(string[] args)
+        public void MainDoc(string[] args)
+        {
+            new Utility.FileDocumentDiv.InsertDocument("").InsertExe();
         }//Main()
     }//class
 }
