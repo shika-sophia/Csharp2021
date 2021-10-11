@@ -18,15 +18,15 @@ namespace CsharpBegin.Application
 {
     class ShuffleSeat
     {
-        private int memberNum = 30;
-        private List<string> oldList = new List<string>();
-        private List<string> newList = new List<string>();
-        private Random random = new Random();
+        private static readonly int memberNum = 30;
+        private readonly Random random = new Random();
+        private List<string> oldList = new List<string>(memberNum);
+        private List<string> newList = new List<string>(memberNum);
 
         public ShuffleSeat()
         {
             this.oldList = BuildOldList(oldList);
-            ShuffleList(oldList);
+            ShuffleList(oldList); //this.newListを生成
             //ShowList();
         }
 
