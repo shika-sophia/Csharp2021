@@ -77,9 +77,9 @@ namespace CsharpBegin.Application
                 }//foreach
                 
                 indexList.Add(rdm);                
-                newList.Add(oldList[rdm]);                    
+                newList.Add(list[rdm]);                    
 
-                if(newList.Count == oldList.Count)
+                if(newList.Count == list.Count)
                 {
                     isStack = false;
                 }
@@ -98,8 +98,8 @@ namespace CsharpBegin.Application
             Console.WriteLine("]");
         }//ShowList()
 
-        //static void Main(string[] args)
-        public void Main(string[] args)
+        static void Main(string[] args)
+        //public void Main(string[] args)
         {
             var here = new ShuffleSeat();
             here.ShowList(here.oldList, nameof(oldList));
