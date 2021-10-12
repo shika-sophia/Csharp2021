@@ -21,6 +21,8 @@ namespace CsharpBegin.Utility
         private Dictionary<string, string> javaDic =
             new Dictionary<string, string>()
             {
+                ["Java"] = "C#",
+                [".java"] = ".cs",
                 ["public static void main(String args)"]
                     = "static void Main(string args)",
                 ["String"] = "string",
