@@ -16,8 +16,8 @@ namespace CsharpBegin.Utility
 {
     class ScannerAdaptor
     {
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var scan = new Scanner();
             string input = scan.NextLine("string: ");
