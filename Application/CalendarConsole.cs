@@ -25,8 +25,65 @@ namespace CsharpBegin.Application
         {           
             this.weekJpStr = BuildWeek();
             MonthCalen(now.Year, now.Month);
-            YearCalen(now.Year);
+            //YearCalen(now.Year);
+            AskDate();
         }
+
+        public void AskDate()
+        {
+            reInput:
+            Console.Write("年: ");
+            string yearInput = Console.ReadLine();
+            
+            Console.Write("月: ");
+            string monthInput = Console.ReadLine();
+
+            //---- 入力チェック (非整数) ----
+            int year, month;
+            try
+            {
+                year = int.Parse(yearInput);
+
+                if (String.IsNullOrEmpty(monthInput))
+                {
+                    month = -1;
+                } 
+                else
+                {
+                    month = int.Parse(monthInput);
+                }
+            } 
+            catch (FormatException e)
+            {
+                Console.WriteLine("<!> 整数で入力してください。");
+                goto reInput;
+            }
+
+            //---- 入力チェック (適正値) ----
+            if (year < 0　|| year > 5000)
+            {
+                Console.WriteLine(
+                    "<!> 年は [ 0 - 5000 ]の整数で入力してください。");
+                goto reInput;
+            }
+
+            //---- メソッド分岐 / 月の適正値 ----
+            if(month == -1)
+            {
+                YearCalen(year);
+            }
+            else
+            {
+                if (month < 0 || month > 12)
+                {
+                    Console.WriteLine(
+                        "<!> 月は [ 1 - 12 ] の整数で入力してください。");
+                    goto reInput;
+                }
+
+                MonthCalen(year, month);
+            }            
+        }//AskDate()
 
         public void YearCalen(int year)
         {
@@ -82,13 +139,14 @@ namespace CsharpBegin.Application
         //static void Main(string[] args)
         public void Main(string[] args)
         {
-            new CalendarConsole();
+            new CalendarConsole();            
         }//Main()
     }//class
 }
 
 /*
 //---- MonthCalen() ----
+MonthCalen(now.Year, now.Month);
 2021年 / 10月
 日 月 火 水 木 金 土
  　 　 　 　 　  1  2
@@ -102,6 +160,8 @@ namespace CsharpBegin.Application
 コンソールだと、ちゃんと表示されているのでOK
 
 //---- YearCalen() ----
+YearCalen(now.Year);
+
 2021年 / 1月
 日 月 火 水 木 金 土
  　 　 　 　 　  1  2
@@ -202,6 +262,41 @@ namespace CsharpBegin.Application
 19 20 21 22 23 24 25
 26 27 28 29 30 31
 
+//---- AskDate() ----
+年: 2020
+月: 11
+2020年 / 11月
+日 月 火 水 木 金 土
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30
+
+年: a
+月: b
+<!> 整数で入力してください。
+年: -1
+月:
+<!> 整数で入力してください。
+年: -1
+月: 2.5
+<!> 整数で入力してください。
+年: -1
+月: 6000
+<!> 年は 0 - 5000 の整数で入力してください。
+年: 2020
+月: 15
+<!> 月は 1 - 12 の整数で入力してください。
+年: 1900
+月: 1
+1900年 / 1月
+日 月 火 水 木 金 土
+　  1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
 
 【参考】enum DatOfWeek
 namespace System
