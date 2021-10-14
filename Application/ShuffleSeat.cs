@@ -157,8 +157,8 @@ namespace CsharpBegin.Application
             return bld.ToString();
         }//ShowList()
 
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var here = new ShuffleSeat();
             here.ShowList(here.oldList, nameof(oldList));
