@@ -64,11 +64,11 @@ namespace CsharpBegin.SampleCode
 {
     class ProcessStartSample
     {
-        static void Main(string[] args)
-        //public void MainDoc(string[] args)
+        //static void Main(string[] args)
+        public void MainDoc(string[] args)
         {
             //---- メモ帳を起動する ----
-            //Process process = Process.Start("notepad.exe");
+            Process process = Process.Start("notepad.exe");
 
             //---- コマンドライン引数を指定してメモ帳を起動する ----
             //Process process = Process.Start(
