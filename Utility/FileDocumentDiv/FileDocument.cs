@@ -86,7 +86,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 {
                     bld.Append($" *@reference {book} \n");
                 }
-                bld.Append($" *@content {content} \n");
+                bld.Append($" *@content {content}\n");
                 bld.Append( " * \n");
                 bld.Append( " *@author shika \n");
                 bld.Append($" *@date {now.ToString("yyyy-MM-dd")} \n");
