@@ -25,8 +25,8 @@ namespace CsharpBegin.SampleCode
 {
     class InterfaceFixedSample
     {
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             ImplementSample impl = new ImplementSample();
             impl.Foo("あ");
