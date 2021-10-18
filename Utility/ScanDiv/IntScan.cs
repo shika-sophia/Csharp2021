@@ -81,11 +81,11 @@ namespace CsharpBegin.Utility.ScanDiv
                 goto reQuest;
             }
 
-            return (int) inputInt;
+            return inputInt;
         }//QuestInt()
 
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var here = new IntScan();
             //var here = new IntScan(0, 99);
@@ -96,6 +96,7 @@ namespace CsharpBegin.Utility.ScanDiv
 }
 
 /*
+//====== Result Main() ======
 IntScan 最小値: 99
 IntScan 最大値: 0
 <!> 最大値と最小値を入れ替えました。
@@ -113,6 +114,7 @@ IntScan 最大値: 0
 年齢: 24
 result: 24
 
+//====== Note ======
 【考察】string.All(ch => Char.IsDigit())
 try-catch前に Char.IsDigit()を行ってみたが、
 マイナス「-」も falseになるため、負数の入力ができなくなる。
