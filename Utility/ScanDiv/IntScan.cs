@@ -21,7 +21,6 @@ namespace CsharpBegin.Utility.ScanDiv
 
         public IntScan()
         {
-
             this.min = QuestInt($"{nameof(IntScan)} 最小値");
             this.max = QuestInt($"{nameof(IntScan)} 最大値");
             JudgeRange();
