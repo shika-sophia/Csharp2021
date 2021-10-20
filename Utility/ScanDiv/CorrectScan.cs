@@ -2,7 +2,21 @@
  *@title CsharpBegin / Utility / ScanDiv / CorrectScan.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@content 「○×」入力 /「×」なら解答入力 / 正答率
- * 
+ *
+ *@class CorrectScan
+ *       / ◇MultiScan multi,
+ *         ◇IntScan intScan,
+ *         List<string> correctAnsList,
+ *         List<bool> correctList,
+ *         string[] correctMark /
+ *       + CorrectScan(MultiScan multi)
+ *       + void InputCorrect()
+ *       - string InputModify()
+ *       + string CalcCorrectRate()
+ *
+ *@see ConfirmScan.cs
+ *@see IntScan.cs
+ *@see MultiScan.cs
  *@author shika 
  *@date 2021-10-19 
  */
@@ -112,8 +126,8 @@ namespace CsharpBegin.Utility.ScanDiv
                    $"(○ {correctNum} 問 / 全 {questNum} 問)";
         }//CalcCorrectRate()
         
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var multi = new MultiScan();
             multi.BuildQuest();

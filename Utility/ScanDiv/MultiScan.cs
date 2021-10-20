@@ -7,11 +7,13 @@
  *       /◇ConfirmScan confirm,
  *        List<string> questList,
  *        List<string> answerList /
- *       + BuildQuest()
- *       + BuildAnswer()
- *       - ActionLogic(string, string, int ,List<string>)
- *       + ShowList(List<string>, string)
- *        
+ *       + void BuildQuest()
+ *       + void BuildAnswer()
+ *       + string ActionLogic(string, string, int ,List<string>)
+ *       + string ShowList(List<string>, string)
+ *
+ *@see ConfirmScan.cs
+ *@see CorrctScan.cs
  *@author shika 
  *@date 2021-10-19 
  */
