@@ -48,8 +48,9 @@ namespace CsharpBegin.Utility.ScanDiv
         public int JudgeInt(string quest)
         {
             reQuest:
-            int inputInt = QuestInt(quest);
-            if (inputInt < min || max < inputInt)
+            int inputInt = QuestInt(quest); 
+            if(inputInt == -99 || inputInt == -88) { ; }
+            else if (inputInt < min || max < inputInt)
             {
                 Console.WriteLine(
                     "<!> 数値の範囲外です。\n" +
@@ -74,8 +75,7 @@ namespace CsharpBegin.Utility.ScanDiv
             }
             catch (FormatException)
             {
-                Console.WriteLine(
-                    $"<!> {quest} は 整数で入力してください。");
+                Console.WriteLine("<!> 整数で入力してください。");
                 Console.WriteLine();
                 goto reQuest;
             }
