@@ -49,7 +49,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                     string line = reader.ReadLine();
                     if (line.Contains(@"/**"))
                     {
-                        Console.WriteLine("<!> the document already has existed.");
+                        Console.WriteLine("<!> the Document already existed.");
                         bld.Clear();
                         return;
                     }
@@ -70,7 +70,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 writer.Close();
             }//using
 
-            Console.WriteLine("<○> This document has inserted.");
+            Console.WriteLine("<○> This Document just has inserted.");
         }//InsertExe()
 
         ////====== Test Main() / by fix path ======

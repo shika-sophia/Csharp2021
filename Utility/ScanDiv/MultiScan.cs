@@ -149,7 +149,8 @@ namespace CsharpBegin.Utility.ScanDiv
             }
 
             var bld = new StringBuilder(list.Count * 20);
-            bld.Append($"{listName}: \n");
+            bld.Append("/* \n");
+            bld.Append($"{listName} \n");
 
             int count = 0;
             foreach(string str in list)
@@ -164,8 +165,8 @@ namespace CsharpBegin.Utility.ScanDiv
                     count++;
                 }
                 bld.Append($"{str} \n");
-            }
-            bld.Append("\n");
+            }//foreach
+            bld.Append("*/ \n");
 
             Console.WriteLine($"bld.Length: {bld.Length}");
             Console.WriteLine(bld.ToString());

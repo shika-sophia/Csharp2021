@@ -99,6 +99,8 @@ namespace CsharpBegin.Utility.ScanDiv
                 correctAnsList.Add($"{correctMark[inputInt]} {answer}{modify}");
                 correctList.Add(inputInt == 0);
             }//for answer
+
+            Console.WriteLine($"correctRate: {CalcCorrectRate()}");
         }//InputCorrect()
 
         private string InputModify()
@@ -122,8 +124,7 @@ namespace CsharpBegin.Utility.ScanDiv
             }
             double correctRate = (double)correctNum / questNum * 100;
 
-            return $"@correctRate {correctRate:f} ％ " +
-                   $"(○ {correctNum} 問 / 全 {questNum} 問)";
+            return $"{correctRate:f}％ (○ {correctNum} 問 / 全 {questNum} 問)";
         }//CalcCorrectRate()
         
         //static void Main(string[] args)
