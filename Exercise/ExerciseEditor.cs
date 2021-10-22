@@ -10,7 +10,17 @@ static void Main(string[] args)
  *@title CsharpBegin / Exercise / ExerciseEditor.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@content 練習問題用のアプリ / Documentの作成 / Appendixに日時と正答率
- * 
+ *
+ *@class ExerciseEditor.cs
+ *       /◇FileExecute fileExe,
+ *        ◇MultiScan multi,
+ *        ◇CorrectScan correct /
+ *        ExerciseEditor()
+ *        ExerciseEditor(string)
+ *        + void ExerciseExe()
+ *        - string BuildAppendix(
+ *            string date, DateTime start, DateTime finish)
+ *        
  *@author shika 
  *@date 2021-10-21 
  */
