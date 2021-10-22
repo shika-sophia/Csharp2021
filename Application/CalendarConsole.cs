@@ -53,7 +53,7 @@ namespace CsharpBegin.Application
                     month = int.Parse(monthInput);
                 }
             } 
-            catch (FormatException e)
+            catch (FormatException)
             {
                 Console.WriteLine("<!> 整数で入力してください。");
                 goto reInput;
