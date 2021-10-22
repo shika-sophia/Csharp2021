@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / Exercise / ExerciseSample.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@content 
+ *@content ExerciseEditorのテスト実行用
  * 
  *@author shika 
  *@date 2021-10-22 
@@ -27,7 +27,7 @@ namespace CsharpBegin.Exercise
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
     }//class 
-} 
+}
 /* 
 ==== Exercise Result / 2021-10-22(金) ==== 
 ◆〔1〕Q1 
@@ -40,4 +40,9 @@ namespace CsharpBegin.Exercise
 
 ◆〔3〕Q3 
 × (1) A3-1 => ○: modi 
-*/ 
+*/
+/*==== Appendix ==== 
+ *@date: 2021-10-22(金) 
+ *@time: 17:37 ～ 17:39 (1分) 
+ *@rate: 60.00％ (○ 3 問 / 全 5 問) 
+*/
