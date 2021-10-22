@@ -43,9 +43,9 @@ namespace CsharpBegin.Exercise
 
         public ExerciseEditor() : this("") { }
         
-        public ExerciseEditor(string content)
+        public ExerciseEditor(string contentDoc)
         {
-            this.fileExe = new FileDocExecute();
+            this.fileExe = new FileDocExecute("", contentDoc);
             this.multi = new MultiScan();
             this.correct = new CorrectScan(multi);
             ExerciseExe();
