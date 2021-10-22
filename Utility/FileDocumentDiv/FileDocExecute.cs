@@ -1,38 +1,41 @@
 /**  
  *@title CsharpBegin / Utility / FileDocumentDiv / FileDocExecute.cs  
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
- *@content  
+ *@content ファイルを読み込み、
+ *         document 先頭のコメント説明,
+ *         appendix 追加のコメント,
+ *         contentAll 元のファイル内容,
+ *         contentPlus　追加の内容 を書き込み
+ *         
  *@class FileDocExecute
- *       / ◇FileDocument doc,
- *         - string contentAll /
- *       + InsertDocument() { new FileDocument() }
- *       + InsertDocument(string content) { new FileDocument(string) }
- *       + InsertDocument(string content, string path) { new FileDocument(string, string) }
- *       + InsertExe()
- *         { using(FileSteam), using(StreamReader)
- *           using(StreamWriter)
- *         }
+ *       / ◇FileDocument doc
+ *         string contentAll,
+ *         string Path /
+ *       FileDocExecute()
+ *       FileDocExecute(string path)
+ *       FileDocExecute(string path, string contentDoc)
+ *       - string JudgePath(string)
+ *       + string SeekFile()
+ *       + void ReadWriteExe(string, string, string)
+ *       + string ReadContent()
+ *       + string ReadContent(string path)
+ *       - void WriteContent(string, string, string, string)
  *           ◇
  *           ↓
  *@class FileDocument
- *       / ◇ReferenceUtil referance,
- *         - string absDir, //絶対パス
- *         - string relDir, //projectからの相対パス
- *         - string content,
- *         + string document /
- *       + FileDocument() 
- *       + FileDocument(string content) 
- *       + FileDocument(string content, string path) 
- *       - string SeekDir() 
- *           //static Main()を実行した fileName(絶対パス)を抽出。
- *       - string BuildDocument()
- *           //documentを作成     
+ *       /◇ReferenceUtil reference,
+ *         DateTime now,
+ *         string Path,
+ *         string contentDoc,
+ *         string document /
+ *       FileDocument(string path, string contentDoc)
+ *       - string BuildDocument(string contentDoc)
  *           ◇
  *           ↓         
  *@class ReferenceUtil
  *       / - Dictionary<string,string> fileDic /
- *       + List<string> SeekBook(string dir)
- *         
+ *       + List<string> SeekBook(string dir)      
+ *       
  *@author shika  
  *@date 2021-10-22  
 */
@@ -140,8 +143,8 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 writer.Write(contentAll);
                 writer.Write(contentPlus);
                 writer.Close();           
-            }//using           
-        }//WriteContent           
+            }//using 
+        }//WriteContent()
            
         //static void Main(string[] args)           
         public void Main(string[] args)           

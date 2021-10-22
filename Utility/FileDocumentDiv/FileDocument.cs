@@ -3,6 +3,15 @@
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  *@content ファイル先頭の documentation commentを作成するクラス
  *
+ *@class FileDocument
+ *       /◇ReferenceUtil reference,
+ *         DateTime now,
+ *         string Path,
+ *         string contentDoc,
+ *         string document /
+ *       FileDocument(string path, string contentDoc)
+ *       - string BuildDocument(string contentDoc)
+ *       
  *@author shika       
  *@date 2021-10-07
  */
