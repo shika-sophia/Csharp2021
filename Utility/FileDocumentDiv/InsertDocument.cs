@@ -1,4 +1,4 @@
-﻿/**
+﻿/** ====== Old Version Unused / 旧版 非使用 ======
  *@title CsharpBegin / Utility / FileDocumentDiv / InsertDocument.cs
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  *@content documentを Main()実行ファイルに挿入するクラス
@@ -6,7 +6,40 @@
  *     すでに documentがあれば、処理なし。
  *     documentが未挿入なら、ファイル先頭に挿入し、
  *     既述のコードを Appendする。
+ *
+ * ====== Old Version Unused / 旧版 クラス構成 ======
+ *@class InsertDocument
+ *       / ◇FileDocument doc,
+ *         - string contentAll /
+ *       + InsertDocument() { new FileDocument() }
+ *       + InsertDocument(string content) { new FileDocument(string) }
+ *       + InsertDocument(string content, string path) { new FileDocument(string, string) }
+ *       + InsertExe()
+ *         { using(FileSteam), using(StreamReader)
+ *           using(StreamWriter)
+ *         }
+ *           ◇
+ *           ↓
+ *@class FileDocument
+ *       / ◇ReferenceUtil referance,
+ *         - string absDir, //絶対パス
+ *         - string relDir, //projectからの相対パス
+ *         - string content,
+ *         + string document /
+ *       + FileDocument() 
+ *       + FileDocument(string content) 
+ *       + FileDocument(string content, string path) 
+ *       - string SeekDir() 
+ *           //static Main()を実行した fileName(絶対パス)を抽出。
+ *       - string BuildDocument()
+ *           //documentを作成     
+ *           ◇
+ *           ↓         
+ *@class ReferenceUtil
+ *       / - Dictionary<string,string> fileDic /
+ *       + List<string> SeekBook(string dir)
  *       
+ *@see FileDocExe.cs / New Version
  *@author shika
  *@date 2021-10-07
  */
@@ -24,23 +57,15 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         private FileDocument doc;
         private string contentAll;
 
-        public InsertDocument() : this("") { }
-
-        public InsertDocument(string content)
+        public InsertDocument(FileDocument doc)
         {
-            doc = new FileDocument(content);
-        }
-
-        public InsertDocument(string content, string path)
-        {
-            doc = new FileDocument(content, path);
+            this.doc = doc;
         }
 
         public void InsertExe()
         {
-            string absDir = doc.absDir;
-
-            using (var fs = new FileStream(absDir, FileMode.Open))
+            string path = doc.Path;
+            using (var fs = new FileStream(path, FileMode.Open))
             using (var reader = new StreamReader(fs))
             {
                 var bld = new StringBuilder(10000);
@@ -62,7 +87,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 fs.Close();
             }
 
-            using (var writer = new StreamWriter(absDir, append: false))
+            using (var writer = new StreamWriter(path, append: false))
             {                                
                 string document = doc.document;
                 writer.Write(document);
