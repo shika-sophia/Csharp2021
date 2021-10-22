@@ -51,7 +51,7 @@ namespace CsharpBegin.Utility
             {
                 inputInt = int.Parse(input);
             } 
-            catch (FormatException e)
+            catch (FormatException)
             {
                 throw new FormatException(
                     "InputMismatchException");
