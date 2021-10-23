@@ -52,7 +52,10 @@ namespace CsharpBegin.Utility.FileDocumentDiv
     class FileDocExecute           
     {           
         private readonly FileDocument doc;                               
-        public string Path { get; private set; }           
+        public string Path { get; private set; }
+        private string documentRead;
+        private string contentRead;
+        private string contentAll;
            
         public FileDocExecute() : this("", "") { }           
            
@@ -83,13 +86,18 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         public void ReadWriteExe(
             string document = "", string appendix = "", string contentPlus = "")           
         {           
-            if (String.IsNullOrEmpty(document))           
-            {           
-                document = doc.document;           
-            }           
-                 
-            string contentAll = ReadContent(Path);           
-            WriteContent(document, appendix, contentAll, contentPlus);           
+            ReadContent(Path);
+            if (String.IsNullOrEmpty(documentRead))
+            {
+                Console.WriteLine("<○> this Document just has inserted.");
+                document = doc.document;
+            } else
+            {
+                Console.WriteLine("<!> this Document already existed.");
+                document = documentRead;
+            }//if document
+
+            WriteContent(document, appendix, contentRead, contentPlus);           
         }//ReadWriteExe()           
            
         //====== ReadFile ======           
@@ -100,49 +108,52 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         public string ReadContent(string path)           
         {           
             if (String.IsNullOrEmpty(path)) { path = this.Path; }           
-            var bld = new StringBuilder(10000);
             
             using (var fs = new FileStream(path, FileMode.Open))           
             using (var reader = new StreamReader(fs))           
             {                           
+                var bld = new StringBuilder(2000);
+                bool isContent = false;
                 while (!reader.EndOfStream)           
                 {           
-                    string line = reader.ReadLine();           
-                    bld.Append($"{line} \n");           
-                }//while           
-          
+                    string line = reader.ReadLine();
+                    
+                    if (line.TrimStart().StartsWith("using") && !isContent)
+                    {
+                        this.documentRead = bld.ToString();
+                        bld.Clear();
+                        isContent = true;
+                    }
+
+                    bld.Append($"{line} \n");
+                }//while
+                        
+                this.contentRead = bld.ToString();
                 reader.Close();           
                 fs.Close();           
             }//using           
-            Console.WriteLine($"contentAll.Length: {bld.Length}");
 
-            return bld.ToString();
+            this.contentAll = documentRead + contentRead;
+            return contentAll;
         }//ReadContent()           
-           
-        //====== WriteFile ======           
+
+        //====== WriteFile ======
+        // private厳守: 必ずReadContent()してから、WriteContent()
         private void WriteContent(
-            string document, string appendix, string contentAll, string contentPlus)           
+            string document, string appendix, string contentRead, string contentPlus)           
         {           
             using (var writer = new StreamWriter(Path, append: false))           
             {
                 if (String.IsNullOrEmpty(contentAll))
                 {
-                    contentAll = ReadContent(Path);
+                    ReadContent();
                 }
 
-                if (contentAll.TrimStart().StartsWith("/**"))      
-                {      
-                    Console.WriteLine("<!> the Document already existed.");      
-                }     
-                else    
-                {    
-                    Console.WriteLine("<○> this Document just has inserted.");    
-                    writer.Write(document);    
-                }          
-                writer.Write(appendix);           
-                writer.Write(contentAll);
+                writer.Write(document);
+                writer.Write(appendix);
+                writer.Write(contentRead);
                 writer.Write(contentPlus);
-                writer.Close();           
+                writer.Close();
             }//using 
         }//WriteContent()
            
