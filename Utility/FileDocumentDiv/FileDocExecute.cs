@@ -9,7 +9,6 @@
  *         
  *@class FileDocExecute
  *       / ◇FileDocument doc
- *         string contentAll,
  *         string Path /
  *       FileDocExecute()
  *       FileDocExecute(string path)
@@ -52,9 +51,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
 {           
     class FileDocExecute           
     {           
-        private readonly FileDocument doc;             
-        private string contentAll;           
-           
+        private readonly FileDocument doc;                               
         public string Path { get; private set; }           
            
         public FileDocExecute() : this("", "") { }           
@@ -75,11 +72,11 @@ namespace CsharpBegin.Utility.FileDocumentDiv
             return SeekFile();           
         }//JudgePath()           
            
-        //====== StackTrace -> fileName of static Main() ======           
+        //====== StackTrace -> fileName ======           
         public string SeekFile()           
         {           
             StackTrace trace = new StackTrace(true);           
-            StackFrame frame = trace.GetFrame(trace.FrameCount - 1);           
+            StackFrame frame = trace.GetFrame(trace.FrameCount - 1); //static Main()          
             return frame.GetFileName();           
         }//SeekFile()           
            
@@ -102,26 +99,24 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         }           
         public string ReadContent(string path)           
         {           
-            string contentAll = "";           
             if (String.IsNullOrEmpty(path)) { path = this.Path; }           
-           
+            var bld = new StringBuilder(10000);
+            
             using (var fs = new FileStream(path, FileMode.Open))           
             using (var reader = new StreamReader(fs))           
             {                           
-                var bld = new StringBuilder(10000);           
                 while (!reader.EndOfStream)           
                 {           
                     string line = reader.ReadLine();           
                     bld.Append($"{line} \n");           
                 }//while           
-                contentAll = bld.ToString();             
           
                 reader.Close();           
                 fs.Close();           
             }//using           
-           
-            this.contentAll = contentAll;           
-            return contentAll;           
+            Console.WriteLine($"contentAll.Length: {bld.Length}");
+
+            return bld.ToString();
         }//ReadContent()           
            
         //====== WriteFile ======           
@@ -129,7 +124,12 @@ namespace CsharpBegin.Utility.FileDocumentDiv
             string document, string appendix, string contentAll, string contentPlus)           
         {           
             using (var writer = new StreamWriter(Path, append: false))           
-            {      
+            {
+                if (String.IsNullOrEmpty(contentAll))
+                {
+                    contentAll = ReadContent(Path);
+                }
+
                 if (contentAll.TrimStart().StartsWith("/**"))      
                 {      
                     Console.WriteLine("<!> the Document already existed.");      
