@@ -63,7 +63,7 @@ namespace CsharpBegin.Exercise
             //---- build result ----
             string date = start.ToString("yyyy-MM-dd(ddd)");
             string result = multi.ShowList(
-                correct.correctAnsList, $"==== Exercise Result / {date} ====");
+                correct.correctAnsList, $"{date}\n==== Exercise Result ====");
             string appendix = BuildAppendix(date, start, finish);
 
             //---- File ReadWrite ----
