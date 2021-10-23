@@ -103,7 +103,7 @@ namespace CsharpBegin.Utility.ScanDiv
         {
             if (String.IsNullOrEmpty(input)) { return "next"; }
 
-            if (input.Contains("-99"))
+            if (input.Contains("-99") || input.Contains("ー９９"))
             {
                 if (count == 1)
                 {
@@ -117,7 +117,7 @@ namespace CsharpBegin.Utility.ScanDiv
                 if (isConfirm) { return "end"; } else { return "next"; }
             }//if -99
 
-            if (input.Contains("-88"))
+            if (input.Contains("-88") || input.Contains("ー８８"))
             {
                 if (count == 1)
                 {
@@ -168,7 +168,7 @@ namespace CsharpBegin.Utility.ScanDiv
             }//foreach
             bld.Append("*/ \n");
 
-            Console.WriteLine($"bld.Length: {bld.Length}");
+            Console.WriteLine($"ShowList.Length: {bld.Length}");
             Console.WriteLine(bld.ToString());
             return bld.ToString();
         }//ShowList()

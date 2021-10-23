@@ -67,8 +67,11 @@ namespace CsharpBegin.Utility.ScanDiv
             int inputInt;
             reQuest:
             Console.Write($"{quest}: ");
-            string input = Console.ReadLine(); 
-            
+            string input = Console.ReadLine();
+
+            if (input.Equals("ー８８")) { return -88; }
+            if (input.Equals("ー９９")) { return -99; }
+
             try
             {
                 inputInt = int.Parse(input);
