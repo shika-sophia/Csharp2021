@@ -1,4 +1,4 @@
-/* ====== Template ======
+/** ====== Template ======
 static void Main(string[] args)
 //public void Main(string[] args)
 {
@@ -67,7 +67,7 @@ namespace CsharpBegin.Exercise
             string appendix = BuildAppendix(date, start, finish);
 
             //---- File ReadWrite ----
-            fileExe.ReadWriteExe(document: "", appendix, result);
+            fileExe.ReadWriteExe(document: "", appendix, result + appendix);
         }//ExerciseExe()
 
         private string BuildAppendix(
