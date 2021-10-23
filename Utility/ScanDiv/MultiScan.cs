@@ -244,7 +244,6 @@ questList:
 〔2〕Q2
 
 answerList:
-
 〔1〕Q1
 (1) A1-1
 (2) A1-2

@@ -69,8 +69,8 @@ namespace CsharpBegin.Utility.ScanDiv
             Console.Write($"{quest}: ");
             string input = Console.ReadLine();
 
-            if (input.Equals("ー８８")) { return -88; }
-            if (input.Equals("ー９９")) { return -99; }
+            if (input.Contains("ー８８")) { return -88; }
+            if (input.Contains("ー９９")) { return -99; }
 
             try
             {
@@ -130,4 +130,6 @@ TryParse()だと 非整数の入力も trueを出して、
 全角数字は Parse(string, NumberStyle)の
 NumberStyleでも定義されていないので解決せず。
 
+入力時は stringなので int.Parse()の前に
+if文で全角「ー８８」「ー９９」等の特殊記号は分岐可能。
  */
