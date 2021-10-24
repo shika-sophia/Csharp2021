@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CsharpBegin.Utility.ScanDiv
@@ -61,6 +62,24 @@ namespace CsharpBegin.Utility.ScanDiv
             count++;
             goto nextQuest;
         }//BuildQuest()
+
+        public string BuildContentDoc()
+        {
+            if(questList.Count == 0)
+            {
+                BuildQuest();
+            }
+
+            var bld = new StringBuilder(questList.Count * 10);
+            Regex regex = new Regex(@"〔\d〕");
+            foreach (string quest in questList)
+            {
+                string questRep = regex.Replace(quest, "");
+                bld.Append($"{questRep}, ");
+            }
+
+            return bld.ToString();
+        }//BuildContentDoc()
 
         public void BuildAnswer()
         {
