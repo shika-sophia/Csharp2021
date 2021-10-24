@@ -19,7 +19,7 @@ namespace CsharpBegin.A00_Template
         //static void Main(string[] args)
         public void Main(string[] args)
         {
-            new Utility.FileDocumentDiv.FileDocExecute().ReadWriteExe("");
+            new Utility.FileDocumentDiv.FileDocExecute().ReadWriteExe();
         }//Main()
 
         //static void Main(string[] args)
