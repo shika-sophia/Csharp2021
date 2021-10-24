@@ -45,7 +45,7 @@ namespace CsharpBegin.Exercise
         
         public ExerciseEditor(string contentDoc)
         {
-            this.fileExe = new FileDocExecute("", contentDoc);
+            this.fileExe = new FileDocExecute(path: "", contentDoc);
             this.multi = new MultiScan();
             this.correct = new CorrectScan(multi);
             ExerciseExe();
@@ -54,20 +54,21 @@ namespace CsharpBegin.Exercise
         public void ExerciseExe()
         {
             //---- Exercise input ----
-            var start = DateTime.Now;
             multi.BuildQuest();
+                var start = DateTime.Now;
             multi.BuildAnswer();
-            var finish = DateTime.Now;
+                var finish = DateTime.Now;
             correct.InputCorrect();
 
             //---- build result ----
             string date = start.ToString("yyyy-MM-dd(ddd)");
+            string contentDocAdd = multi.BuildContentDoc();
             string result = multi.ShowList(
                 correct.correctAnsList, $"{date}\n==== Exercise Result ====");
             string appendix = BuildAppendix(date, start, finish);
 
             //---- File ReadWrite ----
-            fileExe.ReadWriteExe(document: "", appendix, result + appendix);
+            fileExe.ReadWriteExe(contentDocAdd, appendix, result + appendix);
         }//ExerciseExe()
 
         private string BuildAppendix(
@@ -90,11 +91,6 @@ namespace CsharpBegin.Exercise
             return bld.ToString();
         }
 
-        //static void Main(string[] args)
-        public void Main(string[] args)
-        {
-            new ExerciseEditor("");
-        }//Main()
     }//class
 }
 
