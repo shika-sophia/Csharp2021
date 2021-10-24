@@ -36,10 +36,9 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         {
             this.Path = path;
             this.contentDoc = contentDoc;
-            this.document = BuildDocument(contentDoc);
         }
         
-        private string BuildDocument(string contentDoc)
+        public string BuildDocument(string contentDoc)
         {
             List<string> bookList = reference.SeekBook(Path);
             string dirDoc = 
@@ -57,10 +56,10 @@ namespace CsharpBegin.Utility.FileDocumentDiv
             bld.Append($" *@content {contentDoc}\n");
             bld.Append( " * \n");
             bld.Append( " *@author shika \n");
-            bld.Append($" *@date {now.ToString("yyyy-MM-dd")} \n");
+            bld.Append($" *@date {now:yyyy-MM-dd} \n");
             bld.Append("*/ \n");
 
-            return bld.ToString();
+            return this.document = bld.ToString();
         }//BuildDocument();
 
         //====== Test Main() ======

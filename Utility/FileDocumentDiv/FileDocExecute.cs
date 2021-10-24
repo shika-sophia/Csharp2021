@@ -44,7 +44,8 @@ using System.Collections.Generic;
 using System.Diagnostics;           
 using System.IO;           
 using System.Linq;           
-using System.Text;           
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;           
            
 namespace CsharpBegin.Utility.FileDocumentDiv           
@@ -54,6 +55,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         private readonly FileDocument doc;                               
         public string Path { get; private set; }
         private string documentRead;
+        private string contentDocRead;
         private string contentRead;
         private string contentAll;
            
@@ -84,26 +86,43 @@ namespace CsharpBegin.Utility.FileDocumentDiv
         }//SeekFile()           
            
         public void ReadWriteExe(
-            string document = "", string appendix = "", string contentPlus = "")           
-        {           
+            string contentDocAdd = "", string appendix = "", string contentPlus = "")
+        {
             ReadContent(Path);
+            string contentDoc = contentDocRead + contentDocAdd;
+            string documentJudged = JudgeDocument(contentDoc);
+
+            WriteContent(documentJudged, appendix, contentRead, contentPlus);
+        }//ReadWriteExe()           
+
+        private string JudgeDocument(string contentDoc)
+        {
+            string document;
             if (String.IsNullOrEmpty(documentRead))
             {
                 Console.WriteLine("<○> this Document just has inserted.");
-                document = doc.document;
-            } else
+                document = doc.BuildDocument(contentDoc);
+            }
+            else
             {
+                if (!contentAll.TrimStart().StartsWith("/**"))
+                {
+                    Console.WriteLine("<○> this Document just has inserted.");
+                    document = doc.BuildDocument(contentDoc) + documentRead;
+                    return document;
+                }
                 Console.WriteLine("<!> this Document already existed.");
-                document = documentRead;
+                Regex regex = new Regex(@"\*@content .*");
+                document = regex.Replace(documentRead, contentDoc);
             }//if document
 
-            WriteContent(document, appendix, contentRead, contentPlus);           
-        }//ReadWriteExe()           
-           
+            return document;
+        }//JudgeDocument()
+
         //====== ReadFile ======           
         public string ReadContent()           
         {           
-            return ReadContent(Path);           
+            return ReadContent(Path);
         }           
         public string ReadContent(string path)           
         {           
@@ -120,14 +139,21 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                     
                     if (line.TrimStart().StartsWith("using") && !isContent)
                     {
+                        Console.WriteLine($"documentRead: {bld.Length}");
                         this.documentRead = bld.ToString();
                         bld.Clear();
                         isContent = true;
                     }
 
+                    if (line.TrimStart().StartsWith("*@content"))
+                    {
+                        this.contentDocRead = line;
+                    }
+
                     bld.Append($"{line} \n");
                 }//while
-                        
+
+                Console.WriteLine($"contentRead: {bld.Length}");
                 this.contentRead = bld.ToString();
                 reader.Close();           
                 fs.Close();           
@@ -146,7 +172,8 @@ namespace CsharpBegin.Utility.FileDocumentDiv
             {
                 if (String.IsNullOrEmpty(contentAll))
                 {
-                    ReadContent();
+                    ReadContent(Path);
+                    document = JudgeDocument(contentDocRead);
                 }
 
                 writer.Write(document);
@@ -156,12 +183,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 writer.Close();
             }//using 
         }//WriteContent()
-           
-        //static void Main(string[] args)           
-        public void Main(string[] args)           
-        {         
-            new FileDocExecute().ReadWriteExe();         
-        }//Main()        
+     
     }//class        
 }
 
