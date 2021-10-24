@@ -112,7 +112,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                     return document;
                 }
                 Console.WriteLine("<!> this Document already existed.");
-                Regex regex = new Regex(@"\*@content .*");
+                Regex regex = new Regex(@" \*@content .*");
                 document = regex.Replace(documentRead, contentDoc);
             }//if document
 
