@@ -61,7 +61,7 @@ namespace CsharpBegin.Exercise
             correct.InputCorrect();
 
             //---- build result ----
-            string date = start.ToString("yyyy-MM-dd(ddd)");
+            string date = start.ToString("yyyy-MM-dd (ddd)");
             string contentDocAdd = multi.BuildContentDoc();
             string result = multi.ShowList(
                 correct.correctAnsList, $"{date}\n==== Exercise Result ====");
