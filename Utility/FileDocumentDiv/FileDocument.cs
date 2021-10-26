@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CsharpBegin.Utility.FileDocumentDiv
@@ -44,6 +45,7 @@ namespace CsharpBegin.Utility.FileDocumentDiv
             string dirDoc = 
                 Path.Substring(Path.LastIndexOf(@"CsharpBegin\"))
                 .Replace(@"\", " / ");
+            contentDoc = ContentDefault(contentDoc);
 
             var bld = new StringBuilder(300);
             bld.Append("/** \n");
@@ -61,6 +63,29 @@ namespace CsharpBegin.Utility.FileDocumentDiv
 
             return this.document = bld.ToString();
         }//BuildDocument();
+
+        private string ContentDefault(string contentDoc)
+        {
+            if (String.IsNullOrEmpty(contentDoc))
+            {
+                if (Path.Contains("Exercise"))
+                {
+                    return contentDoc = this.contentDoc;
+                }
+                string fileName = Path.Substring(Path.LastIndexOf(@"\"))
+                                      .Replace(@"\", ""); ;
+                Regex regex = new Regex(@"\..*");
+                fileName = regex.Replace(fileName, "");
+
+                contentDoc = fileName + this.contentDoc;
+            }
+            else
+            {
+                contentDoc += this.contentDoc;
+            }
+
+            return contentDoc;
+        }//ContentDefault()
 
         //====== Test Main() ======
         //static void Main(string[] args)
