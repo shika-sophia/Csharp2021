@@ -27,8 +27,8 @@ namespace CsharpBegin.SampleCode
             NonBold = Italic | Underline,    //0110 = 6
             All = Bold | Italic | Underline, //0111 = 7
         }
-        static void Main(string[] args)   
-        //public void Main(string[] args)   
+        //static void Main(string[] args)   
+        public void Main(string[] args)   
         {
             FontStyleSample style1 = 
                 FontStyleSample.Bold | FontStyleSample.Italic;
