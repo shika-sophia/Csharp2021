@@ -30,19 +30,18 @@ namespace CsharpBegin.SampleCode
                 new OuterSample.InnerSample();
             inner.Show();
         }//Main() 
-    }//class
+    }//class NestedSample
 
     class OuterSample
     {
-        string str1 = "Outer/instance";
+        string str1 = "Outer/instance";  //default: internal
         private string str2 = "Outer/private";
         static string str3 = "Outer/static";
 
         public void Show()
         {
-            Console.WriteLine("Outer.Show() -> Inner");
-
             InnerSample inner = new InnerSample();
+            Console.WriteLine("Outer.Show() -> Inner");
             Console.WriteLine($"str4: {inner.str4}");
             //以下、いずれもアクセス不可
             //Console.WriteLine($"str5: {inner.str5}");
@@ -59,8 +58,8 @@ namespace CsharpBegin.SampleCode
 
             public void Show()
             {
-                Console.WriteLine("Inner.Show() -> Outer");
                 OuterSample outer = new OuterSample();
+                Console.WriteLine("Inner.Show() -> Outer");
                 Console.WriteLine($"str1: {outer.str1}");
                 Console.WriteLine($"str2: {outer.str2}");
                 Console.WriteLine($"str3: {OuterSample.str3}");
@@ -71,7 +70,7 @@ namespace CsharpBegin.SampleCode
                 Console.WriteLine($"str6: {str6}");
                 Console.WriteLine($"str7: {str7}");
             }
-        }//class
+        }//class Inner
     }//class Outer
 }
 /*
