@@ -194,8 +194,8 @@ namespace CsharpBegin.Utility.ScanDiv
             return bld.ToString();
         }//ShowList()
 
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             var here = new MultiScan();
             //here.BuildQuest();
