@@ -10,7 +10,8 @@
  *       + void BuildQuest()
  *       + void BuildAnswer()
  *       + string ActionLogic(string, string, int ,List<string>)
- *       + string ShowList(List<string>, string)
+ *       + string ShowList(List<string>, string) 修正 ->
+ *       + string ShowList<T>(List<T>, string) に変更
  *
  *@see ConfirmScan.cs
  *@see CorrctScan.cs
@@ -158,7 +159,7 @@ namespace CsharpBegin.Utility.ScanDiv
             return ""; //default -> List.Add()
         }//ActionLogic()
 
-        public string ShowList (List<string> list, string listName)
+        public string ShowList<T> (List<T> list, string listName)
         {
             if(list == null || list.Count == 0) 
             {
@@ -172,8 +173,9 @@ namespace CsharpBegin.Utility.ScanDiv
             bld.Append($"{listName} \n");
 
             int count = 0;
-            foreach(string str in list)
+            foreach(T value in list)
             {
+                string str = value.ToString();
                 if (str.Contains("(1)"))
                 {
                     if (count != 0) 
@@ -192,12 +194,18 @@ namespace CsharpBegin.Utility.ScanDiv
             return bld.ToString();
         }//ShowList()
 
-        //static void Main(string[] args)
-        public void Main(string[] args)
+        static void Main(string[] args)
+        //public void Main(string[] args)
         {
             var here = new MultiScan();
-            here.BuildQuest();
-            here.BuildAnswer();
+            //here.BuildQuest();
+            //here.BuildAnswer();
+            here.questList.Add("Q1");
+            here.questList.Add("Q2");
+            here.answerList.Add("A1-1");
+            here.answerList.Add("A1-2");
+            here.answerList.Add("A2-1");
+            here.answerList.Add("A2-2");
 
             Console.WriteLine("==== ShowList ====");
             here.ShowList(here.questList, nameof(questList));
@@ -317,5 +325,19 @@ answerList:
 
 ◆〔2〕Q2
 (1) A2-1
+
+//==== Test Generics ShowList<T>() ====
+==== ShowList ====
+ShowList.Length: 27
+questList
+Q1
+Q2
+
+ShowList.Length: 44
+answerList
+A1-1
+A1-2
+A2-1
+A2-2
 
  */
