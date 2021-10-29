@@ -4,12 +4,14 @@
  *@content PartialSample / p438 / List 9-38 ～ 9-42
  *
  *@content //====== partial method ======
+ *         メソッド宣言と本体定義の分離
  *@class partial PartialSample / ◆Main() new MyPartial
  *       void partial Print(MyPartial); //宣言のみ
  *@class partial PartialSample
  *       void partial Print(MyPartial) { Console.WriteLine() }
  *       
  *@content //====== partial class ======
+ *         フィールド / プロパティの共有
  *@class partial MyPartial
  *       / string FirstName { }
  *         string LastName { } /
