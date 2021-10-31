@@ -9,7 +9,8 @@
  *         Object.GetHashCode()も overrideする必要がある。
  *         慣例的にフィールドの「^」演算(=排他的論理和)
            Equals()で同値判定したフィールドの値を個別に取れるようプロパティ化しておく
- * 
+
+ *@see OperatorEquals / PersonOpe.cs
  *@author shika 
  *@date 2021-10-30 
 */
