@@ -1,19 +1,16 @@
 /**        
  *@title CsharpBegin / SampleCode / OperatorPlus.cs        
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017        
- *@content 9.6 OperatorPlus / p462 / List 9-55, 9-56, 9-57
+ *@content 9.6 OperatorPlus / p462 / List 9-55 ～ 9-60
  *@subject OpePlus「+」
  *@subject OpePlusProperty「obj + int」 
  *@subject OpeIncrement「++」「--」
  *         呼出時の「++」で、もとのオブジェクトもインクリメントされるので
  *         毎回 新規オブジェクトをベースに「++」
  *         前置と後置で結果が異なるので注意
+ *@subject OpeTrueFalse        
  *         
  *@notice 【註】static methods have been to comment out.
- *
- *@subject OpeTrueFalse        
- *@subject OpeCast        
- *       
  *@author shika        
  *@date 2021-10-31        
 */       
@@ -39,10 +36,16 @@ namespace CsharpBegin.SampleCode
             //var co5 = ++coBase;
             //coBase = new CoordinateOpe { X = 10, Y = 20 };
             //var co6 = coBase++;
+            var co7 = new CoordinateOpe { X = 0, Y = -1 };
 
             //var coList = new List<CoordinateOpe> { co1, co2, co3, co4, co5, co6 };
             //int count = 1;
             //coList.ForEach(co => Console.WriteLine($"co{count++}: {co}"));
+
+            //if (co1) { Console.WriteLine($"co1: true"); }
+            //else { Console.WriteLine($"co1: false"); }
+            //if (co7) { Console.WriteLine($"co7: true"); }
+            //else { Console.WriteLine($"co7: false"); }
         }//Main()        
     }//class
     
@@ -89,6 +92,16 @@ namespace CsharpBegin.SampleCode
         //    };
         //}//operator --
 
+        //public static bool operator true(CoordinateOpe co)
+        //{
+        //    return co.X >= 0 && co.Y >= 0;
+        //}
+
+        //public static bool operator false(CoordinateOpe co)
+        //{
+        //    return co.X < 0 || co.Y < 0;
+        //}
+
         public override string ToString()
         {
             return $"X: {X}, Y:{Y}";
@@ -102,4 +115,6 @@ co3: X: 27, Y:45
 co4: X: 110, Y:20
 co5: X: 11, Y:21
 co6: X: 10, Y:20
+co1: true
+co7: false
 */
