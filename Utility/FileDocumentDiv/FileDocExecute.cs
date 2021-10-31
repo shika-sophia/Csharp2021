@@ -97,23 +97,27 @@ namespace CsharpBegin.Utility.FileDocumentDiv
 
         private string JudgeDocument(string contentDoc)
         {
+            string className = Path.Substring(
+                Path.LastIndexOf(@"\")).Replace(@"\", "");
+            className = Regex.Replace(className, @"\..*", "");
+
             string document;
             if (String.IsNullOrEmpty(documentRead))
             {
-                Console.WriteLine("<○> this Document just has inserted.");
+                Console.WriteLine($"<○> [{className}] document just has inserted.");
                 document = doc.BuildDocument(contentDoc);
             }
             else
             {
                 if (!contentAll.TrimStart().StartsWith("/**"))
                 {
-                    Console.WriteLine("<○> this Document just has inserted.");
+                    Console.WriteLine($"<○> [{className}] document just has inserted.");
                     document = doc.BuildDocument(contentDoc) + documentRead;
                     return document;
                 }
-                Console.WriteLine("<!> this Document already existed.");
-                Regex regex = new Regex(@" \*@content .*");
-                document = regex.Replace(documentRead, contentDoc);
+                Console.WriteLine($"<!> [{className}] document already existed.");
+                Regex regexContent = new Regex(@" \*@content.*");
+                document = regexContent.Replace(documentRead, contentDoc);
             }//if document
 
             return document;
