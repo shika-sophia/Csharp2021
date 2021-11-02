@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / SampleCode / DelegateArgs.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@content 10.1.2 DelegateArgs / p476 / List 10-2, 10-3
+ *@content 10.1.2 DelegateArgs / p476 / List 10-2 ～ 10-7
  *         デリゲートを他メソッドの引数に代入
  *         
  *         //==== DOutputSampleに対応したメソッド ====
@@ -40,10 +40,10 @@ namespace CsharpBegin.SampleCode
             string[] dataAry = new[] { "いろはにほへと", "ちりぬるを", "わかよたれそ" };
             var delImpl = new DelegateUse();
 
-            //==== DOutputSampleに対応したメソッド ====
             //デリゲート利用しない場合
             delImpl.AryWalkNoused(dataAry);
 
+            //==== DOutputSampleに対応したメソッド ====
             //デリゲート利用
             DOutputSample del = delImpl.ShowData;
             delImpl.AryWalkUsed(dataAry, del);
@@ -131,12 +131,12 @@ namespace CsharpBegin.SampleCode
 }
 
 /*
-//==== DOutputSampleに対応したメソッド ====
 //---- AryWalkNoused(string[]) ----
 [いろはにほへと]
 [ちりぬるを]
 [わかよたれそ]
 
+//==== DOutputSampleに対応したメソッド ====
 //---- AryWalkUsed(string[], DOutputSample) ----
 [いろはにほへと]
 [ちりぬるを]
