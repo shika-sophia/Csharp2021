@@ -34,8 +34,8 @@ namespace CsharpBegin.SampleCode
 { 
     class DelegateArgs 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             string[] dataAry = new[] { "いろはにほへと", "ちりぬるを", "わかよたれそ" };
             var delImpl = new DelegateUse();
