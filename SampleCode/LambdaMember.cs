@@ -71,5 +71,5 @@ Value: 24
 now: 2021/11/03 13:46:09
 LambdaMember[2]: 48
 Calculate(): 576
-operator true: Value != 0
+operator false: Value != 0
  */
