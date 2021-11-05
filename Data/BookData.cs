@@ -4,6 +4,14 @@
  *@content BookData / p495 / List 10-19
  *         LINQ to Objects用のサンプルデータ
  * 
+ *         【考察】テキストサンプルは Listを IEnumerableに代入しているが
+ *          Listそのままのほうが利用しやすい。
+ *          Listだと、ForEach(Action<T>)が使える。
+ *          利用時に IEnumerableに代入すればいいだけのような
+ *          IEnumerable<T>は、配列、Listとも実装しているインターフェイス
+ *          なので両方とも収納可
+ *          
+ *@see SampleCode / LinqObjSample.cs
  *@author shika 
  *@date 2021-11-04 
 */ 
@@ -17,12 +25,12 @@ namespace CsharpBegin.Data
 { 
     public class BookData 
     { 
-        public IEnumerable<Book> BookEnum { get; private set; }
-        public IEnumerable<Review> ReviewEnum { get; private set; }
+        public IEnumerable<Book> BookItr { get; private set; }
+        public IEnumerable<Review> ReviewItr { get; private set; }
 
         public BookData()
         {
-            this.BookEnum = new List<Book>
+            this.BookItr = new List<Book>
             {
                 new Book
                 {
@@ -71,7 +79,7 @@ namespace CsharpBegin.Data
                 },
             };//List<Book>
 
-            this.ReviewEnum = new List<Review>
+            this.ReviewItr = new List<Review>
             {
                 new Review
                 {
@@ -110,11 +118,11 @@ namespace CsharpBegin.Data
         public void Main(string[] args) 
         {
             var here = new BookData();
-            foreach(Book book in here.BookEnum)
+            foreach(Book book in here.BookItr)
             {
                 Console.WriteLine(book);
                 Review review = null;
-                foreach (Review rev in here.ReviewEnum)
+                foreach (Review rev in here.ReviewItr)
                 {
                     if (rev.Isbn == book.Isbn)
                     {
