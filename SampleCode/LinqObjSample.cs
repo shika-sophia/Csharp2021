@@ -37,16 +37,18 @@ namespace CsharpBegin.SampleCode
 { 
     class LinqObjSample 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
+            var here = new LinqObjSample();
             BookData data = new BookData();
+
             //----LINQ Query----
             IEnumerable<string> bsQ =
                 from b in data.BookItr
                 where b.Price < 2000
                 select b.Title;
-            ShowIterator(bsQ, "LINQ Query");
+            here.ShowIterator(bsQ, "LINQ Query");
 
             //---- LINQ Method ----
             IEnumerable<string> bsM =
@@ -54,7 +56,7 @@ namespace CsharpBegin.SampleCode
                 .Where(b => b.Price > 4000)
                 //.Select(b => b);
                 .Select(b => b.Title);
-            ShowIterator(bsM, "LINQ Method");
+            here.ShowIterator(bsM, "LINQ Method");
 
             //---- LINQ Delay / 遅延実行 ----
             //var bsDelay = from b in data.BookItr select b.Title;
@@ -62,14 +64,14 @@ namespace CsharpBegin.SampleCode
             //ToArray()で確定
             var bsDelay =
                 (from b in data.BookItr select b.Title).ToArray();
-            ShowIterator(bsDelay, "LINQ Original");
+            here.ShowIterator(bsDelay, "LINQ Original");
 
             //0番目のタイトルを事前に保存
             string temp0 = data.BookItr.ElementAt(0).Title;
 
             //0番目のタイトルを変更
             data.BookItr.ElementAt(0).Title = "独習 PHP 第6版";
-            ShowIterator(bsDelay, "LINQ Delay");
+            here.ShowIterator(bsDelay, "LINQ Delay");
 
             //事前に保存したものを元に戻す
             data.BookItr.ElementAt(0).Title = temp0;
@@ -80,43 +82,43 @@ namespace CsharpBegin.SampleCode
             var bsQsub = from b in data.BookItr
                          where b.Title.Contains("独習")
                          select b.Title;
-            ShowIterator(bsQsub, "部分検索 Query");
+            here.ShowIterator(bsQsub, "部分検索 Query");
 
             //＊Method
             var bsMsub = data.BookItr
                 .Where(b => b.Title.Contains("独習"))
                 .Select(b => b.Title);
-            ShowIterator(bsQsub, "部分検索 Method");
+            here.ShowIterator(bsQsub, "部分検索 Method");
 
             //◆候補値検索 / Target Value Search
             int[] targetAry = new[] { 3, 8 };
-            ShowIterator(targetAry, "targetAry");
+            here.ShowIterator(targetAry, "targetAry");
 
             //＊Query
             var bsQmon =
                 from b in data.BookItr
                 where targetAry.Contains(b.PublishDate.Month)
                 select b;
-            ShowIterator(bsQmon, "候補値検索 Query");
+            here.ShowIterator(bsQmon, "候補値検索 Query");
 
             //＊Method
             var bsMmon = data.BookItr
                 .Where( b => targetAry.Contains(b.PublishDate.Month))
                 .Select(b => b);
-            ShowIterator(bsMmon, "候補値検索 Method");
+            here.ShowIterator(bsMmon, "候補値検索 Method");
 
             //◆範囲検索 / Range Search
             //＊Query
             var bsQrng = from b in data.BookItr
                          where (1500 < b.Price && b.Price < 2000)
                          select (b.Title, b.Price);
-            ShowIterator(bsQrng, "◆範囲検索＊Query");
+            here.ShowIterator(bsQrng, "◆範囲検索＊Query");
 
             //＊Method
             var bsMrng = data.BookItr
                 .Where(b => (1500 < b.Price && b.Price < 2000))
                 .Select(b => $"Title: {b.Title}, Price: {b.Price}");
-            ShowIterator(bsMrng, "＊Method");
+            here.ShowIterator(bsMrng, "＊Method");
 
             //◆複数条件検索 / Mulitiple Condition Search
             //＊Query 略
@@ -125,18 +127,18 @@ namespace CsharpBegin.SampleCode
                 .Where(b => (1500 < b.Price && b.Price < 4000))
                 .Where(b => b.Publisher == "技術評論社")
                 .Select(b => $"Title: {b.Title}\nPublisher: {b.Publisher}\nPrice: {b.Price}");
-            ShowIterator(bsMmulti, "◆複数条件検索");
+            here.ShowIterator(bsMmulti, "◆複数条件検索");
 
             //◆単一要素 / Single Element Search
             //＊Method ONLY
             Book single = data.BookItr
                 .SingleOrDefault(b => b.Isbn == "978-4-7973-3162-3");
-            //.Select(b => b.Title);    //戻り値Bookなので不可
+            //  .Select(b => b.Title);  //戻り値Bookなので不可
             //ShowIterator(single, ""); //Bookオブジェクトなので不可
             Console.WriteLine($"Title: {single.Title}\nISBN: {single.Isbn}");
         }//Main() 
 
-        private static void ShowIterator<T>(IEnumerable<T> itr, string name)
+        private void ShowIterator<T>(IEnumerable<T> itr, string name)
         {
             Console.WriteLine($"{name}: ");
             foreach(T value in itr)
