@@ -22,6 +22,8 @@
  *             戻り値 Tなので IEnumerable<T>.Select()不可。
  *             出力も Iteratorではなく Console.WriteLine()で出力。
  *             
+ *@see LinqObjOrder.cs
+ *@see LinqObjGroup.cs
  *@see Data / BookData.cs
  *@author shika 
  *@date 2021-11-05 
