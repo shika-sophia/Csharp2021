@@ -155,7 +155,7 @@ namespace CsharpBegin.SampleCode
                 }
             }//foreach
             Console.WriteLine();
-        }//ShowIterable<T>
+        }//ShowIterator<T>
     }//class 
 }
 
