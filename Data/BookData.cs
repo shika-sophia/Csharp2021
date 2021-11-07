@@ -12,9 +12,12 @@
  *          なので両方とも収納可
  *          
  *@see SampleCode / LinqObjSample.cs
+ *@see SampleCode / LinqObjOrder.cs
+ *@see SampleCode / LinqObjGroup.cs
+ *@see SampleCode / LinqObjJoin.cs
  *@author shika 
  *@date 2021-11-04 
-*/ 
+*/
 using System; 
 using System.Collections.Generic; 
 using System.Linq; 
