@@ -15,7 +15,11 @@
  *             Func<TIn,TKey> 結合データの結合key,
  *             Func<TOut,TIn,TResult> 結合結果を取得するメソッド,
  *         )
- *         
+ *
+ *@see LinqObjSample.cs
+ *@see LinqObjOrder.cs
+ *@see LinqObjGroup.cs
+ *@see Data / BookData.cs
  *@author shika 
  *@date 2021-11-07 
 */
