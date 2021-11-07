@@ -52,7 +52,10 @@ namespace CsharpBegin.A00_Template
             {
                 bld.Append("◆" + info + "\n");
 
-                if(info.Name.Equals("SampleCode") || info.Name.Contains("Template"))
+                if(info.Name.Equals("SampleCode") 
+                    || info.Name.Contains("Template")
+                    || info.Name.Equals("Utility")
+                    || info.Name.Equals("Application"))
                 {
                     FileInfo[] fileAry = info.GetFiles();
                     foreach (FileInfo file in fileAry)
@@ -83,16 +86,15 @@ namespace CsharpBegin.A00_Template
             //本来は else句に配置
             string lastDir = MakeLastDir(lastFile);
             string useClass = lastDir + lastFile.Name.Replace(".cs", "");
-            Type exeClass = Type.GetType(useClass);
-            Console.WriteLine(exeClass);
+            Console.WriteLine($"useClass: {useClass}");
 
-            object instance = Activator.CreateInstance(exeClass);
-            //IMain instance = (IMain) Activator.CreateInstance(exeClass);
-            //IMain.Main(args);
-            Console.WriteLine(instance.ToString());
+            Type exeType = useClass.GetType();
+            Console.WriteLine($"exeType: {exeType}");
 
-            MethodInfo main = exeClass.GetMethod("Main", new[] { typeof(string[]) });
-            main.Invoke(instance, args);
+            object instance = Activator.CreateInstance(exeType);
+            MethodInfo main = exeType.GetMethod(
+                "Main", new Type[] { typeof(string[]) });
+            main.Invoke(instance, new[] { args });
         }//Main()
 
         private static string MakeLastDir(FileInfo lastFile)
@@ -193,4 +195,14 @@ internal Main()は抽出できず、nullとなる。
 そこで、GetMethod()引数、BindingFlags.NonPiblicを利用するも、
 引数 Binderが抽象クラスのため扱えず nullを代入。
 結果は上記と同様。
+
+【考察】2021-11-08
+[ReflectionSample.cs]で成功した Main()の呼出を応用。
+下記のように useClass.GetType() -> Stringとなり、
+Typeを動的に変数で指定できないことが原因で例外発生。
+useClass: CsharpBegin.A00_Template.MainExecute
+exeType: System.String
+
+ハンドルされていない例外: System.MissingMethodException:
+このプロジェクトで、引数なしコンストラクタ ーは定義されていません。
  */
