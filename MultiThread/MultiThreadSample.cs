@@ -9,8 +9,8 @@
  *         そのスレッドで実行すべきメソッドを渡す。
  *         
  *@subject ◆System.Threading.Thread
- *         Thread new Tread(ThreadStart)
- *         Thread new Tread(ParameterizedThreadStart)
+ *         Thread new Thread(ThreadStart)
+ *         Thread new Thread(ParameterizedThreadStart)
  *             delegate void ThreadStart()
  *             delegate void ParameterizedThreadStart(object)
  *             
