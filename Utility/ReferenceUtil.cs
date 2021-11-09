@@ -25,7 +25,9 @@ namespace CsharpBegin.Utility
                 ["Java"] =
                 "山田祥寛『独習 Java [新版] 』 翔泳社, 2019",
                 ["Python"] = 
-                "山田祥寛『独習 Python』 翔泳社, 2020"
+                "山田祥寛『独習 Python』 翔泳社, 2020",
+                ["MultiThread"] =
+                "結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Create, 2006",
             };
         
         public List<string> SeekBook(string dir)
