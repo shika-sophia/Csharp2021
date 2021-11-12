@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / SampleCode / DynamicJsonSample.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@content 11.3.3 dynamic JSON / p558 / List 11-20, 11-21
+ *@content 11.3.3 dynamic JSON / p558 / List 11-20
  *@subject JSON: JavaScript Object Notation
  *         JSON形式のデータを解析。
  *         本来は静的データ(= 固定データ)ではなく、
