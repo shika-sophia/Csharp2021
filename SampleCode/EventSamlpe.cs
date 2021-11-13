@@ -1,14 +1,26 @@
 /** 
  *@title CsharpBegin / SampleCode / EventSamlpe.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@content 11.4 Event / p565 / List 11-24, 11-25
+ *@content 11.4 Event / p565 / List 11-24, 11-25, 11-26
  *         eventは同クラス内でのみ呼出可能だが、
  *         delegateで 他クラスの EventHandlerを切り出し、
  *         イベント発生時にその処理を行う。
  *         
+ *         event += delegate
+ *         event -= delegate
+ *         event += (data => 
+ *             { 
+ *                 KeyEventHandlar(string)の内容
+ *             });
+ *             
+ *         × eventは同クラス内でのみ呼出可能
+ *         event = delegate ×不可 
+ *         ev.KeyInput("x") ×不可
+ *         
+ *         
  *@author shika 
  *@date 2021-11-14 
-*/ 
+*/
 using System; 
 using System.Collections.Generic; 
 using System.Linq; 
