@@ -123,7 +123,7 @@ namespace CsharpBegin.Exercise.SelfLearnCS
         private void SwitchLanguage() 
         { 
             reAsk: 
-            Console.Write("Which Language? :"); 
+            Console.Write("What Language? :"); 
             string language = Console.ReadLine(); 
             string langLower = language.ToLower(); 
  
@@ -154,18 +154,18 @@ namespace CsharpBegin.Exercise.SelfLearnCS
         }//SwitchLanguage() 
  
         //---- SwitchLanguage() Result ---- 
-        //Which Language? :Java 
+        //What Language? :Java 
         //Java: Conpile Language 
-        //Which Language? :C# 
+        //What Language? :C# 
         //C#: .NET Language 
-        //Which Language? :python 
+        //What Language? :python 
         //python: Script Language 
         // 
-        //Which Language? :ghwn 
+        //What Language? :ghwn 
         //ghwn: <!> Not Defined 
-        //Which Language? :Perl 
+        //What Language? :Perl 
         //Perl: <!> Not Defined 
-        //Which Language? : 
+        //What Language? : 
  
     }//class  
 } 
