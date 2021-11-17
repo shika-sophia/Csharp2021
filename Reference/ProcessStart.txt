@@ -1,0 +1,313 @@
+■ C#のコマンド実行するには？実行方法ついてご紹介
+https://www.fenet.jp/dotnet/column/language/5722/
+2020/09/26　  2021/10/07
+
+目次
+C#でのコマンド実行について
+コマンドを実行する
+コマンドの実行結果を取り込む
+コマンドの終了を待つ
+コマンドの終了を通知する
+管理者としてコマンドを実行する
+まとめ
+
+C#でのコマンド実行について
+
+今回は、C#でのコマンド実行について説明します。
+C#では、コマンドプロンプトやメモ帳などの外部コマンドを実行することができます。
+C#でのコマンド実行に興味のある方はぜひご覧ください。
+
+コマンドを実行する
+まずはC#でコマンドプロンプトを起動するプログラムを作成します。
+コマンドプロンプトを起動して、dirコマンドを実行してみます。
+
+実際のソースコードを見てみましょう。
+プログラムの先頭に「using System.Diagnostics;」を記述してください。
+
+
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir");
+    // コマンド実行
+    Process.Start(processStartInfo);
+ 
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir");
+    // コマンド実行
+    Process.Start(processStartInfo);
+ 
+実行すると、コマンドプロンプトが表示され、dirコマンドが実行されることが分かります。
+dirの前の”/k”は、実行後にウィンドウを閉じないために指定します。
+×ボタンでコマンドプロンプトを終了させてください。
+
+このように、C#では、Process.Start()でコマンドを実行することができます。
+
+コマンドの実行結果を取り込む
+C#で、コマンド実行結果を取り込むことができます。
+コマンドプロンプトのdirコマンドの実行結果を取り込むプログラムを作成します。
+
+実際のソースコードを見てみましょう。
+
+
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/c dir");
+    // ウィンドウを表示しない
+    processStartInfo.CreateNoWindow = true;
+    processStartInfo.UseShellExecute = false; 
+
+     // 標準出力、標準エラー出力を取得できるようにする
+    processStartInfo.RedirectStandardOutput = true;
+    processStartInfo.RedirectStandardError = true; 
+
+     // コマンド実行
+    Process process = Process.Start(processStartInfo); 
+
+     // 標準出力・標準エラー出力・終了コードを取得する
+    string standardOutput = process.StandardOutput.ReadToEnd();
+    string standardError = process.StandardError.ReadToEnd();
+    int exitCode = process.ExitCode; 
+
+     process.Close(); 
+
+     // MessageBoxに標準出力を表示
+    MessageBox.Show(standardOutput);
+ 
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/c dir");
+    // ウィンドウを表示しない
+    processStartInfo.CreateNoWindow = true;
+    processStartInfo.UseShellExecute = false; 
+ 
+     // 標準出力、標準エラー出力を取得できるようにする
+    processStartInfo.RedirectStandardOutput = true;
+    processStartInfo.RedirectStandardError = true; 
+ 
+     // コマンド実行
+    Process process = Process.Start(processStartInfo); 
+ 
+     // 標準出力・標準エラー出力・終了コードを取得する
+    string standardOutput = process.StandardOutput.ReadToEnd();
+    string standardError = process.StandardError.ReadToEnd();
+    int exitCode = process.ExitCode; 
+ 
+     process.Close(); 
+ 
+     // MessageBoxに標準出力を表示
+    MessageBox.Show(standardOutput);
+ 
+標準出力や標準エラー出力、および終了コードなどが取得できます。
+実行すると、dirコマンドの実行結果（標準出力）が MessageBox に表示されることが分かります。
+
+C＃ の案件・求人はこちら.NETエンジニア専門の転職サイト FEnet.NETナビ
+コマンドの終了を待つ
+WaitForExitメソッドで、実行したコマンドが終了するまで待ち合わせることができます。
+WaitForExitメソッドは同期的に待ち合わせるため、待ち合わせ中は以降の命令は実行されません。
+
+実際のソースコードを見てみましょう。
+
+
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir"); 
+
+     // コマンド実行
+    Process process = Process.Start(processStartInfo); 
+
+     // コマンド終了の待ち合わせ
+    process.WaitForExit();
+    process.Close(); 
+
+     MessageBox.Show("終了しました。");
+
+ 
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir"); 
+ 
+     // コマンド実行
+    Process process = Process.Start(processStartInfo); 
+ 
+     // コマンド終了の待ち合わせ
+    process.WaitForExit();
+    process.Close(); 
+ 
+     MessageBox.Show("終了しました。");
+ 
+コマンドプロンプトを×ボタンで終了させると、MessageBox が表示されます。
+
+上記のサンプルプログラムでは、コマンドプロンプトが終了するまで待ち合わせていますが、引数に待ち合わせる最大時間をミリ秒単位で指定することもできます。
+指定した時間が経過すると、コマンドプロンプトが終了していなくても WaitForExit メソッドが終了し、以降の命令が実行されます。
+プロセスが終了したか否かは、Process.HasExited プロパティで判断できます。
+
+実際のソースコードを見てみましょう。
+
+
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir"); 
+
+     // コマンド実行
+    Process process = Process.Start(processStartInfo); 
+
+     // コマンド終了の待ち合わせ(5秒)
+    process.WaitForExit(5000); 
+
+     if (process.HasExited)
+    {
+        MessageBox.Show("終了しました。");
+    } else
+    {
+        MessageBox.Show("終了していません。");
+    }
+
+ 
+    // 第1引数がコマンド、第2引数がコマンドの引数
+    ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir"); 
+ 
+     // コマンド実行
+    Process process = Process.Start(processStartInfo); 
+ 
+     // コマンド終了の待ち合わせ(5秒)
+    process.WaitForExit(5000); 
+ 
+     if (process.HasExited)
+    {
+        MessageBox.Show("終了しました。");
+    } else
+    {
+        MessageBox.Show("終了していません。");
+    }
+ 
+5秒待ち合わせた後にコマンドプロンプトが残っているか否かを確認し、MessageBox に表示します。
+このように、WaitForExit メソッドを使用して、コマンドの終了を待ち合わせることができます。
+
+コマンドの終了を通知する
+WaitForExit メソッドでコマンド終了を待つのではなく、終了イベントを通知することもできます。
+
+実際のソースコードを見てみましょう。
+
+
+    static void Main()
+    {
+        // 第1引数がコマンド、第2引数がコマンドの引数
+        ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir"); 
+
+         // コマンド実行
+        Process process = Process.Start(processStartInfo); 
+
+         // コマンド終了後にイベント発行させる
+        process.EnableRaisingEvents = true;
+        process.Exited += new EventHandler(process_Exited); 
+
+         // プログラムが終了しないようにFromを表示する
+        Form form = new Form();
+        Application.Run(form);
+    } 
+
+     static void process_Exited(object sender, EventArgs e)
+    {
+        Process process = (Process)sender;
+        // 終了処理
+        MessageBox.Show("終了しました。");
+    }
+    
+ 
+    static void Main()
+    {
+        // 第1引数がコマンド、第2引数がコマンドの引数
+        ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir"); 
+ 
+         // コマンド実行
+        Process process = Process.Start(processStartInfo); 
+ 
+         // コマンド終了後にイベント発行させる
+        process.EnableRaisingEvents = true;
+        process.Exited += new EventHandler(process_Exited); 
+ 
+         // プログラムが終了しないようにFromを表示する
+        Form form = new Form();
+        Application.Run(form);
+    } 
+ 
+     static void process_Exited(object sender, EventArgs e)
+    {
+        Process process = (Process)sender;
+        // 終了処理
+        MessageBox.Show("終了しました。");
+    }
+ 
+コマンドプロンプトの×ボタンをクリックすると、イベントが通知され、MessageBox が表示されることが分かります。
+このように、WaitForExit メソッドでコマンド終了を待つのではなく、終了イベントを通知することもできます。
+
+管理者としてコマンドを実行する
+管理者としてコマンドを実行するには、processStartInfo.Verb = “RunAs” を追加する必要があります。
+
+実際のソースコードを見てみましょう。
+
+
+        static void Main()
+        {
+            // 第1引数がコマンド、第2引数がコマンドの引数
+            ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir");
+            // 管理者としてコマンド実行
+            processStartInfo.Verb = "RunAs"; 
+
+             // コマンド実行
+            Process process = Process.Start(processStartInfo); 
+
+             // コマンド終了後にイベント発行させる
+            process.EnableRaisingEvents = true;
+            process.Exited += new EventHandler(process_Exited); 
+
+             // プログラムが終了しないようにFromを表示する
+            Form form = new Form();
+            Application.Run(form);
+        } 
+
+         static void process_Exited(object sender, EventArgs e)
+        {
+            Process process = (Process)sender;
+            // 終了処理
+            MessageBox.Show("終了しました。");
+        }
+
+ 
+        static void Main()
+        {
+            // 第1引数がコマンド、第2引数がコマンドの引数
+            ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", "/k dir");
+            // 管理者としてコマンド実行
+            processStartInfo.Verb = "RunAs"; 
+ 
+             // コマンド実行
+            Process process = Process.Start(processStartInfo); 
+ 
+             // コマンド終了後にイベント発行させる
+            process.EnableRaisingEvents = true;
+            process.Exited += new EventHandler(process_Exited); 
+ 
+             // プログラムが終了しないようにFromを表示する
+            Form form = new Form();
+            Application.Run(form);
+        } 
+ 
+         static void process_Exited(object sender, EventArgs e)
+        {
+            Process process = (Process)sender;
+            // 終了処理
+            MessageBox.Show("終了しました。");
+        }
+ 
+実行すると、ユーザーアカウント制御の確認メッセージが表示されます。
+「はい」を選択すると、管理者権限のコマンドプロンプトが開きます。
+コマンドプロンプトの左上に「管理者」と表示されています。
+
+
+SE
+外部プログラムを実行することがコマンド実行と言うことなんですね。
+
+PM
+メモ帳などのコードを実行することもできます。うまく活用すれば、開発のスピードアップにも繋がるのでぜひマスターしましょう。
+まとめ
+いかがでしたでしょうか。
+C#ではコマンド実行することができ、その実行結果を取り込むことができます。
+コマンドの終了を待ち合わせたり、コマンド終了イベントを通知することもできます。
+ぜひご自身でC#のソースコードを書いて、理解を深めてください。
+
+Copyright © InformationPort Co.,Ltd. All Rights Reserved.

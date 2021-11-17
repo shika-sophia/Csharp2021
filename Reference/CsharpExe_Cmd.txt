@@ -1,0 +1,52 @@
+■ C# execute by Command Prompt
+https://www.gigas-jp.com/appnews/archives/6557
+
+CSC: C# コンパイラ csc.exe
+
+環境変数: 
+Path -> [編集] -> 以下を追加
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Roslyn
+
+$ csc helloworld.csc # 実行ファイルの生成
+$ helloworld # 実行ファイルの実行
+
+$ csc /version
+$ csc /langvarsion:?
+$ csc /langversion 実行したい C# versionを指定
+ 
+Microsoft Windows [Version 10.0.19042.1348]
+(c) Microsoft Corporation. All rights reserved.
+
+>csc /version
+3.11.0-4.21403.6 (ae1fff34)
+
+>csc /langversion:?
+サポートされる言語バージョン:
+default
+1
+2
+3
+4
+5
+6
+7.0
+7.1
+7.2
+7.3
+8.0
+9.0 (default)
+latestmajor
+preview
+latest
+
+■ Microsoft Windows [Version 10.0.19042.1348]
+(c) Microsoft Corporation. All rights reserved.
+
+>csc HelloName.cs //コンパイル Xxxx.exe生成
+Microsoft (R) Visual C# Compiler バージョン 3.11.0-4.21403.6 (ae1fff34)
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+>HelloName
+Name?: shika
+Hello, shika san.
+
