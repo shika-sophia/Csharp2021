@@ -37,10 +37,10 @@ namespace CsharpBegin.Exercise.SelfLearnCS
             new CsharpBegin.Exercise.ExerciseEditor("");
 
             //var here = new SelfLeranChap04(); 
-            //here.SumOdd(); //章末問題 1 
+            //here.SumOdd();   //章末問題 1 
             //here.SumOver();  //章末問題 2 
             //here.ArgsMultiple(args); //章末問題 3
-            //here.SwitchLanguage(); //章末問題 4 
+            //here.SwitchLanguage();   //章末問題 4 
             //章末問題 5 略 
         }//Main() 
 
