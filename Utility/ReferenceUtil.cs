@@ -28,6 +28,8 @@ namespace CsharpBegin.Utility
                 "山田祥寛『独習 Python』 翔泳社, 2020",
                 ["MultiThread"] =
                 "結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Create, 2006",
+                ["SelfAspNet"] =
+                "山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020"
             };
         
         public List<string> SeekBook(string dir)
@@ -37,8 +39,9 @@ namespace CsharpBegin.Utility
             {
                 if (dir.Contains(key))
                 {
-                    bool doneSeek = ReferenceDic.TryGetValue(key, out string book);
+                    ReferenceDic.TryGetValue(key, out string book);
                     bookList.Add(book);
+                    //bool doneSeek = ReferenceDic.TryGetValue(key, out string book);
                     //Console.WriteLine($"doneSeek: {doneSeek}");
                 }
             }//foreach key
