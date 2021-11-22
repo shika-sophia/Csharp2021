@@ -18,8 +18,8 @@ namespace CsharpBegin.SampleCode
 {
     class HelloNameSample
     {
-        public void Main(string[] args)
         //static void Main(string[] args)
+        public void Main(string[] args)
         {
             Console.WriteLine("あなたの名前は？");
             string name = Console.ReadLine();
@@ -35,4 +35,17 @@ namespace CsharpBegin.SampleCode
 shika
 Hello, shikaさん
 続行するには何かキーを押してください . . .
+
+//==== execute from Command Prompt ====
+//static Main()でないとコンパイル不可
+>cd C:\Users\sophia\source\repos\CsharpBegin
+\CsharpBegin\SampleCode
+
+>csc HelloNameSample.cs
+
+>HelloNameSample
+あなたの名前は？
+Lily
+Hello, Lilyさん
+
  */
