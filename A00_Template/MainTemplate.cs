@@ -23,7 +23,7 @@ namespace CsharpBegin.A00_Template
         }//Main()
 
         //static void Main(string[] args)
-        public void MainEmpty(string[] args)
+        public void Main()
         {
            
         }//Main()
