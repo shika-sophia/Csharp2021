@@ -47,7 +47,8 @@ namespace CsharpBegin.Utility
             Process.Start(psInfo);
         }//CmdExe()
          
-        static void Main()
+        //static void Main()
+        public void Main()
         {
             var here = new ProcessCsharp();
             string fileName = @"C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\Utility\ProcessCsharp.cs";
