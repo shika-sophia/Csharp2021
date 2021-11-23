@@ -20,7 +20,10 @@ static void Main(string[] args)
  *        + void ExerciseExe()
  *        - string BuildAppendix(
  *            string date, DateTime start, DateTime finish)
- *        
+ *            
+ *@notaton 【考察】１問につき、解答字数が一定以上を越えると、以降は入らなくなるバグあり。
+ *          Console.ReadLine()の取得bufferSizeが決まっている模様。
+ *          
  *@author shika 
  *@date 2021-10-21 
  */
