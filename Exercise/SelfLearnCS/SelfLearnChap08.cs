@@ -23,8 +23,8 @@ namespace CsharpBegin.Exercise.SelfLearnCS
 { 
     class SelfLearnChap08 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         { 
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
@@ -151,3 +151,9 @@ namespace CsharpBegin.Exercise.SelfLearnCS
 (4) Main()内 i.Name = "サクラ";
     => Name = "サクラ";
 */
+/*
+【考察】途中でコレクションの indexオーバーで例外発生
+○×付ける際の、段落のまとまりもおかしい。
+=> 要バグ対応。
+
+ */
