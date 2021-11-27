@@ -153,6 +153,7 @@ namespace CsharpBegin.Exercise.SelfLearnCS
 */
 /*
 【考察】途中でコレクションの indexオーバーで例外発生
+２つ分、Returnしたのが原因かも。
 ○×付ける際の、段落のまとまりもおかしい。
 => 要バグ対応。
 
