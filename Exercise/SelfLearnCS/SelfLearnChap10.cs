@@ -58,7 +58,7 @@ namespace CsharpBegin.Exercise.SelfLearnCS
         クエリ構文でできることは必ずメソッド構文でも可能。 
 ○ (4) ○ LINQはプロバイダを自動選択 
 ○ (5) × selectしないと表示にならないので、そうすべきだが、必須ではない。
-        GROUP BY -> INTO, JOIN 
+        groupbyも可。
 
 ◆〔2〕２ 
 ○ (1) delegate bool Hoge(string str); 
@@ -90,7 +90,7 @@ namespace CsharpBegin.Exercise.SelfLearnCS
 × (17)   .Then(b => b.Title) 
     => ○: ThenBy() 
 ○ (18)   .Select( b => new { 
-○ (19)     Title = b.Title.Substring(0, 3), 
+○ (19)     Title = b.Title.Substring(0, 5), 
 ○ (20)     Price = b.Price, Publisher = b.Publisher }); 
 
 ◆〔3〕３ 
