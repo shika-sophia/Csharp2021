@@ -29,8 +29,8 @@ namespace CsharpBegin.Exercise.SelfLearnCS
 {  
     class SelfLearnChap11  
     {  
-        static void Main(string[] args)  
-        //public void Main(string[] args)  
+        //static void Main(string[] args)  
+        public void Main(string[] args)  
         {  
             new CsharpBegin.Exercise.ExerciseEditor("");  
         }//Main()   
