@@ -1,4 +1,20 @@
-﻿/**
+﻿/** ====== Template ======
+static void Main(string[] args)
+//public void Main(string[] args)
+{
+    new CsharpBegin.Exercise.ExerciseEditor("");
+}//Main() 
+
+*/
+/* ==== Template ====
+static void Main(string[] args)
+//public void Main(string[] args)
+{
+    new Utility.FileDocumentDiv.FileDocExecute().ReadWriteExe();
+}//Main()
+
+*/
+/** ==== Document ====
  * @title CsharpBegin / SampleCode / 
  * @reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017
  * @content 
