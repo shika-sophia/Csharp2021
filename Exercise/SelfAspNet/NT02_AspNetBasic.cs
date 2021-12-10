@@ -1,8 +1,8 @@
 /**   
  *@title CsharpBegin / Exercise / SelfAspNet / NT02_AspNetBasic.cs   
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017   
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020   
- *@content 第２章 ASP.NET基本 / p57, p67, p75
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017   
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020   
+ *@content NT 第２章 ASP.NET基本 / p57, p67, p75
  *         VSのウインドウ, ページディレクティブ <%@ Page ...%>, 
  *         「.aspx」「aspx.cs」「.aspx.designer.cs」,
  *         partial class, イベントトリブンモデル, ビューステイト
