@@ -3,6 +3,8 @@
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
  *@content NT 第３章 ServerControl / p90, p94, p96, p120, p120
+ *         Formコントロール、表示コントロール、
+ *         ボタンコントロール、検証コントロール、正規表現
  *@subject 練習問題 3-1, 3-2, 3-3, 3-4, 
  *@subject 章末問題 １, ２, ３, ４, ５, 
  * 
