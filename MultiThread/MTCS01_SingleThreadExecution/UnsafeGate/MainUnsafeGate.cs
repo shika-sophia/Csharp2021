@@ -39,17 +39,11 @@
  *@author shika 
  *@date 2021-12-12 
 */
-using System; 
-using System.Collections.Generic; 
-using System.Linq; 
-using System.Text;
+using System;
 using System.Threading;
-using System.Threading.Tasks;
 
-using static CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.AbsMT01Gate;
-
-namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate 
-{ 
+namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
+{
     class MainUnsafeGate 
     { 
         static void Main(string[] args) 
