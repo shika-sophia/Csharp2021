@@ -27,7 +27,7 @@ namespace CsharpBegin.Utility
                 ["Python"] = 
                 "山田祥寛『独習 Python』 翔泳社, 2020",
                 ["MultiThread"] =
-                "結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Create, 2006",
+                "結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006",
                 ["SelfAspNet"] =
                 "山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020"
             };
