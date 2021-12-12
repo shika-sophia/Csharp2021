@@ -16,7 +16,7 @@
  *          new PassengerThread,
  *          new Thread(ThreadStart)
  *            ┗ ps.Run -> delegate void ThreadStart()
- *@class AbsMT01Gate / 
+ *@class ../AbsMT01Gate / 
  *       + abstract PassGate(string, string)
  *       ~ abstract CheckGate()
  *@class UnsafeGate : AbsMT01Gate
@@ -44,14 +44,16 @@ using System.Collections.Generic;
 using System.Linq; 
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks; 
- 
+using System.Threading.Tasks;
+
+using static CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.AbsMT01Gate;
+
 namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate 
 { 
     class MainUnsafeGate 
     { 
-        //static void Main(string[] args) 
-        public void Main(string[] args)  
+        static void Main(string[] args) 
+        //public void Main(string[] args)  
         {
             Console.WriteLine("Testing Gate, Hit [Ctrl] + [C] to EXIT");
             AbsMT01Gate gate = new UnsafeGate();
