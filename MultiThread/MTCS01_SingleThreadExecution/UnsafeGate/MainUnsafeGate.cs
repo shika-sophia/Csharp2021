@@ -34,8 +34,8 @@
  *       + void PassengerThread(AbsMT01Gate, string, string)
  *       + void Run() -> delegate void ThreadStart()
  *       
- *@see MultiThreadSample.cs
  *@see SafeGate / MainSafeGate.cs
+ *@see MultiThreadSample.cs
  *@author shika 
  *@date 2021-12-12 
 */
@@ -46,10 +46,10 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
 {
     class MainUnsafeGate 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args)  
+        //tatic void Main(string[] args) 
+        public void Main(string[] args)  
         {
-            Console.WriteLine("Testing Gate, Hit [Ctrl] + [C] to EXIT");
+            Console.WriteLine("Testing Gate");
             AbsMT01Gate gate = new UnsafeGate();
             var psA = new PassengerThread(gate, "Alice", "Alaska");
             var psB = new PassengerThread(gate, "Bobby", "Brazil");
@@ -65,6 +65,9 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
             thB.Join();
             thC.Join();
 
+            Console.WriteLine();
+            Console.WriteLine(
+                $"Tested {PassengerThread.TEST_TIMES:###,###,###} times.");
             Console.WriteLine(
                 $"{nameof(MainUnsafeGate)} Main(): END");
         }//Main()  
@@ -87,4 +90,44 @@ Chris BEGIN
 **** BROKEN **** [158644] Bobby, Brazil
       :
       :
+//==== Result until 100_000 ====
+Testing Gate
+Alice BEGIN
+Bobby BEGIN
+Chris BEGIN
+**** BROKEN **** [14835] Chris, Canada
+**** BROKEN **** [14750] Alice, Alaska
+**** BROKEN **** [24644] Chris, Canada
+Bobby END
+Chris END
+Alice END
+MainUnsafeGate Main(): END
+
+//==== Result until 500_000 ====
+Testing Gate
+Alice BEGIN
+Bobby BEGIN
+Chris BEGIN
+**** BROKEN **** [24769] Bobby, Brazil
+**** BROKEN **** [25915] Bobby, Brazil
+**** BROKEN **** [78227] Bobby, Brazil
+**** BROKEN **** [88819] Alice, Alaska
+**** BROKEN **** [96515] Chris, Canada
+**** BROKEN **** [110053] Alice, Alaska
+**** BROKEN **** [230401] Bobby, Brazil
+**** BROKEN **** [230404] Alice, Alaska
+**** BROKEN **** [359377] Chris, Canada
+**** BROKEN **** [362314] Chris, Canada
+**** BROKEN **** [365347] Bobby, Brazil
+**** BROKEN **** [362314] Chris, Canada
+**** BROKEN **** [409829] Bobby, Brazil
+**** BROKEN **** [412868] Alice, Alaska
+**** BROKEN **** [467423] Bobby, Brazil
+**** BROKEN **** [490741] Chris, Canada
+**** BROKEN **** [494232] Alice, Alaska
+**** BROKEN **** [490826] Bobby, Brazil
+Chris END
+Alice END
+Bobby END
+MainUnsafeGate Main(): END
 */

@@ -8,13 +8,12 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
 {
     class UnsafeGate : AbsMT01Gate
     {
-        private int count = 0;
         private string name = "Nobody";
         private string address = "Nowhere";
 
         public override void PassGate(string name, string address)
         {
-            this.count++;
+            this.Count++;
             this.name = name;
             this.address = address;
             CheckGate();
@@ -30,7 +29,7 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
 
         public override string ToString()
         {
-            return $"[{count}] {name}, {address}";
+            return $"[{Count}] {name}, {address}";
         }//ToString()
     }//class
 }
