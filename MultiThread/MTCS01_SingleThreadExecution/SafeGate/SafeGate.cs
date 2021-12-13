@@ -11,7 +11,7 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.SafeGate
         private string name = "Nobody";
         private string address = "Nowhere";
 
-        public override void PassGate(string name, string address)
+        public override sealed void PassGate(string name, string address)
         {
             lock (this)
             {
@@ -32,7 +32,10 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.SafeGate
 
         public override string ToString()
         {
-            return $"[{Count}] {name}, {address}";
+            lock (this) // see MainSafeGate【NOTE】- reason why locked here too.
+            {
+                return $"[{Count}] {name}, {address}";
+            }
         }//ToString() as locked
     }//class
 }
