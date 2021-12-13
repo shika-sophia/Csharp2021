@@ -26,8 +26,8 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.SafeGate
 { 
     class MainSafeGate 
     {
-        static void Main(string[] args)
-        //public void Main(string[] args) 
+        //static void Main(string[] args)
+        public void Main(string[] args) 
         {
             Console.WriteLine("Testing Gate");
             AbsMT01Gate gate = new SafeGate();
