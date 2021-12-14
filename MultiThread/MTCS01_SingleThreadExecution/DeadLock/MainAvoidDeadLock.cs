@@ -1,5 +1,6 @@
 ﻿/*
  * @see MainDeadLock.cs
+ * @content Practice Answer 1-6 DeadLock / p475 / List A1-5 ～ A1-8
  */
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.DeadLock
 {
     class MainAvoidDeadLock
     {
-        static void Main(string[] args)
-        //public void Main(string[] args) 
+        //static void Main(string[] args)
+        public void Main(string[] args) 
         {
             Console.WriteLine($"Testing EaterThread");
             var spoon = new ToolDeadLock("Spoon");
