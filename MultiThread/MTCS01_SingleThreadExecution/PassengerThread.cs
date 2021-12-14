@@ -9,12 +9,12 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution
 {
     class PassengerThread
     {
-        private readonly AbsMT01Gate gate;
+        private readonly AbsGateMT01 gate;
         private readonly string passName;
         private readonly string passAddress;
         internal const int TEST_TIMES = 1_000_000;
 
-        public PassengerThread(AbsMT01Gate gate, string name, string address)
+        public PassengerThread(AbsGateMT01 gate, string name, string address)
         {
             this.gate = gate;
             this.passName = name;
