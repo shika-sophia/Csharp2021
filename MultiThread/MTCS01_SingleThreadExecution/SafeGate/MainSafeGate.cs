@@ -30,7 +30,7 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.SafeGate
         public void Main(string[] args) 
         {
             Console.WriteLine("Testing Gate");
-            AbsMT01Gate gate = new SafeGate();
+            AbsGateMT01 gate = new SafeGate();
             var psA = new PassengerThread(gate, "Alice", "Alaska");
             var psB = new PassengerThread(gate, "Bobby", "Brazil");
             var psC = new PassengerThread(gate, "Chris", "Canada");

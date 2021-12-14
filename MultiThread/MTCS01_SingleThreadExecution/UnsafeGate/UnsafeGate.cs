@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
 {
-    class UnsafeGate : AbsMT01Gate
+    class UnsafeGate : AbsGateMT01
     {
         private string name = "Nobody";
         private string address = "Nowhere";

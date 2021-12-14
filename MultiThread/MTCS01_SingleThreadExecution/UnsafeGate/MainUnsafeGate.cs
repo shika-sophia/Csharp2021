@@ -50,7 +50,7 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
         public void Main(string[] args)  
         {
             Console.WriteLine("Testing Gate");
-            AbsMT01Gate gate = new UnsafeGate();
+            AbsGateMT01 gate = new UnsafeGate();
             var psA = new PassengerThread(gate, "Alice", "Alaska");
             var psB = new PassengerThread(gate, "Bobby", "Brazil");
             var psC = new PassengerThread(gate, "Chris", "Canada");
