@@ -25,12 +25,12 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
 { 
     class MainMutex 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Console.WriteLine("Testing Gate");
-            //AbsMutex mutex = new MutexSample(thMax: 3);
-            AbsMutex mutex = new MutexAnswer(thMax: 3);
+            AbsMutex mutex = new MutexSample(thMax: 3);
+            //AbsMutex mutex = new MutexAnswer(thMax: 3);
             AbsGateMT01 gate = new MutexGate(mutex);
             var psA = new PassengerThread(gate, "Alice", "Alaska");
             var psB = new PassengerThread(gate, "Bobby", "Brazil");
