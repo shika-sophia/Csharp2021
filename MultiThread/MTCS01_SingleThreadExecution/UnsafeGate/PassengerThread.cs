@@ -12,7 +12,7 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate
         private readonly AbsGateMT01 gate;
         private readonly string passName;
         private readonly string passAddress;
-        internal const int TEST_TIMES = 1_000_000;
+        internal const int TEST_TIMES = 10_000;
 
         public PassengerThread(AbsGateMT01 gate, string name, string address)
         {
