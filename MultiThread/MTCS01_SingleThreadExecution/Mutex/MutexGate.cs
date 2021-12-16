@@ -12,6 +12,8 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
         private string name = "Nobody";
         private string address = "Nowhere";
         private AbsMutex mutex;
+        //private StringBuilder bld = 
+        //   new StringBuilder(PassengerThread.TEST_TIMES);
 
         public MutexGate(AbsMutex mutex)
         {
@@ -27,10 +29,12 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
                 this.name = name;
                 this.address = address;
                 CheckGate();
+                //bld.Append(".");
             }
             finally
             {
                 mutex.Unlock();
+                //Console.Write(bld.ToString());
             }
         }//PassGate() as locked
 

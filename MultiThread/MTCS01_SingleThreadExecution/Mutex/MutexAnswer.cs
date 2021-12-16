@@ -69,11 +69,39 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
 }
 
 /*
-//==== MutexAnswer ====
+//==== MutexAnswer act1 50_000 ====
 Testing Gate
 Alice BEGIN
 Bobby BEGIN
 Chris BEGIN
 
 (-- DeadLock --)
+
+//==== MutexAnswer act 2 10_000 ====
+//modification point: PassengerThread.TEST_TIMES = 10_000;
+Testing Gate
+Alice BEGIN
+Bobby BEGIN
+Chris BEGIN
+Chris END
+Alice END
+Bobby END
+
+Tested 10,000 times.
+MainMutex Main(): END
+
+【NOTE】
+In MutexAnswer, Lock() & Unlock() are called by same Thread
+with Lock owner System.
+Therefore it takes more long time than before.
+
+(For example, when PassengerThread.TEST_TIMES = 50_000, 
+it takes more 2 minutes. That looks "DeadLock".)
+
+(But I put 'StringBuilder' in MutexGate, and 
+if some Thread pass 'PassGate()', 'builder.append(".")'.
+First it looks "DeadLock", but it continue to move through the Gate.)
+
+When TEST_TIMES = 10_000, 
+I find that this program run correctly.
  */

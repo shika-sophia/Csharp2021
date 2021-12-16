@@ -8,7 +8,19 @@
  *         
  *         ◆MutexSampleクラス
  *         Lock(), Unlock()というメソッドを定義し、
- *         lockFlag = true / false によって　ロック状態か否かを判定。
+ *         bool lockFlag = true / false によって　ロック状態か否かを判定。
+ *         
+ *         [Java] synchronizedにあたる [C#] lock()と volatileを併用しているので、
+ *         Gateに lock()を利用した SageGateのほうがパフォーマンスがいいし、
+ *         コードもシンプルである。
+ *           ↓
+ *@subject ◆MutexAnswerクラス
+ *         int locks ロック数を Flagとし、LockしたThreadを ownerとするよう改良。
+ *         [Java] synchronizedにあたる [C#] lock()と volatileを併用した上に、
+ *         Lock()した ownerしか、Unlock()できないため、非常に時間が掛かるが、
+ *         Lock() とUnlock()が同じThreadで callされることは確保できる。
+ *         しかし、やはりGateに lock()を利用した SageGateのほうがパフォーマンスがいいし、
+ *         コードもシンプルである。
  *         
  *@author shika 
  *@date 2021-12-15
@@ -25,12 +37,12 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
 { 
     class MainMutex 
     { 
-        //static void Main(string[] args) 
-        public void Main(string[] args) 
+        static void Main(string[] args) 
+        //public void Main(string[] args) 
         {
             Console.WriteLine("Testing Gate");
-            AbsMutex mutex = new MutexSample(thMax: 3);
-            //AbsMutex mutex = new MutexAnswer(thMax: 3);
+            //AbsMutex mutex = new MutexSample(thMax: 3);
+            AbsMutex mutex = new MutexAnswer(thMax: 3);
             AbsGateMT01 gate = new MutexGate(mutex);
             var psA = new PassengerThread(gate, "Alice", "Alaska");
             var psB = new PassengerThread(gate, "Bobby", "Brazil");
