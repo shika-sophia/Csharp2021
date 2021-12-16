@@ -37,8 +37,8 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
 { 
     class MainMutex 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Console.WriteLine("Testing Gate");
             //AbsMutex mutex = new MutexSample(thMax: 3);
