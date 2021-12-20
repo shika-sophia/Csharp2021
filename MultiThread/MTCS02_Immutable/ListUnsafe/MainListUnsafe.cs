@@ -1,5 +1,5 @@
 /** 
- *@title CsharpBegin / MultiThread / MTCS02_Immutable / ListThreadSafe / MainListUnsafe.cs 
+ *@title CsharpBegin / MultiThread / MTCS02_Immutable / ListUnsafe / MainListUnsafe.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content 第２章 補講２ Collection in MultiThread / p99 / List 2-4, 2-5, 2-6
