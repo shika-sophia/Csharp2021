@@ -43,8 +43,8 @@ namespace CsharpBegin.MultiThread.MTCS02_Immutable.ListThreadSafe
 {
     class MainListSafe
     {
-        static void Main(string[] args) 
-        //public void Main(string[] args)
+        //static void Main(string[] args) 
+        public void Main(string[] args)
         {
             var list = new BlockingCollection<int>();
             //Console.WriteLine(list is ICollection<int>); //False
