@@ -70,9 +70,9 @@
  *         - readonly Random random;
  *         - const int LIMIT = 10_000; /
  *       + ClientThread(RequestQueue, string thName, int seed)
- *       + Run() 
- *           new Request()
- *           queue.PutRequest()
+ *       + void Run() 
+ *           new RequestMT03(string name)
+ *           queue.PutRequest(RequestMT03)
  *           
 *@class ServerThread 
  *       / - readonly RequestQueue queue;
@@ -80,8 +80,8 @@
  *         - readonly Random random;
  *         - const int LIMIT = 10_000; /
  *       + ServerThread(RequestQueue, string thName, int seed)
- *       + Run() 
- *           queue.GetRequest()
+ *       + void Run() 
+ *           RequestMT03 queue.GetRequest()
  *           
 【NOTE】Modification point from the original code 
 MT original [Java] code uses synchronized() to GetRequest(), PutRequest().
