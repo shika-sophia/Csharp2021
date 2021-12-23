@@ -2,7 +2,8 @@
  *@title CsharpBegin / MultiThread / MTCS03_GuardedSuspension / ExerciseMT03.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第３章 GuardedSuspension / 練習問題 3-1, 3-2, 3-3, 3-4, 3-5, 3-6, 
+ *@content 第３章 GuardedSuspension / p132, p490
+ *@subject 練習問題 3-1, 3-2, 3-3, 3-4, 3-5, 3-6, 
  * 
  *@author shika 
  *@date 2021-12-23 
@@ -22,8 +23,8 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension
 { 
     class ExerciseMT03 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         { 
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
@@ -55,15 +56,19 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension
 
 ◆〔4〕3-4 
 ○ (1) Case while -> if: Now one by one case is no problem, 
-○ (2) but when some Threads move,Thread which is released, will execute queue.Dequeue() by no condition. 
+○ (2) but when some Threads move,Thread which is released, 
+    will execute queue.Dequeue() by no condition. 
+
 ○ (3) 2.Case wait() ONLY: 
 ○ (4) wait() needs try-catch. and when if() is not, 
 × (5)  it is thrown NullPointerException. 
-    => ○: queue.Dequeue() put out of synchronized(),it's No ThreadSafe. 
+    => ○: queue.Dequeue() put out of synchronized(),it's No ThreadSafe.
+
 × (6) 3.Case try-catch put out of while { }: 
     => ○: if some call interrupt(), it execute queue.Dequeue() with no condition. 
 × (7) OK? => ○: need test condition again. 
-× (8) 4. Case Thread.Sleep() instead of wait(): => ○: 1 
+
+× (8) 4. Case Thread.Sleep() instead of wait():
 × (9) Sleep() don't wake up by notifyAll(). 
     => ○: Thread.Sleep() don't release the lock, but Wait() do. 
 × (10) Therefore, GetRequest() delay slowly than before 
@@ -71,7 +76,8 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension
 
 ◆〔5〕3-5 
 ○ (1) DeadLock because call order is different. 
-○ (2) To success, it should modify same order call or integrate one RequestQueue instance. 
+○ (2) To success, it should modify same order call 
+    or integrate one RequestQueue instance. 
 
 ◆〔6〕3-6 
 ○ (1) interrupt (Another file) 
