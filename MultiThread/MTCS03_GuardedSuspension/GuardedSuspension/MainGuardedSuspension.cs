@@ -55,14 +55,14 @@
  *@class RequestQueue
  *         //as revised virsion -- [Java] BlockingQueue<T> 
  *       / - readonly ConcurrentQueue<RequestMT03> queue /
- *       + RequestMT03 GetRequest() 
- *       + void        PutRequest()
+ *       + virtual RequestMT03 GetRequest() 
+ *       + virtual void        PutRequest()
  *       
  *@class RequestQueueSync : RequestQueue
  *          // as original code -- [Java] synchronized()
  *       / - readonly Queue<RequestMT03> queue /
- *       + RequestMT03 GetRequest() { lock(queue) }
- *       + void        PutRequest() { lock(queue) }
+ *       + ovrride RequestMT03 GetRequest() { lock(queue) }
+ *       + ovrride void        PutRequest() { lock(queue) }
  *      
  *@class ClientThread 
  *       / - readonly RequestQueue queue;

@@ -101,8 +101,8 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
 { 
     class MainNgRequestQueuecs 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var queue = new RequestQueueNgCode();
 
