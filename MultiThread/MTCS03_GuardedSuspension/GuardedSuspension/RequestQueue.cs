@@ -13,7 +13,7 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
         private readonly ConcurrentQueue<RequestMT03>
             queue = new ConcurrentQueue<RequestMT03>();
 
-        public RequestMT03 GetRequest()
+        public virtual RequestMT03 GetRequest()
         {
             RequestMT03 request = null;
             while (!queue.TryPeek(out request))
@@ -25,7 +25,7 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
             return request;
         }//GetRequest()
 
-        public void PutRequest(RequestMT03 request)
+        public virtual void PutRequest(RequestMT03 request)
         {
             queue.Enqueue(request);
             Thread.Yield();

@@ -13,7 +13,7 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
         private readonly Queue<RequestMT03>
             queue = new Queue<RequestMT03>();
 
-        public new RequestMT03 GetRequest()
+        public override RequestMT03 GetRequest()
         {
             lock (queue)
             {
@@ -26,7 +26,7 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
             }//lock
         }//GetRequest()
 
-        public new void PutRequest(RequestMT03 request)
+        public override void PutRequest(RequestMT03 request)
         {
             lock (queue)
             {
