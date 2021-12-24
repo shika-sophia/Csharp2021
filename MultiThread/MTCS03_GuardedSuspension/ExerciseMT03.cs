@@ -67,6 +67,7 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension
 × (6) 3.Case try-catch put out of while { }: 
     => ○: if some call interrupt(), it execute queue.Dequeue() with no condition. 
 × (7) OK? => ○: need test condition again. 
+=>〔see MainNgRequestQueue.cs〕
 
 × (8) 4. Case Thread.Sleep() instead of wait():
 × (9) Sleep() don't wake up by notifyAll(). 
