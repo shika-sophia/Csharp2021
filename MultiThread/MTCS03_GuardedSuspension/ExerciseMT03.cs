@@ -52,7 +52,7 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension
 ○ (4) When next PutRequest(), Server get one previous request. 
 
 ◆〔3〕3-3 
-○ (1) (I will discribe in another file) 
+○ (1) Debug Print =>  see〔TalkerThread.cs〕
 
 ◆〔4〕3-4 
 ○ (1) Case while -> if: Now one by one case is no problem, 
