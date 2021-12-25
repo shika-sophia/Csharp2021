@@ -15,6 +15,11 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
             this.name = name;
         }
 
+        public string GetName()
+        {
+            return name;
+        }
+
         public override string ToString()
         {
             return $"[ Request {name} ]";
