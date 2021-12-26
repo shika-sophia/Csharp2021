@@ -17,11 +17,7 @@
  *         ＊It should be put 'try-catch' in ClientThread and ServerThread
  *           in order to catch 'InterruptedException'.
  *         ＊'RequestQueue.GetRequest()' which do 'wait()', should add 'throws' phrase
- *         at the method definition.
- *         
- *         ＊〕
- *      
- *         
+ *         at the method definition. 〕
  *         
  *@class MainInterrupt
  *       / ◆Main()
