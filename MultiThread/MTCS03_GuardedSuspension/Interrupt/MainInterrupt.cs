@@ -7,6 +7,22 @@
  *         Thread.Sleep();
  *         Thread.Interrupt();
  *         
+ *         【解答】[Java] 修正点
+ *         ＊try-catch を ClientThread, ServerThreadでも
+ *           実装して、Interrupt()を受け取るようにする。
+ *         ＊wait()する RequestQueue.GetRequest()のメソッド宣言に
+ *           throws句を付けて Main() catchにExceptionの処理を委譲。
+ *           
+ *         〔【Answer】[Java] Modification Point:
+ *         ＊It should be put 'try-catch' in ClientThread and ServerThread
+ *           in order to catch 'InterruptedException'.
+ *         ＊'RequestQueue.GetRequest()' which do 'wait()', should add 'throws' phrase
+ *         at the method definition.
+ *         
+ *         ＊〕
+ *      
+ *         
+ *         
  *@class MainInterrupt
  *       / ◆Main()
  *         new RequestQueue();
