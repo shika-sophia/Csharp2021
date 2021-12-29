@@ -1,10 +1,16 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS04_Balking / FileSaveBalking / MainFileSaveBalking.cs 
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@content   CS 第５章 標準ライブラリ 5.4 File操作 / p189
+ *@content   CS 第５章 標準ライブラリ - 5.4 File操作 / p189
  *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content   MT 第４章 Balking / p140 / List 4-1, 4-2, 4-3, 4-4
  *           ～ 必要なかったら、やめちゃおう ～
+ *           
+ *           || GuardedSuspension || (第３章)
+ *               ・ガード条件が整うまで待機 => 安全性、生存性
+ *               
+ *           || Balking || (第４章)
+ *               ・ガード条件に合致しなければ、帰ってしまう => 応答性
  *           
  *@subject ◆System.IO.StreamWriter
  *         using(var writer = new StreamWriter(string path)){ }
