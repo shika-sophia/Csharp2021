@@ -8,10 +8,12 @@
  *           
  *           || GuardedSuspension || (第３章)
  *               ・ガード条件が整うまで待機 => 安全性、生存性
+ *               ・while(!condition) { Thread.SpinWait(); }
  *               
  *           || Balking || (第４章)
  *               ・ガード条件に合致しなければ、帰ってしまう => 応答性
- *           
+ *               ・if(!condition)    { return; }
+ *               
  *@subject ◆System.IO.StreamWriter
  *         using(var writer = new StreamWriter(string path)){ }
  *         void writer.WriteLine(string)
