@@ -12,12 +12,15 @@
  *             一度しか変化しないので、if文を用いる。
  *         To judge Guard Condition:
  *             It shuold use 'if()', because of ONLY one change.
+ *         
+ *         ||GuardedSuspension||  while(!condition) { Thread.SpinWait(); }
+ *         ||Balking||            if(!condition)    { return; }
  *
  *@subject 通常、Flagには、volatileを付与するが、ここでは不要。
  *         Usually, the Flag should be with 'volatile'.
- *         But in this case, it's not necessary.
+ *         But in this case, it's not required.
  *
- *@subject Flag判定と Flag操作には [Java] synchronized / [C#] lock()で囲う。
+ *@subject Flag判定と Flag操作は [Java] synchronized / [C#] lock()で囲う。
  *         It should be lapped with '[Java] synchronized / [C#] lock()'
  *         on judging and changing the Flag.
  *         
