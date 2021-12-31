@@ -4,7 +4,7 @@
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content 第４章 補講１ GuardedTimeout / p151 / List 4-6, 4-7
  *         GuardedTimeoutは、GuardedSuspensionと Balkingの中間
- *         GuardedTimeout is between GuardedSuspension and Balking.
+ *         〔'GuardedTimeout' is between 'GuardedSuspension' and 'Balking'.〕
  *         
  *         ||GuradedSuspention|| 条件が合致するまで、ずっと待機
  *              It continues to wait eternally until ready of the Guard Condition.
