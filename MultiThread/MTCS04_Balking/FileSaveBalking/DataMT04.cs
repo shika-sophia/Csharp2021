@@ -38,12 +38,13 @@ namespace CsharpBegin.MultiThread.MTCS04_Balking.FileSaveBalking
             {
                 if (!changeFlag)
                 {
+                    //Console.WriteLine($"Balked {content}");
                     return;
                 }
 
                 DoSave();
                 changeFlag = false;
-            }
+            }//lock
         }//CheckSave()
 
         private void DoSave()

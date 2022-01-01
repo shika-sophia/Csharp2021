@@ -24,6 +24,9 @@
  *         while(!changeFlag) { return; }
  *         data.DoSave();
  *         
+ *@subject Debug-Print when Balked / Practice 4-2 (1)
+ *@subject Delete 'lock()' in CheckSave() / Practice 4-2 (2)
+ *
  *@class MainFileSaveBalking
  *       / ◆Main()
  *       new DataMT04(string fileName, string content)
@@ -71,8 +74,8 @@ namespace CsharpBegin.MultiThread.MTCS04_Balking.FileSaveBalking
 { 
     class MainFileSaveBalking 
     { 
-        //static void Main(string[] args) 
-        public void Main(string[] args) 
+        static void Main(string[] args) 
+        //public void Main(string[] args) 
         {
             var data = new DataMT04("dataFileMT04.txt", "(Empty)");
             var change = new ChangeThreadMT04("ChangeThread", data);
@@ -116,4 +119,26 @@ Because there was not the same number, the Balking did effectively.〕
 ◆dataMT04.txt
 No.20
 
+//==== Debug-Print when Balked ==== 
+SaveThread: DoSave() content = (Empty)
+ChangeThread: DoSave() content = No.0
+SaveThread: DoSave() content = No.1
+Balked No.1
+ChangeThread: DoSave() content = No.2
+SaveThread: DoSave() content = No.3
+Balked No.3
+ChangeThread: DoSave() content = No.4
+SaveThread: DoSave() content = No.5
+Balked No.5
+  :
+
+//==== Delete 'lock()' in CheckSave() ====
+//意図的に 意味のない File Accessを重複させた例
+//Example: it inntentionally duplicated the meaningless File Accesses.
+  :
+SaveThread: DoSave() content = No.17
+ChangeThread: DoSave() content = No.18
+SaveThread: DoSave() content = No.18
+ChangeThread: DoSave() content = No.20
+  :
  */
