@@ -95,6 +95,17 @@ because the queue already has been locked.
 Therefore, I get off these 'lock(queue) { }'.
 Then it ran expectedly.
 
+【考察】
+RequestQueueSyncの GetRequest(), PutRequest()を
+overrideにすると Queueが nullですという例外発生。
+newで baseメソッドを隠蔽すると、ちゃんと動く。
+
+=> おそらく、override時に呼び出している queueは
+フィールドなので、オーバーライド側のクラスではなく、
+RequestQueue queue の base側の queueを呼出ていると思われる。
+newにすると、ポリモーフィズムは無効なので、
+RequestQueueSyncで定義した queueが呼ばれているのかも。
+
  *@author shika 
  *@date 2021-12-22 
 */
@@ -112,8 +123,8 @@ namespace CsharpBegin.MultiThread.MTCS03_GuardedSuspension.GuardedSuspension
         //static void Main(string[] args) 
         public void Main(string[] args) 
         {
-            var queue = new RequestQueue();
-            //var queue = new RequestQueueSync();
+            //var queue = new RequestQueue();
+            var queue = new RequestQueueSync();
 
             new Thread(new ClientThreadMT03(
                 queue, "Alice", 3141592).Run).Start();
