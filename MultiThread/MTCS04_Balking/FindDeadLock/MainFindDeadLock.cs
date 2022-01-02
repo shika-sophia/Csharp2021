@@ -30,8 +30,8 @@ namespace CsharpBegin.MultiThread.MTCS04_Balking.FindDeadLock
 { 
     class MainFindDeadLock 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var queue1 = new RequestQueueSyncTimeout();
             var queue2 = new RequestQueueSyncTimeout();
