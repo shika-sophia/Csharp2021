@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS05_ProducerComsumer / CakeTable / MainCakeTable.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content MT 第５章 Producer-Consumer / p164 / List 5-1, 5-2, 5-3, 5-4 
  *@subject Maker, Eaterの処理速度が異なる状況で、
  *         製品だけを配列 string[] buffer に渡して、すぐに戻る非同期モデル。
@@ -68,8 +68,8 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
 { 
     class MainCakeTable 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             CakeTableMT05 table = new CakeTableMT05(3);
             var maker1 = new MakerThreadMT05("Maker1", table, 31415);
