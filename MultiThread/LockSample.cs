@@ -6,6 +6,9 @@
  *         lock(object){ }
  *         object lockObj = new Object();
  *         
+ *         instance: thisでOK
+ *         static:   lockObjが必要
+ *         
  *@author shika 
  *@date 2021-11-11 
 */ 
