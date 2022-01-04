@@ -23,7 +23,7 @@
  *         queueに要素が何もないとき、SpinWait()する
  *         
  *@subject ◆[C#]  ConcurentQueue<T> (System.Collections.Concurrent.)
- *         void queue.Enqueue   //put value to Queue tail
+ *         void queue.Enqueue()   //put value to Queue tail
  *         bool queue.TryPeek() 
  *           //try to get value from Queue tail without delete
  *         bool queue.TryDequeque() 
