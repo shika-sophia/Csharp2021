@@ -2,7 +2,7 @@
  *@title CsharpBegin / MultiThread / MTCS05_ProducerComsumer / CakeTable / MainCakeTable.cs 
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content MT 第５章 Producer-Consumer / p164 / List 5-1, 5-2, 5-3, 5-4 
+ *@content MT 第５章 Producer-Consumer / p164 / List 5-1, 5-2, 5-3, 5-4 / List 5-5
  *         ||Producer-Comsumer||
  *         ◆Data     string cake
  *         ◆Producer MakerThread
@@ -31,7 +31,8 @@
  *        [C#]   Thread.SpinWait()は lockを解放せずに waitしている様子。
  *        => 巻末【考察】参照
  *
- *@subject [Java] ArrayBlockingQueue<String> (java.util.concurrent.)
+ *@subject 同期制御コレクションの利用
+ *         [Java] ArrayBlockingQueue<String> (java.util.concurrent.)
  *         [C#]   ConcurrentQueue<string>    (System.Collections.Concurrent.)
  *         
  *        【考察】ConcurrentQueue<string>を利用
@@ -41,9 +42,14 @@
  *@directory ==== CakeTable ====
  *@class MainCakeTable
  *       / ◆Main()
- *           new CakeTableMT05(int limit); / new CakeTableBlocking(int limit);
- *           new MakerThreadMT05(string name, CakeTableMT05, int seed) * 3
- *           new EaterThreadMT05(string name, CakeTableMT05, int seed) * 3
+ *           AbsCakeTable = //abstractで同一視
+ *             ---- synchronized / lock() ----
+ *             new CakeTableMT05(int limit);
+ *             ---- Concurrent Collection ----
+ *             new CakeTableBlocking(int limit);
+ *           
+ *           new MakerThreadMT05(string name, AbsCakeTable, int seed) * 3
+ *           new EaterThreadMT05(string name, AbsCakeTable, int seed) * 3
  *           new Thread(ThreadStart) * 6
  *                └  delegate void ThreadStart();
  *                     └ XxxxThread.Run();
@@ -93,7 +99,7 @@
  *           { string cake = table.TakeCake(); }
  *           
  *@author shika 
- *@date 2022-01-03 
+ *@date 2022-01-03, 01-04 
 */
 using System; 
 using System.Collections.Generic; 
@@ -106,10 +112,13 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
 { 
     class MainCakeTable 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
+            //----synchronized / lock () ----
             //AbsCakeTable table = new CakeTableMT05(3);
+
+            //----Concurrent Collection----
             AbsCakeTable table = new CakeTableBlocking(3);
             var maker1 = new MakerThreadMT05("Maker1", table, 31415);
             var maker2 = new MakerThreadMT05("Maker2", table, 92653);
@@ -190,7 +199,8 @@ Count 1: TakeCake() [Cake No.10 by Maker3]
 Count 2: PutCake([Cake No.12 by Maker1])
 Count 3: PutCake([Cake No.13 by Maker2])
   :
-//==== CakeTableBlocking ====
+//==== Concurrent Collection ====
+//CakeTableBlocking - ConcurrentQueue<string>
 Count 0: PutCake([Cake No.0 by Maker1])
 Count 0: TakeCake() [Cake No.0 by Maker1]
 Count 0: PutCake([Cake No.1 by Maker3])
