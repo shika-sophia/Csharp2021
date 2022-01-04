@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
 {
-    class CakeTableMT05
+    class CakeTableMT05 : AbsCakeTable
     {
         private readonly string[] buffer;
         private int head = 0; //index for TakeCake() 
@@ -19,27 +19,30 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
             this.buffer = new string[limit];
         }
 
-        public void PutCake(string name, string cake)
+        public override void PutCake(string cake)
         {
+            ReCondition:
+            while(count >= buffer.Length)
+            {
+                Thread.SpinWait(100);
+            }//while
+
             lock (this)
             {
-                while(count >= buffer.Length)
-                {
-                    Thread.SpinWait(100);
-                }//while
+                if(count >= buffer.Length) { goto ReCondition; }
 
                 buffer[tail] = cake;
                 tail = (tail + 1) % buffer.Length;
                 count++;
 
                 Console.WriteLine(
-                    $"{name}: PutCake({cake})");
+                    $"Count {count}: PutCake({cake})");
             }//lock
 
             Thread.Yield();
         }//PutCake()
 
-        public string TakeCake(string name)
+        public override string TakeCake()
         {
             ReCondition:
             while(count <= 0)
@@ -56,7 +59,7 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
                 count--;
 
                 Console.WriteLine(
-                    $"{name}: TakeCake() {cake}");
+                    $"Count {count}: TakeCake() {cake}");
 
                 Thread.Yield();
                 return cake;

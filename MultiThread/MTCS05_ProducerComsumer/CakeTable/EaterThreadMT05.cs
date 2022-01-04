@@ -10,10 +10,10 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
     class EaterThreadMT05
     {
         private readonly string name;
-        private readonly CakeTableMT05 table;
+        private readonly AbsCakeTable table;
         private readonly Random random;
 
-        public EaterThreadMT05(string name, CakeTableMT05 table, int seed)
+        public EaterThreadMT05(string name, AbsCakeTable table, int seed)
         {
             this.name = name;
             this.table = table;
@@ -26,7 +26,7 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
             {
                 while (true)
                 {
-                    string cake = table.TakeCake(name);
+                    string cake = table.TakeCake();
                     Thread.Sleep(random.Next(1000));
                 }//while loop
             } 

@@ -10,12 +10,12 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
     class MakerThreadMT05
     {
         private readonly string name;
-        private readonly CakeTableMT05 table;
+        private readonly AbsCakeTable table;
         private readonly Random random;
         private static Object lockObj = new Object();
         private static int id = 0;
 
-        public MakerThreadMT05(string name, CakeTableMT05 table, int seed)
+        public MakerThreadMT05(string name, AbsCakeTable table, int seed)
         {
             this.name = name;
             this.table = table;
@@ -30,7 +30,7 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
                 {
                     Thread.Sleep(random.Next(1000));
                     string cake = $"[Cake No.{NextId()} by {name}]";
-                    table.PutCake(name, cake);
+                    table.PutCake(cake);
                 }//while loop
             }
             catch(ThreadInterruptedException e)
