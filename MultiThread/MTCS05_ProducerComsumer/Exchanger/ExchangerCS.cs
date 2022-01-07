@@ -1,4 +1,6 @@
-﻿
+﻿/*
+ * @see MainExchanger / -> Exchange() Algorism
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,15 +47,6 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.Exchanger
             }
             else // objArg != obj1
             {
-                //【型判定】ジェネリックの場合はコンパイルエラーとなるので不要
-                // Actually, this case is not necessary,
-                // because it throws 'Compile Error' in Generic class.
-
-                //if (objArg.GetType() != obj1.GetType())
-                //{
-                //    throw new ArgumentException(
-                //        "<!> different Type of the argument.");
-                //}
 
                 if (obj2 == null)
                 {
