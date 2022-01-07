@@ -9,8 +9,11 @@
  *           ||Producer-Consumer||を実現するプログラム
  *          〔Two Objects exchange Thread-Safely each other, 
  *            which realize ||Producer-Consumer|| pattern. 〕
- *         
+*/
+#region -> Exchange() Algorism
+/*
  *@subject T Exchange(T obj)
+ *        【Algorism】
  *         ＊フィールドに保存してある obj が nullなら、引数 objを代入。
  *         〔If the field is null, it is inserted argument 'obj'.〕
  *         
@@ -19,7 +22,40 @@
  *         
  *         ＊別の obj2が まだ nullならば、obj2が代入されるまで待機。
  *         〔If another 'obj2' is null, it continue to wait until it is inserted 'obj2'.〕
+ *         
+ *         ＊【型判定】ジェネリックの場合はコンパイルエラーとなるので不要
+ *            〔Actually, this case is not necessary,
+ *              because it throws 'Compile Error' in Generic class.〕
  *
+ *              if (objArg.GetType() != obj1.GetType())
+ *              {
+ *                  throw new ArgumentException(
+ *                      "<!> different Type of the argument.");
+ *              }
+ *
+ *          ＊obj1, obj2 両方に一致しない obj (= 新しい第３の obj)が引数で渡された場合
+ *          〔Case: the argument 'objArg' is not equal to both obj1 and obj2.〕
+ *              T objTemp = obj1;
+ *              obj1 = objArg;
+ *              obj2 = objTemp;
+ *
+ *              //==== Example ====
+ *              //---- Fhase 1 ----
+ *              //obj1 = a, obj2 = b
+ *              //---- Fhase 2 ----
+ *              //objArg = c
+ *              //objTemp = a, obj1 = c, obj2 = a
+ *              //---- Fhase 3 ----
+ *              //objArg = b
+ *              //objTemp = c, obj1 = b, obj2 = c
+ *              //---- Fhase 4 ----
+ *              //objArg = a
+ *              //objTemp = b, obj1 = a, obj2 = b
+ */
+#endregion
+#region -> Exchanger Class-Chart
+/*
+ *@directory ==== Exchanger ====
  *@class MainExchanger
  *       //
  *       ◆Main()
@@ -58,7 +94,9 @@
  *       + void Run()
  *         { buffer = ex.Exchange(buffer) 
  *           Console.WriteLine(buffer[i]) }
- * 
+ */
+#endregion
+/*
  *@author shika 
  *@date 2022-01-07 
 */
@@ -74,8 +112,8 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.Exchanger
     class MainExchanger 
     {
         //==== Main() as Multi-Thread ====
-        //static void Main(string[] args)
-        public void Main(string[] args)
+        static void Main(string[] args)
+        //public void Main(string[] args)
         {
             const int LIMIT = 10;
             var ex = new ExchangerCS<char[]>();
