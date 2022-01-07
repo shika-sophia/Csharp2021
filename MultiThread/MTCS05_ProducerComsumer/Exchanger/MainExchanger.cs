@@ -31,6 +31,8 @@
  *         └ delegate void ThreadStart();
  *             └ XxxxCharThread.Run()
  *
+ *       //+ Test Main() as Single-Thread
+ *       
  *@class ExchangerCS<T>
  *       / - T obj1
  *         - T obj2 /
