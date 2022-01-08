@@ -12,11 +12,21 @@
  *             class System.Threading.Timeout 
  *             const int Timeout.Infinite = -1;
  *
- *         結果を見ると、Thread.Yield()は [Java] notifyAll()の機能がある。
- *         LazyThreadは、何も仕事をしないので、かなりジャマをしているが、
- *         notifyAll()機能なら、DeadLockとまではならない様子。
- *         
+ *@note【考察】結果を見ると、Thread.Yield()は [Java] notifyAll()の機能がある。
+ *      LazyThreadは、何も仕事をしないので、かなりジャマをしているが、
+ *      notifyAll()機能なら、DeadLockとまではならない様子。
+ *
+ *@base  MainCakeTable.cs
+ *@modified ==== Modification Point ONLY ====
  *@class MainLazyThread
+ *       new LazyThread(string thName, AbsCakeTable) * LAZY_NUM
+ *       new Thread(lazyAry[i].Run) * lazyAry.Length
+ *
+ *@class LazyThreadMT05
+ *       / - readonly ◇AbsCakeTable table;
+ *         - readonly string thName; /
+ *       + LazyThread(string thName, AbsCakeTable)
+ *       + void Run() { Thread.SpinWait(Timeout.Infinite); }
  * 
  *@author shika 
  *@date 2022-01-09 
@@ -33,8 +43,8 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.LazyThread
 { 
     class MainLazyThread 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             AbsCakeTable table = new CakeTableMT05(3);
             var maker1 = new MakerThreadMT05("Maker1", table, 31415);
