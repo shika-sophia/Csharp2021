@@ -28,7 +28,7 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
     }//class 
-} 
+}
 /* 
 2022-01-08 (土)
 ==== Exercise Result ==== 
@@ -46,7 +46,9 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer
 ○ (3) ガード条件が整うまで、どちらも待機している DeadLock状態 
 
 ◆〔3〕5-3 
-○ (1) synchronizedの必要性: while()判定と count処理が別のスレッドによって行われる可能性があるので、それを排他制御するため。 
+○ (1) synchronizedの必要性: while()判定と
+    count処理が別のスレッドによって行われる可能性があるので、
+    それを排他制御するため。 
 
 ◆〔4〕5-4 
 ○ (1) SpinWait()の前後に Debug-Print 
@@ -68,7 +70,10 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer
 ◆〔8〕5-8 
 ○ (1) [Java] Object.notify()は WaitSet中のどれか１つのThreadのみ起こす。 
 ○ (2) Makerだけ/Eaterだけを起こし続けた場合は LiveLockとなる 
-○ (3) [C#] Thread.Yield()は notify()の仕様と同じ。notifyAll()に当たるものがないのでは？ 
+○ (3) [C#] Thread.Yield()は notify()の仕様と同じ?
+    notifyAll()に当たるものがないのでは？ 
+    => [C#] Thread.Yield() は、notifyAll()の機能がある。
+    => @see MainLazyThread.cs
 
 ◆〔9〕5-9 
 ○ (1) 引数 long xについて、if( x != 0 )なら 
@@ -76,9 +81,9 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer
     -> wait(x);より、 Something.Method(long);は
        Thread.Sleep(int)と等価。
 
-*/ 
+*/
 /*==== Appendix ==== 
  *@date: 2022-01-08 (土) 
  *@time: 12:59 ～ 13:32 (33分) 
  *@rate: 95.83％ (○ 23 問 / 全 24 問) 
-*/ 
+*/
