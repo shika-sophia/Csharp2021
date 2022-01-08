@@ -112,8 +112,8 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.Exchanger
     class MainExchanger 
     {
         //==== Main() as Multi-Thread ====
-        static void Main(string[] args)
-        //public void Main(string[] args)
+        //static void Main(string[] args)
+        public void Main(string[] args)
         {
             const int LIMIT = 10;
             var ex = new ExchangerCS<char[]>();
