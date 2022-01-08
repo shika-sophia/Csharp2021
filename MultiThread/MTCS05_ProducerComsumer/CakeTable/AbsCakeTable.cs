@@ -10,5 +10,10 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
     {
         public abstract void PutCake(string cake);
         public abstract string TakeCake();
+
+        public virtual void ClearCake()
+        {
+            throw new NotImplementedException();
+        }
     }//class
 }

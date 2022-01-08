@@ -65,5 +65,24 @@ namespace CsharpBegin.MultiThread.MTCS05_ProducerComsumer.CakeTable
                 return cake;
             }//lock                
         }//TakeCake()
+
+        public override void ClearCake()
+        {
+            lock (this)
+            {
+                Console.WriteLine(
+                        $"Count {count}: ClearCake()");
+
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    buffer[i] = null;
+                }//for
+
+                head = 0;
+                tail = 0;
+                count = 0;
+                Thread.Yield();
+            }//lock
+        }//ClearCake()
     }//class
 }
