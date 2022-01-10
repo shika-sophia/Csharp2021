@@ -33,6 +33,8 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 
             var writer1 = new WriteThreadMT06(data, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             var writer2 = new WriteThreadMT06(data, "abcdefghijklmnopqrstuvwxtz");
+            new Thread(writer1.Run).Start();
+            new Thread(writer2.Run).Start();
         }//Main() 
 
         
