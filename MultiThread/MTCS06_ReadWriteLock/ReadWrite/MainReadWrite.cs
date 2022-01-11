@@ -1,12 +1,105 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS06_ReadWriteLock / ReadWrite / MainReadWrite.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content MainReadWrite
- * 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第６章 Read-Write Lock / p198 / List 6-1, 6-2, 6-3, 6-4
+ *         ||Read-Write Lock||「みんなで読んでいいけど、書いている間は読んじゃダメ」
+ *@subject ◆Sample Code
+ *         Guard Condition: (whileは待機条件)
+ *         ＊Read時 書いているスレッドがなく、書き待機もない場合のみ
+ *             while(writing > 0 
+ *                  || (preferWrite && waitWrite > 0))
+ *         ＊Write時 読んでいる途中、書いている途中のスレッドが存在しない場合のみ
+ *             while (reading > 0 || writing > 0)
+ *             
+ *@note 【考察】
+ *       [Java] Object.wait(); 待機中は Lock解放
+ *       [C#]   Thread.SpinWait(-1);待機中も Lockを保持したまま
+ *       
+ *       ここも、やはり [C#]の SpinWait()の仕様により、
+ *       [Java]テキストコードそのままだと DeadLockを起こす。
+ *       原因は ReadThread, WriteThreadが Lockを保持したまま、
+ *       SpinWait(Timeout.Infinite)に入り、他Threadが
+ *       ReadWriteLockの他メソッドに入れなくなり、
+ *       Thread.Yield()もされないし、ガード条件も変更しないため、DeadLock。
+ *       
+ *       二度の同じ条件判定をするのは不本意ながら、
+ *       while(待機条件式){ SpinWait(Timeout.Infinite);}を
+ *       lock()から外し、lock()内で改めて if(待機条件)を行う。
+ *       こうしないとテキストコードの意図通りの動作は得られない。
+ *       
+ *       [C#]の Threadクラスのメソッドに Lock解放して待機するものがないか
+ *       探してみたが、見つからず。他に良い方法はないものか。
+ *       ひとつの可能性としては、BlockingQueue<T>や SynchronizedCollection<T>のような、
+ *       排他処理をするConcurrent系のコレクションを共有リソースに起用することである。
+ */
+#region -> Class-Chart
+/*       ==== ReadWrite ====
+ *@class MainReadWrite
+ *       // ◆Main()
+ *       AbsReadWrite lockRW = new ReadWriteLock();
+ *       new DataMT06(int bufferSize, AbsReadWrite);
+ *       new ReaderThreadMT06(string thName, DataMT06); * 6
+ *       new WriterThreadMT06(DataMT06); * 2
+ *       new Thread(ThreadStart);
+ *         └ delegate void ThreadStart();
+ *            └ XxxxThread.Run();
+ *            
+ *@class AbsReadWrite
+ *       + abstract void ReadLock();
+ *       + abstract void ReadUnlock();
+ *       + abstract void WriteLock();
+ *       + abstract void WriteUnlock();
+ *       
+ *@class ReadWriteLock : AbsReadWrite
+ *       / - int reading = 0;   //Read中の Thread数
+ *         - int waitWrite = 0; //Write待機中の Thread数
+ *         - int writing = 0;   //Write中の Thread数
+ *         - bool preferWrite = true; //Write優先なら true /
+ *       + override void ReadLock()
+ *           { while(writing > 0 
+ *                  || (preferWrite && waitWrite > 0))
+ *             { Thread.SpinWait(Timeout.Infinite); }}
+ *             
+ *       + override void ReadUnlock() {  Thread.Yield(); }
+ *       + override void WriteLock()
+ *           { while (reading > 0 || writing > 0)
+ *             { Thread.SpinWait(Timeout.Infinite); }}
+ *       + override void WriteUnlock() {  Thread.Yield(); }
+ *
+ *@class DataMT06
+ *       / - readonly char[] buffer;
+ *         - readonly ◇AbsReadWrite lockRW; /
+ *      + DataMT06(int bufferSize, AbsReadWrite lockRW)
+ *      + char[] TryRead()
+ *          { lockRW.ReadLock();
+ *            DoRead();
+ *            lockRW.ReadUnlock(); }
+ *      + void TryWrite(char)
+ *          { lockRW.WriteLock();
+ *            DoWrite();
+ *            lockRW.WriteUnlock(); }
+ *      - char[] DoRead() { char[] newBuffer[i] = buffer[i]; }
+ *      - void  DoWrite() { buffer[i] = c; }
+ *      - void Slowly()
+ *      
+ *@class ReadThreadMT06
+ *       / - readonly string thName;
+ *         - readonly ◇DataMT06 data; /
+ *       + ReadThreadMT06(string thName, DataMT06 data)
+ *       + void Run() { char[] readBuffer = data.TryRead(); }
+ *       
+ *@class WriterThreadMT06
+ *       / - readonly ◇DataMT06 data; /
+ *       + WriteThreadMT06(DataMT06 data)
+ *       + void Run() { data.TryWrite(char); }
+ *       - char NextChar()
+ */
+#endregion
+/*
  *@author shika 
  *@date 2022-01-10 
-*/ 
+*/
 using System; 
 using System.Collections.Generic; 
 using System.Linq; 
@@ -39,4 +132,37 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 
         
     }//class 
-} 
+}
+
+/*
+reader1: reads **********
+reader4: reads **********
+reader2: reads **********
+reader3: reads **********
+reader5: reads **********
+reader0: reads **********
+reader5: reads aaaaaaaaaa
+reader3: reads aaaaaaaaaa
+reader2: reads aaaaaaaaaa
+reader0: reads aaaaaaaaaa
+reader1: reads aaaaaaaaaa
+reader4: reads aaaaaaaaaa
+reader1: reads AAAAAAAAAA
+reader4: reads AAAAAAAAAA
+reader5: reads AAAAAAAAAA
+reader2: reads AAAAAAAAAA
+  :
+reader3: reads AAAAAAAAAA
+reader5: reads AAAAAAAAAA
+reader0: reads AAAAAAAAAA
+reader1: reads bbbbbbbbbb
+reader2: reads bbbbbbbbbb
+reader3: reads bbbbbbbbbb
+reader4: reads bbbbbbbbbb
+reader5: reads bbbbbbbbbb
+reader0: reads bbbbbbbbbb
+reader3: reads BBBBBBBBBB
+reader4: reads BBBBBBBBBB
+reader1: reads BBBBBBBBBB
+  :
+*/

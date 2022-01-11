@@ -29,7 +29,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
                     char c = NextChar();
                     data.TryWrite(c);
 
-                    Thread.Sleep(random.Next(3000));
+                    Thread.Sleep(random.Next(1000));
                 }//while
             }
             catch (ThreadInterruptedException) { }

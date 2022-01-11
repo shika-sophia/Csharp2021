@@ -16,13 +16,17 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 
         public override void ReadLock()
         {
+        ReCondition:
+            while(writing > 0 
+                || (preferWrite && waitWrite > 0))
+            {
+                Thread.SpinWait(Timeout.Infinite);
+            }//while
+
             lock (this)
             {
-                while(writing > 0 
-                    || (preferWrite && waitWrite > 0))
-                {
-                    Thread.SpinWait(Timeout.Infinite);
-                }//while
+                if (writing > 0
+                || (preferWrite && waitWrite > 0)) { goto ReCondition; }
 
                 reading++;
             }//lock
@@ -40,22 +44,19 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 
         public override void WriteLock()
         {
+            waitWrite++;
+            
+        ReCondition:
+            while (reading > 0 || writing > 0)
+            {
+                Thread.SpinWait(Timeout.Infinite);
+            }//while
+
             lock (this)
             {
-                waitWrite++;
-
-                try
-                {
-                    while(reading > 0 || writing > 0)
-                    {
-                        Thread.SpinWait(Timeout.Infinite);
-                    }//while
-                }
-                finally
-                {
-                    waitWrite--;
-                }
-
+                if (reading > 0 || writing > 0) { goto ReCondition; }
+                
+                waitWrite--;
                 writing++;
             }//lock
         }//WriteLock()
@@ -71,3 +72,4 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
         }//WriteUnlock()
     }//class
 }
+
