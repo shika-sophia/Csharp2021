@@ -111,8 +111,8 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 { 
     class MainReadWrite 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             AbsReadWrite lockRW = new ReadWriteLock();
             var data = new DataMT06(bufferSize: 10, lockRW);
