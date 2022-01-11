@@ -44,7 +44,8 @@
  *       new Thread(ThreadStart);
  *         └ delegate void ThreadStart();
  *            └ XxxxThread.Run();
- *            
+ *       - string Alphabet(char);
+ *       
  *@class AbsReadWrite
  *       + abstract void ReadLock();
  *       + abstract void ReadUnlock();
@@ -124,13 +125,33 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
                 new Thread(readerAry[i].Run).Start();
             }//for
 
-            var writer1 = new WriteThreadMT06(data, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-            var writer2 = new WriteThreadMT06(data, "abcdefghijklmnopqrstuvwxtz");
+            var here = new MainReadWrite();
+            var writer1 = new WriteThreadMT06(data, here.Alphabet('A'));
+            var writer2 = new WriteThreadMT06(data, here.Alphabet('a'));
             new Thread(writer1.Run).Start();
             new Thread(writer2.Run).Start();
         }//Main() 
 
-        
+        private string Alphabet(char init)
+        {
+            var bld = new StringBuilder(26);
+
+            for(int i = init; i < 26 + init; i++)
+            {
+                bld.Append((char) i);
+            }
+
+            return bld.ToString();
+        }
+
+        ////==== Test Main() for Alphabet(char) ====
+        //static void Main()
+        //{
+        //    var here = new MainReadWrite();
+        //    string filter1 = here.Alphabet('A');
+        //    string filter2 = here.Alphabet('a');
+        //    Console.WriteLine($"filter1: {filter1}\nfilter2: {filter2}");
+        //}
     }//class 
 }
 
@@ -165,4 +186,8 @@ reader3: reads BBBBBBBBBB
 reader4: reads BBBBBBBBBB
 reader1: reads BBBBBBBBBB
   :
-*/
+
+//==== Test Main() for Alphabet(char) ====
+filter1: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+filter2: abcdefghijklmnopqrstuvwxyz
+ */
