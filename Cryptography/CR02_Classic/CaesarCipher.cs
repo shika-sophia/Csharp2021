@@ -1,5 +1,5 @@
 /** 
- *@title CsharpBegin / Cryptography / CaesarCipher.cs 
+ *@title CsharpBegin / Cryptography / CR02_Classic / CaesarCipher.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference 結城 浩 『暗号技術入門 第３版』SB Creative, 2015 
  *@content 2.1 Caesar Cipher シーザー暗号 / p22 
@@ -128,24 +128,25 @@ namespace CsharpBegin.Cryptography.CR02_Classic
             return bld.ToString();
         }//BruteForth()
 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
-        {
-            const int shiftNum = 3;
-            var here = new CaesarCipher(shiftNum);
+        ////==== Test Main() ====
+        //static void Main(string[] args) 
+        ////public void Main(string[] args) 
+        //{
+        //    const int shiftNum = 3;
+        //    var here = new CaesarCipher(shiftNum);
 
-            //string plain = "yoshiko";
-            string plain = "azure";
-            string cipher = here.Encrypt(plain);
-            string rePlain = here.Decrypt();
+        //    //string plain = "yoshiko";
+        //    string plain = "azure";
+        //    string cipher = here.Encrypt(plain);
+        //    string rePlain = here.Decrypt();
 
-            Console.WriteLine($"Plain Text  : {plain}");
-            Console.WriteLine($"Cipher Text : {cipher}");
-            Console.WriteLine($"RePlain Text: {rePlain}");
-            Console.WriteLine($"Shift Number: {shiftNum}");
-            Console.WriteLine();
-            Console.WriteLine(here.BruteForth(cipher));
-        }//Main() 
+        //    Console.WriteLine($"Plain Text  : {plain}");
+        //    Console.WriteLine($"Cipher Text : {cipher}");
+        //    Console.WriteLine($"RePlain Text: {rePlain}");
+        //    Console.WriteLine($"Shift Number: {shiftNum}");
+        //    Console.WriteLine();
+        //    Console.WriteLine(here.BruteForth(cipher));
+        //}//Main() 
     }//class 
 }
 
