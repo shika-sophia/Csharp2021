@@ -29,7 +29,9 @@ namespace CsharpBegin.Utility
                 ["MultiThread"] =
                 "結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006",
                 ["SelfAspNet"] =
-                "山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020"
+                "山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020",
+                ["Cryptography"] = 
+                "結城 浩 『暗号技術入門 第３版』SB Creative, 2015",
             };
         
         public List<string> SeekBook(string dir)
