@@ -10,10 +10,35 @@
  *         [英] decrypt: 復号する
  *         [英] crypt analysis: 暗号解読
  *         
- *@algorithm アルファベットを同じ数ずつ ずらす
+ *@algorithm ■アルゴリズム
+ *           アルファベットを同じ数ずつ ずらす
  *          〔All alphabets shift by the same numbers.〕
+ *          
+ *          ◆暗号化
+ *          string -> char[] １文字ずつ取り出して、shiftNum分を + する。
+ *          もし、アルファベットの範囲 [a-z]を越えたら、('z'を越えたら)
+ *          - lowerInit 'a' = 97 をした後、
+ *          26の剰余算でアルファベット範囲に循環させ、
+ *          + lowerInit 'a' = 97 でもとの位置に戻す。
+ *          
+ *          Encrypt(string plain)
+ *          { char c = (char) (plainAry[i] + shiftNum);
+ *            if(lowerInit + 26 < c) 
+ *               { c = (char) (((c - lowerInit) % 26) + lowerInit); }
+ *          }
+ *          
+ *          ◆復号化
+ *          string -> char[] １文字ずつ取り出して、shiftNum分を - する。
+ *          もし、アルファベットの範囲 [a-z]を越えたら、('a'より前に行ったら)
+ *          + 26をすると、% 26で循環した前のアルファベットに戻る。
+ *          
+ *          Decrypt(string cipher)
+ *          { char c = (char) (cipherAry[i] - shiftNum);
+ *            if(c < lowerInit) { c = (char)(c + 26); }
+ *          }
+ *          
  *@key       ずらす数 (範囲 [0 - 25])
- *          〔shift number in range[0 - 25]〕
+ *          〔shift number in range [0 - 25]〕
  *
  *@analize ◆Brute-Force Attack: 力づくの解読
  *         = exhausive search: 全数探索, 総当たり法, しらみつぶし法
@@ -129,7 +154,7 @@ namespace CsharpBegin.Cryptography.CR02_Classic
         }//BruteForth()
 
         ////==== Test Main() ====
-        //static void Main(string[] args) 
+        //static void Main(string[] args)
         ////public void Main(string[] args) 
         //{
         //    const int shiftNum = 3;
