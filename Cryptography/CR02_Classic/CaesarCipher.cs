@@ -17,14 +17,20 @@
  *          ◆暗号化
  *          string -> char[] １文字ずつ取り出して、shiftNum分を + する。
  *          もし、アルファベットの範囲 [a-z]を越えたら、('z'を越えたら)
- *          - lowerInit 'a' = 97 をした後、
- *          26の剰余算でアルファベット範囲に循環させ、
- *          + lowerInit 'a' = 97 でもとの位置に戻す。
+ *          shiftNum < 26なので、剰余算は必要なく、-26すればよい。
+ *          (旧版: - lowerInit 'a' = 97 をした後、
+ *          %26 の剰余算でアルファベット範囲に循環させ、
+ *          + lowerInit 'a' = 97 でもとの位置に戻す。)
  *          
- *          Encrypt(string plain)
+ *          △旧版 Encrypt(string plain)
  *          { char c = (char) (plainAry[i] + shiftNum);
- *            if(lowerInit + 26 < c) 
+ *            if(lowerInit + 25 < c) 
  *               { c = (char) (((c - lowerInit) % 26) + lowerInit); }
+ *          }
+ *          
+ *          ○新版 Encrypt(string plain)
+ *          { char c = (char) (cipherAry[i] + shiftNum);
+ *            if(lowerInit + 25 < c) { c = (char)(c - 26); }
  *          }
  *          
  *          ◆復号化
@@ -90,9 +96,9 @@ namespace CsharpBegin.Cryptography.CR02_Classic
             {
                 char c = (char) (plainAry[i] + shiftNum);
 
-                if(lowerInit + 26 < c)
+                if(lowerInit + 25 < c)
                 {
-                    c = (char) (((c - lowerInit) % 26) + lowerInit);
+                    c = (char) (c - 26);
                 }
 
                 cipherAry[i] = c;
