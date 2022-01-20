@@ -36,9 +36,9 @@ namespace CsharpBegin.Cryptography.CR02_Classic
 { 
     class CaesarCipherInput 
     { 
-        private char[] plainAry; 
-        private char[] cipherAry; 
-        private int shiftNum; 
+        private char[] plainAry; //by lower char
+        private char[] cipherAry;//by upper char
+        private int shiftNum;    //in range [0 - 25]
         private const char lowerInit = 'a'; //= 97 ,'ａ' = 65345
         private const char upperInit = 'A'; //= 65 ,'Ａ' = 65313
 
@@ -72,7 +72,7 @@ namespace CsharpBegin.Cryptography.CR02_Classic
                     c = (char) (c - 26); 
                 } 
  
-                cipherAry[i] = c; 
+                cipherAry[i] = (char)(c + upperInit - lowerInit); 
             }//for 
  
             return cipherAry; 
@@ -103,7 +103,7 @@ namespace CsharpBegin.Cryptography.CR02_Classic
                     c = (char) (c + 26); 
                 } 
  
-                plainAry[i] = c; 
+                plainAry[i] = (char)(c + lowerInit - upperInit); 
             }//for 
  
             return plainAry; 
@@ -151,9 +151,9 @@ namespace CsharpBegin.Cryptography.CR02_Classic
             Console.WriteLine(
                 $"Input Text : {here.ToString(inputAry)}");
             Console.WriteLine(
-                $"Plain Text : {here.ToString(here.plainAry).ToLower()}");
+                $"Plain Text : {here.ToString(here.plainAry)}");
             Console.WriteLine(
-                $"Cipher Text: {here.ToString(here.cipherAry).ToUpper()}");
+                $"Cipher Text: {here.ToString(here.cipherAry)}");
         end:;
         }//Main()
     }//class 
