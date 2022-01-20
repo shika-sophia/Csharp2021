@@ -53,9 +53,6 @@
  */
 #endregion
 /*
- *@NOTE int Random.Next()は while(true)内では機能せず、
- *      for内だと ちゃんと機能した。
- *      
  *@author shika 
  *@date 2022-01-20 
 */

@@ -1,5 +1,9 @@
 /** 
  *@see SimpleSubstitutionCipher.cs
+ *
+ *@NOTE int Random.Next()は while(true)内では機能せず、
+ *      for内だと ちゃんと機能した。
+ *      
  */
 using System; 
 using System.Collections.Generic; 
