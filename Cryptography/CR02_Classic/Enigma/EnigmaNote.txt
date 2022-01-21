@@ -1,0 +1,135 @@
+﻿/*
+ *@title EnigmaNote.txt
+ *@reference 結城 浩 『暗号技術入門 第３版』SB Creative, 2015 
+ *@content 第２章 歴史的暗号 2.3 エニグマ / p34
+ *@auther shika
+ *@date 2022-01-21
+ *
+ *@reference Movie『The Imitation Game』,2014
+ *    ～ An English Mathematic scholar, Alan Turing
+ *       who tried to crack the Enigma code.
+ *    based on Andrew Hodges『Alan Turing: The Enigma』
+ */
+
+ ■ Enigma Note / [独] enigma: 謎
+ エニグマは 第二次世界大戦中 ドイツ軍が使った暗号製造機である。
+ アーサー シェルビウスによって発明された。
+ 一見、タイプライターのように見え、３つの歯車と多数の電球のついた機械である。
+ 暗号化と復号化の両方に利用できた。
+
+ Enigma is the Cipher Machine in Deutsche(Germany) during WWII,
+ invented by Authur Scherbuis.
+ It looks like a typewriter with 3 gear rotors and many electric light bulbs.
+ It can use both to encrypt and to decrypt.
+
+ ◆暗号アルゴリズム / Cipher Algorithm 
+ エニグマ機械の構造そのものがアルゴリズムで、
+ これは、たとえ公開されても問題はない。
+ 現に WWII 英国では、ポーランドから入手したエニグマを所有していた。
+ 当初、英国はエニグマの機械を持っていても、ドイツ軍の暗号文の解読はできなかった。
+
+ The Cipher Algorithum is the Enigma Machine structure.
+ It is no problem even if the Enigma Algorithum were known publicly.
+ Actually, UK during WWII 1939, had the Enigma Machine brought from Poland.
+ But, initially, UK couldn't crack Enigma cipher of German Military,
+ though UK had the machine.
+
+ ◆暗号鍵 / Cipher Key
+ 暗号鍵は、通信をする際の手順とエニグマの設定方法にある。
+ The Cipher Key is the traffic protocol and Enigma settings.
+
+ ◆機械的構造 / Machine structure
+ プラグボード, ローター３枚, 反射器があり、計５枚。
+ それぞれ電気配線が通っており、
+ ローターにはアルファベット26通りと記号やスペースなどの何通りかの入口と
+ 同じ数の出口が一対一で配線されている。
+
+ タイプライターを打鍵すると、->
+ プラグボード -> ローター１ -> ローター２ -> ローター３ -> 反射器 ->
+ ローター３ -> ローター２ -> ローター１ -> プラグボード -> 電球が光る
+
+ プラグボードはその日１日の間は、同じ設定。
+ アルファベットの26通りだけと仮定すると、
+ １文字打鍵するごとにローター１が 1/26回転し、
+ ローター１が１回転すると、ローター２が 1/26回転する。
+ 同様に、ローター２が１回転すると、ローター３が 1/26回転する。
+ 反射器はそのままの信号を返し、今度はローター３から順に裏から信号を送るので、
+ 論理的には８枚のフィルターを通って電球が光る。
+ 光った電球のアルファベットを通信者は紙にメモをする。
+
+ ◆通信手順とエニグマの設定方法
+ コードブック『国防軍鍵表』から その日の「日替わり鍵」を調べ、
+ プラグ配線パターンと、３枚のローター順を「日替わり鍵」通りにセットする。
+
+ 送信者は、まず「通信鍵」を 6文字打鍵する。
+ たとえば「psvpsv」同じ３文字ずつを２回繰り返すのが通信手順で決めれらている。
+ こうすることで通信エラーがあって繰り返し文字列にならなかった場合に発見できる。
+〔Movie『The Imitaiton Game』では最初に５文字、繰り返しはないとのこと。
+ 恋人の名前を打鍵して、Enigma解読のヒントを与えたという設定から、脚本上の演出かもしれない〕
+ 当然、これもエニグマによって暗号化される。
+ 同じ文字列であっても、暗号化されると異なる文字列として送信される。
+
+ 受信者が「通信鍵」を受け取ったことが判ると、
+ 送信者、受信者ともに、エニグマのローター設定を変更する。
+ 通信鍵「psv」は、ローター１，２，３の取付角度なので、
+ ローターに彫られている目盛りを「p」「s」「v」に合わせる。
+
+ その再設定をした上で、「本文」を打鍵し暗号電文を送信する。
+
+ その日の 深夜00:00になると、次の日の設定に変更される。
+ 次の日の朝 06:00に定例の通信が行われるとのこと。
+
+ 朝 0600に電文を盗聴できても、設定解読に時間が掛かるので、
+ その日の作戦情報は利用できないし、
+ 仮にその日の設定を解読できたとしても
+ 毎日、24:00 (= 00:00)で設定は変更されてしまうので、
+ 翌日以降の暗号解読には利用できない。
+
+ ◆エニグマの解読〔Movie『The Imitation Game』〕
+ ＊鍵空間 / Key Space
+   1.59e20 = 159 * 10 ^ 18 = 159,000,000,000,000,000,000
+  
+ ＊エニグマ解読
+   前掲の映画では、コンピュータの前進である電子計算機を用いて、
+   当初は Brute-Force Attack方式(= 全鍵を総当たり)で解読を試みたが、
+   電子計算機でも、24:00になっても解読不能であった。
+
+   そのうち朝の通信内に固定文字列「Hiel」「Hitler」があることを発見し、
+   全鍵の総当たりを中止し、実機の配線構造は判っているので、
+   固定文字列を暗号文にする設定方法を検出する方式に改めることで、
+   電子計算機によって「通信鍵」の解読に成功。
+   その設定を実機のエニグマにセットし、「本文」暗号を解読。
+
+
+ ■ [C#]によるエニグマ・シミュレーション / [C#] Enigma simulation
+ ◆日替わり鍵 / Daily Key
+ ＊new Random(int seed)
+ [Java][C#]の Randomクラスは計算によって乱数を発生させる疑似乱数生成器である。
+ そのためコンストラクタの引数に [Java] long seed / [C#] int seed を渡すと、
+ 決まった順序で乱数を生成する。
+
+ ＊プラグボードと初期ローター設定 / Plug-Board and initial rotor settings
+ DateTime.Nowから今日の日付データを取り、
+ Month, Dayの数値を Random(int seed)の「種」(seed)とすれば、
+ 一年ごとに同じ設定を出力できる。
+
+ プラグボードは 打鍵と 出力アルファベットを一対一で配線したものと仮定し、
+ Simple Substitution Cipher(=単一換字暗号)で利用したように Dictionaryで代用できるが、
+ 配列 / Listの indexを keyとするなら、Dictionaryでなくとも 配列 / Listで済むことになる。
+
+ それと、その日のローター初期設定。
+ ローターの順序と初期角度を日付を種とした疑似乱数で出す必要がある。
+
+ ◆ローター / rotor
+ 機械的に固定した一対一の配線であるため、固定Listとして定義する。
+ 文字を要素とする List<char>ではなく、
+ indexとの差分を　List<int>で定義する。
+
+ 最初の設定角度と、一文字打鍵ごとに角度が変化するので、
+ List<int>内の並び順は変えずに、最後の要素を先頭に持っていき、
+ １つずつ ずらすことが必要。
+ これは Caesar Cipherで考えた 文字ずらしアルゴリズムと同じである。
+
+
+
+ (Editing...)
