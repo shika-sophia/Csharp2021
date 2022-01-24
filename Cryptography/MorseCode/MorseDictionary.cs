@@ -43,18 +43,21 @@ namespace CsharpBegin.Cryptography.MorseCode
                 ['Ñ'] = "11011", ['Ö'] = "1110",
                 ['Š'] = "00010", ['Þ'] = "01100",
                 ['Ü'] = "0011",  ['ß'] = "0001100",
-                [' '] = "|",     ['／'] = "／"
+                [' '] = "／", ['['] = "[", [']'] = "]",
             };
 
         private readonly Dictionary<string, string> controlDic
             = new Dictionary<string, string>() 
             {
                 ["start"] = "10101", 
-                ["end"] = "01010",
+                ["messageend"] = "01010",
+                ["close"] = "000101",
                 ["error"] = "00000000", 
-                ["wait"] = "01000",
-                ["ready"] = "101",
+                ["copythat"] = "00010",
+                ["wait"] = "01000", 
+                ["over"] = "101",
                 ["recieved"] = "010",
+                ["sos"] = "000111000",
             };
         //==== Getter ====
         public char GetKey(int index)
@@ -64,7 +67,15 @@ namespace CsharpBegin.Cryptography.MorseCode
 
         public string GetValue(char c)
         {           
-            morseDic.TryGetValue(key: c, out string value);
+            bool isSignal = morseDic.TryGetValue(key: c, out string value);
+
+            if (!isSignal)
+            {
+                morseDic.TryGetValue('-', out string dash);
+                morseDic.TryGetValue('?', out string unknown);
+
+                value = $"{dash}{unknown}{dash}"; // "-?-" as binary
+            }
 
             return value;
         }//GetValue()
