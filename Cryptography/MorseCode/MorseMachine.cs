@@ -45,7 +45,7 @@ namespace CsharpBegin.Cryptography.MorseCode
 
         public string EndSignal(int id, string mesType = "over")
         {
-            footer = $"《 end of message | ID:{id} | {mesType} | close 》";
+            footer = $"《 end of message ／ ID:{id} ／ {mesType} ／ close 》";
 
             var bld = new StringBuilder(100);
             bld.Append("]");
@@ -275,7 +275,7 @@ Text: This is a pen. I am a girl.
 ◆PreConnect()
 ＊pre-Request:
 《 start 》 => ー・ー・ー
-《 end of message | ID:1124 | over | close 》 =>
+《 end of message ／ ID:1124 ／ over ／ close 》 =>
 ・ー・ー・／
 ・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
 ー・ー／
@@ -283,7 +283,7 @@ Text: This is a pen. I am a girl.
 
 ＊pre-Response:
 《 start 》 => ー・ー・ー
-《 end of message | ID:1124 | over | close 》 =>
+《 end of message ／ ID:1124 ／ over ／ close 》 =>
 ・ー・ー・／
 ・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
 ー・ー／
@@ -291,7 +291,7 @@ Text: This is a pen. I am a girl.
 
 ◆Morse Send
 Message: 
-《 start 》THIS IS A PEN. I AM A GIRL.《 end of message | ID:1124 | over | close 》
+《 start 》THIS IS A PEN. I AM A GIRL.《 end of message ／ ID:1124 ／ over ／ close 》
 
 《 start 》 => ー・ー・ー[
 
@@ -304,7 +304,7 @@ Message:
 [A] => |・ー|／
 [GIRL.] => |ーー・|・・|・ー・|・ー・・|・ー・ー・ー|
 
-《 end of message | ID:1124 | over | close 》 =>
+《 end of message ／ ID:1124 ／ over ／ close 》 =>
 ・ー・ー・／
 ・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
 ー・ー／
@@ -312,7 +312,7 @@ Message:
 
 ◆Morse Recieved
 《 start 》 => ー・ー・ー
-《 end of message | ID:1124 | recieved | close 》 =>
+《 end of message ／ ID:1124 ／ recieved ／ close 》 =>
 ・ー・ー・／
 ・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
 ・ー・／
