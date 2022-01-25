@@ -50,12 +50,12 @@ namespace CsharpBegin.Cryptography.MorseCode
             = new Dictionary<string, string>() 
             {
                 ["start"] = "10101", 
-                ["messageend"] = "01010",
+                ["messageend"] = "01010", //= ['+']
                 ["close"] = "000101",
                 ["error"] = "00000000", 
                 ["copythat"] = "00010",
                 ["wait"] = "01000", 
-                ["over"] = "101",
+                ["over"] = "101",        //= ['K']
                 ["recieved"] = "010",
                 ["sos"] = "000111000",
             };
@@ -80,7 +80,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             return value;
         }//GetValue()
 
-        public int GetIndex(string value)
+        public int GetMorseIndex(string value)
         {
             int index = -1;
             for (int i = 0; i < morseDic.Count; i++)
@@ -92,11 +92,11 @@ namespace CsharpBegin.Cryptography.MorseCode
                         index = i;
                         break;//for j
                     }
-                }               
+                }
             }//for 
 
             return index;
-        }//GetIndex()
+        }//GetMorseIndex()
 
         public string GetControlSignal(string controlName)
         {
@@ -106,26 +106,26 @@ namespace CsharpBegin.Cryptography.MorseCode
             return controlSignal;
         }//GetControlSignal()
 
-        public string GetControlName(string signal)
+        public int GetControlIndex(string signal)
         {
             int index = -1;
-            for(int i = 0; index < controlDic.Values.Count; i++)
+            for (int i = 0; i < controlDic.Values.Count; i++)
             {
-                if(signal == controlDic.Values.ElementAt(i))
+                if (signal == controlDic.Values.ElementAt(i))
                 {
                     index = i;
                     break;
                 }
             }//for
 
-            if(index == -1)
-            {
-                return "<?control?>";
-            }
+            return index;
+        }//GetControlIndex()
 
+        public string GetControlName(int index)
+        {
             return controlDic.Keys.ElementAt(index);
         }//GetControlName()
- 
+
     }//class 
 }
 

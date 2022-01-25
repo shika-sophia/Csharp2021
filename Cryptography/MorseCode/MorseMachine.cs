@@ -160,12 +160,12 @@ namespace CsharpBegin.Cryptography.MorseCode
                 {
                     case '・':
                         Console.Write(c);
-                        Console.Beep(800, 150);
+                        Console.Beep(800, 100);
                         Thread.Sleep(80);
                         break;
                     case 'ー':
                         Console.Write(c);
-                        Console.Beep(800, 400);
+                        Console.Beep(800, 300);
                         Thread.Sleep(80);
                         break;
                     case '|':
@@ -174,7 +174,7 @@ namespace CsharpBegin.Cryptography.MorseCode
                         break;
                     case '／':
                         Console.WriteLine(c);
-                        Thread.Sleep(400);
+                        Thread.Sleep(300);
                         if (!isControl)
                         {
                             wordCount++;
@@ -203,44 +203,92 @@ namespace CsharpBegin.Cryptography.MorseCode
             Console.WriteLine();
         }//WriteWithBeepMorse()
 
-        //public string ReciveMorse(string signal)
-        //{
-        //    signal = signal.Replace("・", "0");
-        //    signal = signal.Replace("ー", "1");
-        //    signal = signal.Replace("／", " /");
+        public string ReadMorse(string signal)
+        {
+            signal = signal.Replace("・", "0");
+            signal = signal.Replace("ー", "1");
+            string headerSignal = signal.Substring(0, signal.IndexOf("["));
+            string footerSignal = signal.Substring(signal.LastIndexOf("]"));
+            signal = signal.Remove(0, signal.IndexOf("["));
+            signal = signal.Remove(signal.LastIndexOf("]"));
 
-        //    string[] signalAry = signal.Split(
-        //        new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string reHeader = $"《 {TransWord(headerSignal, isControl: true)} 》";
+            string body = TransWord(signal).ToUpper();
+            string reFooter = $"《 {TransWord(footerSignal, isControl: true)} 》";
 
-        //    var bld = new StringBuilder(signal.Length);
-        //    foreach (string bin in signalAry)
-        //    {
+            return $"{reHeader}\n{body}\n{reFooter}";
+        }//ReadMorse()
 
-        //        if (index < 0)
-        //        {
-        //            if (index == -99)
-        //            {
-        //                bld.Append(" ");
-        //            }
-        //            else
-        //            {
-        //                bld.Append("<?>");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            c = morseDic.Keys.ElementAt(index);
-        //            bld.Append(c);
-        //        }
-        //    }//foreach bin
-        //    return bld.ToString().ToUpper();
-        //}//ReciveMorse()
+        private string TransWord(string signal, bool isControl = false)
+        {
+            string[] wordlAry = signal.Split(
+                new char[] { '／' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var bld = new StringBuilder(signal.Length);
+            foreach (string word in wordlAry)
+            {
+                string[] charSignalAry = word.Split(
+                    new char[] { '[', '|', ']' }, StringSplitOptions.RemoveEmptyEntries);
+ 
+                foreach(string charSignal in charSignalAry)
+                {
+                    int index = dic.GetMorseIndex(charSignal);
+                    if (index < 0)
+                    {
+                        int controlIndex = dic.GetControlIndex(charSignal);
+                        if (controlIndex < 0)
+                        {
+                            bld.Append("<?>");
+                        }
+                        else
+                        {
+                            bld.Append(dic.GetControlName(controlIndex));
+                        }
+                    }
+                    else
+                    {
+                        char c = dic.GetKey(index);
+
+                        if (isControl)
+                        {
+                            switch (c)
+                            {
+                                case '+':
+                                    bld.Append("end of message");
+                                    break;
+                                case 'K':
+                                    bld.Append("over");
+                                    break;
+                                default:
+                                    bld.Append(c);
+                                    break;
+                            }//switch
+                        }
+                        else
+                        {
+                            bld.Append(c);
+                        }
+                    }
+                }//foreach charSignal
+
+                if (isControl)
+                {
+                    bld.Append(" ／ ");
+                }
+                else
+                {
+                    bld.Append(" ");
+                }                   
+            }//foreach word
+
+            return bld.ToString();
+        }
 
         static void Main(string[] args)
         //public void Main(string[] args) 
         {
             string message = "This is a pen. I am a girl.";
-            var here = new MorseMachine(1124, message);
+            var here = new MorseMachine(15, message);
 
             Console.WriteLine($"Text: {message}");            
 
@@ -252,19 +300,20 @@ namespace CsharpBegin.Cryptography.MorseCode
             }
 
             //---- Morse Send ----
-            Console.WriteLine("◆Morse Send");
+            Console.WriteLine("◆Send Morse ");
             string signal = here.SendMorse(here.message);
             Console.WriteLine(
                 $"Message: {here.header}{here.message}{here.footer}");
             here.WriteWithBeepMorse(signal);
+            Console.WriteLine();
 
             //---- Morse Recieved ----
-            Console.WriteLine("◆Morse Recieved");
+            Console.WriteLine("◆Recieved Morse ");
             here.WriteWithBeepMorse(here.RecievedSignal(here.id), isControl: true);
 
-            //Console.WriteLine("◆Morse Recieve");
-            //string reText = here.ReciveMorse(signal);
-            //SConsole.WriteLine($"reText: {reText}");
+            Console.WriteLine("◆Read Morse ");
+            string reText = here.ReadMorse(signal);
+            Console.WriteLine($"reText: {reText}");
         }//Main() 
     }//class
 }
@@ -275,26 +324,25 @@ Text: This is a pen. I am a girl.
 ◆PreConnect()
 ＊pre-Request:
 《 start 》 => ー・ー・ー
-《 end of message ／ ID:1124 ／ over ／ close 》 =>
+《 end of message ／ ID:15 ／ over ／ close 》 => 
 ・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
+・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
 ー・ー／
 ・・・ー・ー
 
 ＊pre-Response:
 《 start 》 => ー・ー・ー
-《 end of message ／ ID:1124 ／ over ／ close 》 =>
+《 end of message ／ ID:15 ／ over ／ close 》 => 
 ・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
+・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
 ー・ー／
 ・・・ー・ー
 
-◆Morse Send
+◆Send Morse
 Message: 
-《 start 》THIS IS A PEN. I AM A GIRL.《 end of message ／ ID:1124 ／ over ／ close 》
+《 start 》THIS IS A PEN. I AM A GIRL.《 end of message ／ ID:15 ／ over ／ close 》
 
 《 start 》 => ー・ー・ー[
-
 [THIS] => ー|・・・・|・・|・・・|／
 [IS] => |・・|・・・|／
 [A] => |・ー|／
@@ -303,19 +351,23 @@ Message:
 [AM] => |・ー|ーー|／
 [A] => |・ー|／
 [GIRL.] => |ーー・|・・|・ー・|・ー・・|・ー・ー・ー|
-
-《 end of message ／ ID:1124 ／ over ／ close 》 =>
+《 end of message ／ ID:15 ／ over ／ close 》 => 
 ・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
+・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
 ー・ー／
 ・・・ー・ー
 
-◆Morse Recieved
+◆Recieved Morse
 《 start 》 => ー・ー・ー
-《 end of message ／ ID:1124 ／ recieved ／ close 》 =>
+《 end of message ／ ID:15 ／ recieved ／ close 》 =>
 ・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・ーーーー|・ ・ーーー|・・・・ー|／
+・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
 ・ー・／
 ・・・ー・ー
 
+◆Read Morse
+reText: 
+《 start ／  》
+THIS IS A PEN. I AM A GIRL.
+《 end of message ／ ID:15 ／ over ／ close ／  》
  */
