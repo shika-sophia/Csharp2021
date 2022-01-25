@@ -284,37 +284,38 @@ namespace CsharpBegin.Cryptography.MorseCode
             return bld.ToString();
         }
 
-        static void Main(string[] args)
-        //public void Main(string[] args) 
-        {
-            string message = "This is a pen. I am a girl.";
-            var here = new MorseMachine(15, message);
+        ////==== Test Main() ====
+        //static void Main(string[] args)
+        ////public void Main(string[] args) 
+        //{
+        //    string message = "This is a pen. I am a girl.";
+        //    var here = new MorseMachine(15, message);
 
-            Console.WriteLine($"Text: {message}");            
+        //    Console.WriteLine($"Text: {message}");            
 
-            //---- PreConnect ----
-            bool isReady = here.PreConnect(here.id);
-            if (!isReady)
-            {
-                Console.WriteLine("PreConnect() return false.");
-            }
+        //    //---- PreConnect ----
+        //    bool isReady = here.PreConnect(here.id);
+        //    if (!isReady)
+        //    {
+        //        Console.WriteLine("PreConnect() return false.");
+        //    }
 
-            //---- Morse Send ----
-            Console.WriteLine("◆Send Morse ");
-            string signal = here.SendMorse(here.message);
-            Console.WriteLine(
-                $"Message: {here.header}{here.message}{here.footer}");
-            here.WriteWithBeepMorse(signal);
-            Console.WriteLine();
+        //    //---- Morse Send ----
+        //    Console.WriteLine("◆Send Morse ");
+        //    string signal = here.SendMorse(here.message);
+        //    Console.WriteLine(
+        //        $"Message: {here.header}{here.message}{here.footer}");
+        //    here.WriteWithBeepMorse(signal);
+        //    Console.WriteLine();
 
-            //---- Morse Recieved ----
-            Console.WriteLine("◆Recieved Morse ");
-            here.WriteWithBeepMorse(here.RecievedSignal(here.id), isControl: true);
+        //    //---- Morse Recieved ----
+        //    Console.WriteLine("◆Recieved Morse ");
+        //    here.WriteWithBeepMorse(here.RecievedSignal(here.id), isControl: true);
 
-            Console.WriteLine("◆Read Morse ");
-            string reText = here.ReadMorse(signal);
-            Console.WriteLine($"reText: {reText}");
-        }//Main() 
+        //    Console.WriteLine("◆Read Morse ");
+        //    string reText = here.ReadMorse(signal);
+        //    Console.WriteLine($"reText: {reText}");
+        //}//Main() 
     }//class
 }
 
