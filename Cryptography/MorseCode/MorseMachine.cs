@@ -38,7 +38,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             header = "《 start 》";
             string startSignal = dic.GetControlSignal("start");
             startSignal = startSignal.Replace("0", "・");
-            startSignal = startSignal.Replace("1", "ー");
+            startSignal = startSignal.Replace("1", "－");
 
             return $"{startSignal}";
         }//StartSignal()
@@ -65,7 +65,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             bld.Append(dic.GetControlSignal("close"));
 
             bld.Replace("0", "・");
-            bld.Replace("1", "ー");
+            bld.Replace("1", "－");
 
             return bld.ToString();
         }//EndMessage()
@@ -105,7 +105,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             bld.Append(StartSignal());
             bld.Append(EndSignal(id ,"recieved"));
             bld.Replace('0', '・');
-            bld.Replace('1', 'ー');
+            bld.Replace('1', '－');
 
             return bld.ToString();
         }//RecievedSignal()
@@ -127,7 +127,7 @@ namespace CsharpBegin.Cryptography.MorseCode
 
             string signal = bld.ToString();
             signal = signal.Replace("0", "・");
-            signal = signal.Replace("1", "ー");
+            signal = signal.Replace("1", "－");
 
             return signal;
         }//SendMorse()
@@ -163,7 +163,7 @@ namespace CsharpBegin.Cryptography.MorseCode
                         Console.Beep(800, 100);
                         Thread.Sleep(80);
                         break;
-                    case 'ー':
+                    case '－':
                         Console.Write(c);
                         Console.Beep(800, 300);
                         Thread.Sleep(80);
@@ -206,7 +206,7 @@ namespace CsharpBegin.Cryptography.MorseCode
         public string ReadMorse(string signal)
         {
             signal = signal.Replace("・", "0");
-            signal = signal.Replace("ー", "1");
+            signal = signal.Replace("－", "1");
             string headerSignal = signal.Substring(0, signal.IndexOf("["));
             string footerSignal = signal.Substring(signal.LastIndexOf("]"));
             signal = signal.Remove(0, signal.IndexOf("["));
@@ -284,38 +284,38 @@ namespace CsharpBegin.Cryptography.MorseCode
             return bld.ToString();
         }
 
-        ////==== Test Main() ====
-        //static void Main(string[] args)
-        ////public void Main(string[] args) 
-        //{
-        //    string message = "This is a pen. I am a girl.";
-        //    var here = new MorseMachine(15, message);
+        //==== Test Main() ====
+        static void Main(string[] args)
+        //public void Main(string[] args) 
+        {
+            string message = "This is a pen. I am a girl.";
+            var here = new MorseMachine(15, message);
 
-        //    Console.WriteLine($"Text: {message}");            
+            Console.WriteLine($"Text: {message}");
 
-        //    //---- PreConnect ----
-        //    bool isReady = here.PreConnect(here.id);
-        //    if (!isReady)
-        //    {
-        //        Console.WriteLine("PreConnect() return false.");
-        //    }
+            //---- PreConnect ----
+            bool isReady = here.PreConnect(here.id);
+            if (!isReady)
+            {
+                Console.WriteLine("PreConnect() return false.");
+            }
 
-        //    //---- Morse Send ----
-        //    Console.WriteLine("◆Send Morse ");
-        //    string signal = here.SendMorse(here.message);
-        //    Console.WriteLine(
-        //        $"Message: {here.header}{here.message}{here.footer}");
-        //    here.WriteWithBeepMorse(signal);
-        //    Console.WriteLine();
+            //---- Morse Send ----
+            Console.WriteLine("◆Send Morse ");
+            string signal = here.SendMorse(here.message);
+            Console.WriteLine(
+                $"Message: {here.header}{here.message}{here.footer}");
+            here.WriteWithBeepMorse(signal);
+            Console.WriteLine();
 
-        //    //---- Morse Recieved ----
-        //    Console.WriteLine("◆Recieved Morse ");
-        //    here.WriteWithBeepMorse(here.RecievedSignal(here.id), isControl: true);
+            //---- Morse Recieved ----
+            Console.WriteLine("◆Recieved Morse ");
+            here.WriteWithBeepMorse(here.RecievedSignal(here.id), isControl: true);
 
-        //    Console.WriteLine("◆Read Morse ");
-        //    string reText = here.ReadMorse(signal);
-        //    Console.WriteLine($"reText: {reText}");
-        //}//Main() 
+            Console.WriteLine("◆Read Morse ");
+            string reText = here.ReadMorse(signal);
+            Console.WriteLine($"reText: {reText}");
+        }//Main() 
     }//class
 }
 
@@ -324,51 +324,50 @@ Text: This is a pen. I am a girl.
 
 ◆PreConnect()
 ＊pre-Request:
-《 start 》 => ー・ー・ー
+《 start 》 => －・－・－
 《 end of message ／ ID:15 ／ over ／ close 》 => 
-・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
-ー・ー／
-・・・ー・ー
+・－・－・／
+・・|－・・|－－－・・・|・－－－－|・・・・・|／
+－・－／
+・・・－・－
 
 ＊pre-Response:
-《 start 》 => ー・ー・ー
+《 start 》 => －・－・－
 《 end of message ／ ID:15 ／ over ／ close 》 => 
-・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
-ー・ー／
-・・・ー・ー
+・－・－・／
+・・|－・・|－－－・・・|・－－－－|・・・・・|／
+－・－／
+・・・－・－
 
 ◆Send Morse
 Message: 
 《 start 》THIS IS A PEN. I AM A GIRL.《 end of message ／ ID:15 ／ over ／ close 》
 
-《 start 》 => ー・ー・ー[
-[THIS] => ー|・・・・|・・|・・・|／
+《 start 》 => －・－・－[
+[THIS] => －|・・・・|・・|・・・|／
 [IS] => |・・|・・・|／
-[A] => |・ー|／
-[PEN.] => |・ーー・|・|ー・|・ー・ー・ー|／
+[A] => |・－|／
+[PEN.] => |・－－・|・|－・|・－・－・－|／
 [I] => |・・|／
-[AM] => |・ー|ーー|／
-[A] => |・ー|／
-[GIRL.] => |ーー・|・・|・ー・|・ー・・|・ー・ー・ー|
+[AM] => |・－|－－|／
+[A] => |・－|／
+[GIRL.] => |－－・|・・|・－・|・－・・|・－・－・－|
 《 end of message ／ ID:15 ／ over ／ close 》 => 
-・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
-ー・ー／
-・・・ー・ー
+・－・－・／
+・・|－・・|－－－・・・|・－－－－|・・・・・|／
+－・－／
+・・・－・－
 
 ◆Recieved Morse
-《 start 》 => ー・ー・ー
+《 start 》 => －・－・－
 《 end of message ／ ID:15 ／ recieved ／ close 》 =>
-・ー・ー・／
-・・|ー・・|ーーー・・・|・ーーーー|・・・・・|／
-・ー・／
-・・・ー・ー
+・－・－・／
+・・|－・・|－－－・・・|・－－－－|・・・・・|／
+・－・／
+・・・－・－
 
 ◆Read Morse
-reText: 
-《 start ／  》
+reText: 《 start ／  》
 THIS IS A PEN. I AM A GIRL.
 《 end of message ／ ID:15 ／ over ／ close ／  》
  */
