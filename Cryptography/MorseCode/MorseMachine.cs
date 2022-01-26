@@ -2,10 +2,34 @@
  *@title CsharpBegin / Cryptography / MorseCode / MorseMachine.cs 
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference CR 結城 浩 『暗号技術入門 第３版』SB Creative, 2015 
- *@content MorseMachine
- *
+ *@content Morse Machine Simulation
+ */
+#region -> Class Chart [ MorceCode ]
+/*
+ *@class MorseMachine
+ *       / - readonly ◇MorseDictionary dic;
+ *         - readonly ◇PreComminucation pre;
+ *         - int id;
+ *         -string message; /
+ *       + MorseMachine(int id, string message)
+ *       + void ◆Run() //as ◆Main()
+ *       - string ToMorse(string)
+ *       - string ToBinary(string)
+ *         
  *@class MorseDictionary
- * 
+ *       / - readonly Dictionary<char,string> morseDic;
+ *         - readonly Dictionary<string,string> controlDic; /
+ *       + string GetValue(string)
+ *                  { GetValue(char) }
+ *       + string GetValue(char)
+ *       + int    GetMorseIndex(string)
+ *       + char   GetKey(int index)
+ *       + string GetControlSignal(string)
+ *       + int    GetContolIndex(string)
+ *       + string GetControlName(int)
+ */
+#endregion
+/*
  *@author shika 
  *@date 2022-01-22 
 */
