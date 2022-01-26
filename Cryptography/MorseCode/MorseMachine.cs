@@ -1,7 +1,7 @@
 ﻿/** 
  *@title CsharpBegin / Cryptography / MorseCode / MorseMachine.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩 『暗号技術入門 第３版』SB Creative, 2015 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference CR 結城 浩 『暗号技術入門 第３版』SB Creative, 2015 
  *@content MorseMachine
  *
  *@class MorseDictionary
@@ -20,117 +20,47 @@ namespace CsharpBegin.Cryptography.MorseCode
 {
     class MorseMachine
     {
-        private readonly MorseDictionary dic
-            = new MorseDictionary();
+        private readonly MorseDictionary dic;            
+        private readonly PreCommunication pre;           
         private string message;
         private int id;
-        private string header;
-        private string footer;
+        
 
         public MorseMachine(int id, string message)
         {
             this.id = id;
             this.message = message.ToUpper();
+            this.dic = new MorseDictionary();
+            this.pre = new PreCommunication(dic);
         }
 
-        public string StartSignal()
+        public void Run()
         {
-            header = "《 start 》";
-            string startSignal = dic.GetControlSignal("start");
-            startSignal = startSignal.Replace("0", "・");
-            startSignal = startSignal.Replace("1", "－");
+            //---- signal as morse ----
+            string headerSignal = ToMorse(pre.HeaderSignal(id));
+            string footerSignal = ToMorse(pre.FooterSignal(id));
+            string bodySignal =  ToMorse(BodySignal(message));
 
-            return $"{startSignal}";
-        }//StartSignal()
+        }//Run()
 
-        public string EndSignal(int id, string mesType = "over")
+        private string ToMorse(string signal)
         {
-            footer = $"《 end of message ／ ID:{id} ／ {mesType} ／ close 》";
-
-            var bld = new StringBuilder(100);
-            bld.Append("]");
-            bld.Append(dic.GetControlSignal("messageend"));
-            bld.Append("／");
-            
-            char[] idAry = $"ID:{id}".ToCharArray();
-            foreach(char idBit in idAry)
-            {
-                bld.Append(dic.GetValue(idBit));
-                bld.Append("|");
-            }
-            bld.Append("／");
-
-            bld.Append(dic.GetControlSignal(mesType));            
-            bld.Append("／");
-            bld.Append(dic.GetControlSignal("close"));
-
-            bld.Replace("0", "・");
-            bld.Replace("1", "－");
-
-            return bld.ToString();
-        }//EndMessage()
-
-        public bool PreConnect(int id)
-        {
-            Console.WriteLine("◆PreConnect()");
-            Console.WriteLine("＊pre-Request:");
-
-            var bld = new StringBuilder(30);
-            bld.Append(StartSignal());
-            bld.Append(EndSignal(id, "over"));
-            WriteWithBeepMorse(bld.ToString(), isControl: true);
-            bld.Clear();
-
-            Console.WriteLine("＊pre-Response:");
-            string response = "over";
-            //string response = "error";
-            bld.Append(StartSignal());
-            bld.Append(EndSignal(id, response));
-            WriteWithBeepMorse(bld.ToString(), isControl: true);            
-            bld.Clear();
-
-            if (response == "over")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }//PreConnect()
-
-        public string RecievedSignal(int id)
-        {
-            var bld = new StringBuilder(30);
-            bld.Append(StartSignal());
-            bld.Append(EndSignal(id ,"recieved"));
-            bld.Replace('0', '・');
-            bld.Replace('1', '－');
-
-            return bld.ToString();
-        }//RecievedSignal()
-
-        public string SendMorse(string message)
-        {
-            char[] mesAry = message.ToUpper().ToCharArray();
-
-            var bld = new StringBuilder(message.Length * 6);
-            bld.Append($"{StartSignal()}[");
-
-            foreach (char c in mesAry)
-            {
-                string value = dic.GetValue(c);
-                bld.Append(value);
-                bld.Append("|");
-            }//foreach c
-            bld.Append(EndSignal(id, "over"));
-
-            string signal = bld.ToString();
             signal = signal.Replace("0", "・");
             signal = signal.Replace("1", "－");
-
             return signal;
-        }//SendMorse()
+        }//ToMorse()
+
+        private string ToBinary(string signal)
+        {
+            signal = signal.Replace("・", "0");
+            signal = signal.Replace("－", "1");
+            return signal;
+        }
+
+        public string BodySignal(string message)
+        {
+            return dic.GetValue(message.ToUpper());//as binary
+        }//BodySignal()
         
         private void WriteWithBeepMorse(string signal, bool isControl = false)
         {
@@ -146,7 +76,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             {
                 if(wordCount == 0 && isHeader)
                 {
-                    Console.Write($"{header} => ");
+                    Console.Write($"{pre.header} => ");
                     isHeader = false;
                 }
 
@@ -190,7 +120,7 @@ namespace CsharpBegin.Cryptography.MorseCode
                         break;
                     case ']':
                         Console.WriteLine();
-                        Console.WriteLine($"{footer} => ");
+                        Console.WriteLine($"{pre.footer} => ");
                         isControl = true;
                         break;
                     default:
@@ -205,8 +135,7 @@ namespace CsharpBegin.Cryptography.MorseCode
 
         public string ReadMorse(string signal)
         {
-            signal = signal.Replace("・", "0");
-            signal = signal.Replace("－", "1");
+            signal = ToBinary(signal);
             string headerSignal = signal.Substring(0, signal.IndexOf("["));
             string footerSignal = signal.Substring(signal.LastIndexOf("]"));
             signal = signal.Remove(0, signal.IndexOf("["));
@@ -294,7 +223,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             Console.WriteLine($"Text: {message}");
 
             //---- PreConnect ----
-            bool isReady = here.PreConnect(here.id);
+            bool isReady = here.pre.PreConnect(here.id);
             if (!isReady)
             {
                 Console.WriteLine("PreConnect() return false.");
@@ -302,15 +231,15 @@ namespace CsharpBegin.Cryptography.MorseCode
 
             //---- Morse Send ----
             Console.WriteLine("◆Send Morse ");
-            string signal = here.SendMorse(here.message);
+            string signal = here.BodySignal(here.message);
             Console.WriteLine(
-                $"Message: {here.header}{here.message}{here.footer}");
+                $"Message: {here.pre.header}{here.message}{here.pre.footer}");
             here.WriteWithBeepMorse(signal);
             Console.WriteLine();
 
             //---- Morse Recieved ----
             Console.WriteLine("◆Recieved Morse ");
-            here.WriteWithBeepMorse(here.RecievedSignal(here.id), isControl: true);
+            here.WriteWithBeepMorse(here.pre.RecievedSignal(here.id), isControl: true);
 
             Console.WriteLine("◆Read Morse ");
             string reText = here.ReadMorse(signal);

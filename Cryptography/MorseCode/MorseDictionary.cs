@@ -65,6 +65,20 @@ namespace CsharpBegin.Cryptography.MorseCode
             return morseDic.Keys.ElementAt(index);
         }//GetKey()
 
+        public string GetValue(string message)
+        {
+            char[] charAry = message.ToCharArray();
+            var bld = new StringBuilder(message.Length * 6);
+
+            foreach(char c in charAry)
+            {
+                bld.Append(GetValue(c));
+                bld.Append("|");
+            }//foreach
+
+            return bld.ToString();//as binary
+        }//GetValue(string)
+
         public string GetValue(char c)
         {           
             bool isSignal = morseDic.TryGetValue(key: c, out string value);
@@ -77,8 +91,8 @@ namespace CsharpBegin.Cryptography.MorseCode
                 value = $"{dash}{unknown}{dash}"; // "-?-" as binary
             }
 
-            return value;
-        }//GetValue()
+            return value;//as binary
+        }//GetValue(char)
 
         public int GetMorseIndex(string value)
         {
