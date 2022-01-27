@@ -60,11 +60,6 @@ namespace CsharpBegin.Cryptography.MorseCode
                 ["sos"] = "000111000",
             };
         //==== Getter ====
-        public char GetKey(int index)
-        {
-            return morseDic.Keys.ElementAt(index);
-        }//GetKey()
-
         public string GetValue(string message)
         {
             char[] charAry = message.ToCharArray();
@@ -111,6 +106,11 @@ namespace CsharpBegin.Cryptography.MorseCode
 
             return index;
         }//GetMorseIndex()
+
+        public char GetKey(int index)
+        {
+            return morseDic.Keys.ElementAt(index);
+        }//GetKey()
 
         public string GetControlSignal(string controlName)
         {
