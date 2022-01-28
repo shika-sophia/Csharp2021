@@ -14,7 +14,7 @@
  *         - readonly ◇MorseSend sender;
  *         - readonly ◇MorseTranslate trans;
  *         - int id;
- *         -string message; /
+ *         - string message; /
  *       + MorseMachine(int id, string message)
  *       + void ◆Run() //as ◆Main()
  *       - string ToMorse(string)
@@ -40,7 +40,7 @@
  *       / - readonly ◇MorseDictionary dic;
  *         ~ string header;
  *         ~ string footer; /
- *       + MorsePreConnect(MorseDictionary)
+ *       ~ MorsePreConnect(MorseDictionary)
  *       + string HeaderSignal(int id)
  *       + string FooterSignal(int id, string mesType = false)
  *       + string RecivedSignal(int id)
@@ -57,9 +57,9 @@
  *       
  *@class MorseTranslate
  *       / - readonly ◇MorseDictionary dic /
- *       + MorseTranslate(MorseDictionary)
+ *       ~ MorseTranslate(MorseDictionary)
  *       ~ TransWord(string signal, bool isControl = false)
- *       
+ */       
 #endregion
 /*
  *@author shika 
