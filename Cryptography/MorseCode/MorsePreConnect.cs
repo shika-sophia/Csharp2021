@@ -45,40 +45,7 @@ namespace CsharpBegin.Cryptography.MorseCode
 
         public string RecievedSignal(int id)
         {
-            var bld = new StringBuilder(50);
-            bld.Append(HeaderSignal(id));
-            bld.Append(FooterSignal(id, "recieved"));
-
-            return bld.ToString();//as binary
+            return FooterSignal(id, "recieved");//as binary
         }//RecievedSignal()
-
-        //public bool PreConnect(int id)
-        //{
-        //    Console.WriteLine("◆PreConnect()");
-        //    Console.WriteLine("＊pre-Request:");
-
-        //    var bld = new StringBuilder(30);
-        //    bld.Append(HeaderSignal(id));
-        //    bld.Append(FooterSignal(id, "over"));
-        //    WriteWithBeepMorse(bld.ToString(), isControl: true);
-        //    bld.Clear();
-
-        //    Console.WriteLine("＊pre-Response:");
-        //    string response = "over";
-        //    //string response = "error";
-        //    bld.Append(HeaderSignal(id));
-        //    bld.Append(FooterSignal(id, response));
-        //    WriteWithBeepMorse(bld.ToString(), isControl: true);
-        //    bld.Clear();
-
-        //    if (response == "over")
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}//PreConnect()
     }//class
 }

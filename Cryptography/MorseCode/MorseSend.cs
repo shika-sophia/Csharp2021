@@ -9,14 +9,8 @@ namespace CsharpBegin.Cryptography.MorseCode
 {
     class MorseSend
     {
-        private readonly MorsePreConnect pre;
         private string[] wordAry;
         private char[] charAry;
-
-        internal MorseSend(MorsePreConnect pre)
-        {
-            this.pre = pre;
-        }
 
         private void BuildArray(string message, string signal)
         {
@@ -35,25 +29,25 @@ namespace CsharpBegin.Cryptography.MorseCode
             charAry = signal.ToCharArray();
         }//BuildArray()
 
-        internal void BeepWriteControl(string message, string signal)
+        internal void BeepWriteControl(string text, string signal)
         {
-            BuildArray(message, signal);
-            var bld = new StringBuilder(message.Length * 10);
-            bld.Append("《");
-            BeepWrite(ref bld);            
-            bld.Append("》");
-
-            Console.WriteLine(bld.ToString());
-            Console.WriteLine();
+            Console.WriteLine($"{text} => ");
+            text = text.Replace("《", "").Replace("》", "").Replace("／", "");
+            BuildArray(text, signal);
+            
+            BeepWrite();            
+            Console.WriteLine("\n");
         }//BeepWriteControl()
 
         internal void BeepWriteBody(string message, string signal)
         {
-            BuildArray(message, signal);
+            Console.WriteLine($"Body: {message}");
+            BuildArray(message, signal);           
             BeepWrite();
+            Console.WriteLine("\n");
         }
 
-        internal void BeepWrite(ref StringBuilder bld)
+        private void BeepWrite()
         {
             int wordCount = 0;
             bool wordInit = true;
@@ -62,7 +56,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             {
                 if (wordInit)
                 {
-                    bld.Append($"[{wordAry[wordCount]}] => ");
+                    Console.Write($"[{wordAry[wordCount]}] => ");
                     wordInit = false;
                     wordCount++;
                 }

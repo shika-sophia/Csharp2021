@@ -15,21 +15,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             this.dic = dic;
         }
 
-        public string ReadMorse(string signal)
-        {
-            string headerSignal = signal.Substring(0, signal.IndexOf("["));
-            string footerSignal = signal.Substring(signal.LastIndexOf("]"));
-            signal = signal.Remove(0, signal.IndexOf("["));
-            signal = signal.Remove(signal.LastIndexOf("]"));
-
-            string reHeader = $"《 {TransWord(headerSignal, isControl: true)} 》";
-            string body = TransWord(signal).ToUpper();
-            string reFooter = $"《 {TransWord(footerSignal, isControl: true)} 》";
-
-            return $"{reHeader}\n{body}\n{reFooter}";
-        }//ReadMorse()
-
-        private string TransWord(string signal, bool isControl = false)
+        internal string TransWord(string signal, bool isControl = false)
         {
             string[] wordlAry = signal.Split(
                 new char[] { '／' }, StringSplitOptions.RemoveEmptyEntries);
@@ -38,7 +24,7 @@ namespace CsharpBegin.Cryptography.MorseCode
             foreach (string word in wordlAry)
             {
                 string[] charSignalAry = word.Split(
-                    new char[] { '[', '|', ']' }, StringSplitOptions.RemoveEmptyEntries);
+                    new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (string charSignal in charSignalAry)
                 {
@@ -80,7 +66,6 @@ namespace CsharpBegin.Cryptography.MorseCode
                         }
                     }
                 }//foreach charSignal
-
                 if (isControl)
                 {
                     bld.Append(" ／ ");

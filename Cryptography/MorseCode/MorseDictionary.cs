@@ -19,7 +19,7 @@ namespace CsharpBegin.Cryptography.MorseCode
                 ['M'] = "11", ['N'] = "10", ['O'] = "111",
                 ['P'] = "0110", ['Q'] = "1101", ['R'] = "010",
                 ['S'] = "000", ['T'] = "1", ['U'] = "001",
-                ['V'] = "0001", ['W'] = "0111", ['X'] = "1001",
+                ['V'] = "0001", ['W'] = "011", ['X'] = "1001",
                 ['Y'] = "1011", ['Z'] = "1100",
                 ['1'] = "01111", ['2'] = "00111",
                 ['3'] = "00011", ['4'] = "00001",
@@ -59,6 +59,12 @@ namespace CsharpBegin.Cryptography.MorseCode
                 ["recieved"] = "010",
                 ["sos"] = "000111000",
             };
+
+        public bool ValidMessage(string message)
+        {
+            return message.All(c => morseDic.ContainsKey(c));
+        }
+
         //==== Getter ====
         public string GetValue(string message)
         {
@@ -83,7 +89,7 @@ namespace CsharpBegin.Cryptography.MorseCode
                 morseDic.TryGetValue('-', out string dash);
                 morseDic.TryGetValue('?', out string unknown);
 
-                value = $"{dash}{unknown}{dash}"; // "-?-" as binary
+                value = $"{dash}|{unknown}|{dash}"; // "-?-" as binary
             }
 
             return value;//as binary
