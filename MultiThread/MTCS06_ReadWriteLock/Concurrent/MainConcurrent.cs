@@ -4,6 +4,10 @@
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content 第６章 Read-Write Lock / 排他制御クラスの利用 / p216 / List 6-6
+ */
+#region -> [Java] ReentrantReadWriteLock / [C#] ReaderWriterLock
+/*
+ *@reference from [VS-2019 intelisense]
  *@subject ◆[Java] java.util.concurrent.locks.Lock
  *                  java.util.concurrent.locks.ReentrantReadWriteLock
  *         var lock = new ReentrantReadWriteLock(boolean isFair)
@@ -71,7 +75,9 @@
  *                  スレッドは、再帰的にロックに入ることができます。
  *                  一部のクラスは、この機能を制限することがあります。
  *           void lockRW.Dispose() 現在のlockRWインスタンスで利用する全てのリソースを解放
- *           
+ */
+#endregion
+/*
  *@author shika 
  *@date 2022-02-11 
 */
