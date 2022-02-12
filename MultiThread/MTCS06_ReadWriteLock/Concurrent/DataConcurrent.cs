@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent
 {
-    class DataConcurrent
+    class DataConcurrent : AbsDataMT06
     {
         private char[] buffer;
         private ReaderWriterLockSlim lockRW;
@@ -30,7 +30,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent
             return charAry;
         }//InitCharArray()
 
-        public char[] TryRead()
+        public override char[] TryRead()
         {
             lockRW.EnterReadLock();
             try
@@ -55,6 +55,28 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent
             return newBuffer;
         }//DoRead()
 
+        public override void TryWrite(char c)
+        {
+            lockRW.EnterWriteLock();
+            try
+            {
+                DoWrite(c);
+            }
+            finally
+            {
+                lockRW.ExitWriteLock();
+            }
+        }//TryWrite()
+
+        private void DoWrite(char c)
+        {
+            for(int i= 0; i < buffer.Length; i++)
+            {
+                buffer[i] = c;
+                Slowly();
+            }
+        }//DoWrite()
+
         private void Slowly()
         {
             try
@@ -64,4 +86,5 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent
             catch (ThreadInterruptedException) { }
         }//Slowly()
     }//class
+
 }

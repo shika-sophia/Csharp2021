@@ -58,6 +58,7 @@
  *           int lockRW.RecursiveReadCount   読取モードで入った 再帰カウント
  *           int lockRW.RecursiveWriteCount  書込モードで入った 再帰カウント
  *           int lockRW.RecursiveUpgradeCount アップグレード可能モードで入った 再帰カウント
+ *               ※再帰: 同じThreadが複数回 Lockに入ること
  *               ※再帰カウント int
  *               0: 現在Threadは、そのモードにまだ入っていない。
  *               1: モードには入ったが 再帰していない(= Lockは取れていない)
@@ -81,6 +82,7 @@
  *@author shika 
  *@date 2022-02-11 
 */
+using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite;
 using System; 
 using System.Collections.Generic; 
 using System.Linq; 
@@ -92,12 +94,70 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent
 { 
     class MainConcurrent 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var lockRW = new ReaderWriterLockSlim();
-            LockRecursionPolicy recursionPolicy = lockRW.RecursionPolicy;
+            var data = new DataConcurrent(bufferSize: 10, lockRW);
 
+            var readerAry = new ReadThreadMT06[6];
+            for (int i = 0; i < readerAry.Length; i++)
+            {
+                readerAry[i] = new ReadThreadMT06($"reader{i}", data);
+                new Thread(readerAry[i].Run).Start();
+            }//for
+
+            var here = new MainConcurrent();
+            var writer1 = new WriteThreadMT06(data, here.Alphabet('A'));
+            var writer2 = new WriteThreadMT06(data, here.Alphabet('a'));
+            new Thread(writer1.Run).Start();
+            new Thread(writer2.Run).Start();
         }//Main() 
+
+        private string Alphabet(char init)
+        {
+            var bld = new StringBuilder(26);
+
+            for (int i = init; i < 26 + init; i++)
+            {
+                bld.Append((char) i);
+            }
+
+            return bld.ToString();
+        }
     }//class 
 } 
+
+/*
+reader0: reads **********
+reader3: reads **********
+reader1: reads **********
+reader4: reads **********
+reader2: reads **********
+reader5: reads **********
+reader1: reads CCCCCCCCCC
+reader2: reads CCCCCCCCCC
+reader3: reads CCCCCCCCCC
+  :
+reader0: reads CCCCCCCCCC
+reader5: reads CCCCCCCCCC
+reader1: reads CCCCCCCCCC
+reader1: reads DDDDDDDDDD
+reader3: reads DDDDDDDDDD
+reader2: reads DDDDDDDDDD
+reader0: reads DDDDDDDDDD
+reader4: reads DDDDDDDDDD
+reader5: reads DDDDDDDDDD
+reader3: reads DDDDDDDDDD
+reader2: reads DDDDDDDDDD
+reader1: reads DDDDDDDDDD
+reader0: reads DDDDDDDDDD
+reader5: reads DDDDDDDDDD
+reader4: reads DDDDDDDDDD
+reader4: reads EEEEEEEEEE
+reader5: reads EEEEEEEEEE
+reader1: reads EEEEEEEEEE
+reader0: reads EEEEEEEEEE
+reader2: reads EEEEEEEEEE
+reader3: reads EEEEEEEEEE
+*/
