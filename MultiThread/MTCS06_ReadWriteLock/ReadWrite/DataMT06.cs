@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 {
-    class DataMT06
+    class DataMT06 : AbsDataMT06
     {
         private readonly char[] buffer;
-        private readonly AbsReadWrite lockRW;
+        private readonly AbsReadWriteLock lockRW;
             
-        public DataMT06(int bufferSize, AbsReadWrite lockRW)
+        public DataMT06(int bufferSize, AbsReadWriteLock lockRW)
         {
             this.buffer = new char[bufferSize];
             this.lockRW = lockRW;
@@ -23,7 +24,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
             }
         }
 
-        public char[] TryRead()
+        public override char[] TryRead()
         {
             lockRW.ReadLock();
             try
@@ -36,7 +37,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
             }
         }//TryRead()
 
-        public void TryWrite(char c)
+        public override void TryWrite(char c)
         {
             lockRW.WriteLock();
             try

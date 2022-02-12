@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
     class ReadThreadMT06
     {
         private readonly string thName;
-        private readonly DataMT06 data;
+        private readonly AbsDataMT06 data;
 
-        public ReadThreadMT06(string thName, DataMT06 data)
+        public ReadThreadMT06(string thName, AbsDataMT06 data)
         {
             this.thName = thName;
             this.data = data;

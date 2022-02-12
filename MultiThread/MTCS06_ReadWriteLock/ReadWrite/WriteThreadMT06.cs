@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,12 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
 {
     class WriteThreadMT06
     {
-        private readonly DataMT06 data;
+        private readonly AbsDataMT06 data;
         private readonly string filter;
         private readonly Random random = new Random();
         private int index = 0;
 
-        public WriteThreadMT06(DataMT06 data, string filter)
+        public WriteThreadMT06(AbsDataMT06 data, string filter)
         {
             this.data = data;
             this.filter = filter;

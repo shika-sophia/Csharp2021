@@ -115,16 +115,16 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
         //static void Main(string[] args) 
         public void Main(string[] args) 
         {
-            AbsReadWrite lockRW = new ReadWriteLock();
+            AbsReadWriteLock lockRW = new ReadWriteLockMT06();
             var data = new DataMT06(bufferSize: 10, lockRW);
-
+            
             var readerAry = new ReadThreadMT06[6];
             for (int i = 0; i < readerAry.Length; i++)
             {
                 readerAry[i] = new ReadThreadMT06($"reader{i}", data);
                 new Thread(readerAry[i].Run).Start();
             }//for
-
+            
             var here = new MainReadWrite();
             var writer1 = new WriteThreadMT06(data, here.Alphabet('A'));
             var writer2 = new WriteThreadMT06(data, here.Alphabet('a'));
