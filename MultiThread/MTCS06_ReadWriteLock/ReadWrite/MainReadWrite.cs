@@ -101,8 +101,10 @@
  *@author shika 
  *@date 2022-01-10 
 */
+using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Performance;
 using System; 
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq; 
 using System.Text;
 using System.Threading;
@@ -132,7 +134,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite
             new Thread(writer2.Run).Start();
         }//Main() 
 
-        private string Alphabet(char init)
+        internal string Alphabet(char init)
         {
             var bld = new StringBuilder(26);
 
