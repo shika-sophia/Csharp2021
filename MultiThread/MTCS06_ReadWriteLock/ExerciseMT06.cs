@@ -23,8 +23,8 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock
 { 
     class ExerciseMT06 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         { 
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
@@ -37,7 +37,8 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock
 ○ (1) ○ DoWrite()は１つのThreadのみ実行 
 ○ (2) × DoRead()は複数Threadで実行可 
 ○ (3) ○ DoWrite()中は readingReadersは 0 
-× (4) × DoRead()中は waitWrite は 0でない => ○: DoRead()中に 書く処理を行うThreadはいない 
+× (4) × DoRead()中は waitWrite は 0でない
+      => ○: DoRead()中に 書く処理を行うThreadはいない 
 
 ◆〔2〕6-2 
 ○ (1) lock()を利用しないとデータレースを起こし、 

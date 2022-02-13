@@ -99,7 +99,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Concurrent
         {
             var lockRW = new ReaderWriterLockSlim();
             var data = new DataConcurrent(bufferSize: 10, lockRW);
-
+            
             var readerAry = new ReadThreadMT06[6];
             for (int i = 0; i < readerAry.Length; i++)
             {
