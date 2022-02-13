@@ -11,8 +11,8 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.Performance
 {
     class MainPerformanceMT06
     {
-        static void Main(string[] args)
-        //public void Main(string[] args) 
+        //static void Main(string[] args)
+        public void Main(string[] args) 
         {
             //AbsReadWriteLock lockRW = new ReadWriteLockMT06();
             AbsReadWriteLock lockRW = new BothLockMT06();
