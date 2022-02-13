@@ -1,4 +1,24 @@
-﻿using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite;
+﻿/** 
+ *@title CsharpBegin / MultiThread / MTCS06_ReadWriteLock
+ *       / Concurrent / MainConcurrent.cs 
+ *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content 第６章 Read-Write Lock / 練習問題 6-3 / p220, p523 / List A6-1
+ *@subject synchronizedを利用した場合とのパフォーマンス比較
+ *         BothLockMT06: ReadLock(), WriteLock()も両方同じように lock()
+ *         Stopwatch:    処理時間を計測
+ *         
+ *@based ReadLock / MainReadLockMT06.cs
+ *@class MainPerformance
+ *@class BothLockMT06 
+ *@class ReadThreadMT06
+ *       while(true) -> for(int i = 0; i < 20; i++)
+ *       System.Diagnostics.Stopwatch
+ *       
+ *@author shika
+ *@date 2022-02-13
+ */
+using CsharpBegin.MultiThread.MTCS06_ReadWriteLock.ReadWrite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
