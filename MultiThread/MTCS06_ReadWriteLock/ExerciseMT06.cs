@@ -46,7 +46,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock
 
 ◆〔3〕6-3 
 ○ (1) synchronizedを利用した場合とのパフォーマンス比較 
-○ (2) => 別紙 
+○ (2) => 〔Performance / MainPerformance.cs〕
 
 ◆〔4〕6-4 
 ○ (1) Databaseクラスに Concurrentの ReaderWriterLockクラスを導入 
