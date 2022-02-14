@@ -10,31 +10,41 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.SafeDictionary
     class WriteDicThread
     {
         private readonly Random random = new Random(314159);
-        private readonly DatabaseMT06<string, string> db;
+        private readonly DatabaseMT06<int, char> db;
         private readonly string thName;
         private string key;
         private string value;
 
         public WriteDicThread(
-            DatabaseMT06<string, string> db, string thName,
-            string key, string value)
+            DatabaseMT06<int, char> db, string thName)
         {
             this.db = db;
             this.thName = thName;
-            this.key = key;
-            this.value = value;
         }
 
         public void Run()
         {
-            while(true)
+            for(int i = 0; true; Interlocked.Increment(ref i))
             {
-                Console.WriteLine($"{thName}: Assign [{key}:{value}]");
-                db.Assign(key, value);
+                lock (db)
+                {
+                    while(db.dic.ContainsKey(i))
+                    {
+                        Interlocked.Increment(ref i);
+                    }//while
+
+                    char c = NextAlphabet(i);
+                    Console.WriteLine($"{thName}: Assign [{i}:{c}]");
+                    db.Assign(i, c);
+                }//lock
 
                 Thread.Sleep(random.Next(1000));
-            }//while
+            }//for loop
         }//Run()
 
+        private char NextAlphabet(int index)
+        {
+            return (char) ('A' + (index % 26));
+        }
     }//class
 }

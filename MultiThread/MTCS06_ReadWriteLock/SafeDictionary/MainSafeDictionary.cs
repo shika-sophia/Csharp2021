@@ -11,10 +11,20 @@
  *         by [Java] java.util.concurrent.locks.ReentrantReadWriteLock
  *            / [C#] System.Threading.ReaderWriterLockSlim
  *            
- *MainDictionary
- * 
+ *@subject 排他的インクリメント (atomicな演算)
+ *         [Java] java.util.concurrent.atomic.AtomicInteger
+ *         int incrementAndGet()
+ *         
+ *         [C#] System.Threading.InterLocked
+ *         int Increment(int)
+ *
+ *@note【考察】
+ *      [Java] HashMap<K,V>.put(K key)は keyの重複で value上書き
+ *      [C#]   Dictionary<K,V>.Add(K, V)は keyの重複で ArgumentException
+ *      テキストの解答コードそのままでは、動作せず、工夫が必要。
+ *      
  *@author shika 
- *@date 2022-02-14 
+ *@date 2022-02-14, 02-15
 */
 using System; 
 using System.Collections.Generic; 
@@ -31,37 +41,77 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.SafeDictionary
         //public void Main(string[] args) 
         {
             var here = new MainSafeDictionary();
-            var db = new DatabaseMT06<string, string>();
+            var db = new DatabaseMT06<int, char>();
 
-            WriteDicThread[] writeAry = new WriteDicThread[]
+            WriteDicThread[] writeAry = new WriteDicThread[6];
+            for (int i = 0; i < writeAry.Length; i++)
             {
-                new WriteDicThread(db, "write1", "Alice", "Alaska"),
-                new WriteDicThread(db, "write2", "Bobby", "Brazil"),
-                new WriteDicThread(db, "write3", "Alice", "Australia"),
-                new WriteDicThread(db, "write4", "Bobby", "Bulgaria"),
-            };
+                writeAry[i] = new WriteDicThread(db, $"writer{i}");
+                new Thread(writeAry[i].Run).Start();
+            }//for
 
-            foreach(var write in writeAry)
-            {
-                new Thread(write.Run).Start();
-            }
-
-            for(int i = 0; i < 100; i++)
+            for(int i = 0; i < 10; i++)
             {
                 new Thread(
-                    new ReadDicThread(db, $"reader{i}", "Alice").Run
+                    new ReadDicThread(db, $"reader{i}").Run
                     ).Start();
-                new Thread(
-                    new ReadDicThread(db, $"reader{i}", "Bobby").Run
-                    ).Start();
-            }
+            }//for
         }//Main() 
-
-
     }//class 
 }
 
 /*
+writer0: Assign [0:A]
+writer1: Assign [1:B]
+writer2: Assign [2:C]
+reader5: Retreive [0:A],
+reader6: Retreive [0:A],
+reader8: Retreive [0:A],
+reader1: Retreive [0:A],
+reader4: Retreive [0:A],
+reader0: Retreive [0:A],
+reader3: Retreive [0:A],
+reader2: Retreive [0:A],
+reader9: Retreive [0:A],
+reader7: Retreive [0:A],
+writer3: Assign [3:D]
+reader4: Retreive [1:B],
+reader7: Retreive [1:B],
+reader9: Retreive [1:B],
+reader1: Retreive [1:B],
+reader0: Retreive [1:B],
+reader3: Retreive [1:B],
+reader5: Retreive [1:B],
+reader8: Retreive [1:B],
+reader6: Retreive [1:B],
+reader2: Retreive [1:B],
+writer4: Assign [4:E]
+reader8: Retreive [2:C],
+reader6: Retreive [2:C],
+reader1: Retreive [2:C],
+reader5: Retreive [2:C],
+reader3: Retreive [2:C],
+reader4: Retreive [2:C],
+reader2: Retreive [2:C],
+reader0: Retreive [2:C],
+reader7: Retreive [2:C],
+reader9: Retreive [2:C],
+writer5: Assign [5:F]
+reader0: Retreive [3:D],
+reader9: Retreive [3:D],
+reader1: Retreive [3:D],
+reader5: Retreive [3:D],
+reader2: Retreive [3:D],
+reader8: Retreive [3:D],
+reader6: Retreive [3:D],
+reader3: Retreive [3:D],
+reader4: Retreive [3:D],
+reader7: Retreive [3:D],
+writer0: Assign [6:G]
+reader9: Retreive [4:E],
+reader1: Retreive [4:E],
+
+ * 
 //---- Test BuildDic(), NextAlphabet(), db.ToString() ----
 //static void Main(string[] args) 
 //public void Main(string[] args) 
