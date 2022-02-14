@@ -54,12 +54,27 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock
 
 ◆〔5〕6-5 
 ○ (1) || Before/After ||の try{}内に lock()を入れた場合 
-× (2) ... => ○: 後述 
+× (2) ... 
+    => 【Interrupt()の注意点】
+　　　　try{ }内で ReadLock()すると Wait中に Interrupt()されたときに、
+       readingフラグが インクリメントされないまま、
+       finally節に飛び、ReadUnlock()され、readingフラグはデクリメントされる。
+       想定外に readingフラグが減少してしまうことになる。
+       
+       Interrupt()は プログラムの応答性を改善させるために利用されるが、
+       コード順によってはプログラムの安全性を壊してしまう可能性がある。
+
+       ReadLock()中に Interrupt()されても大丈夫なように
+       ReadLock()は try-finallyの外に置く。
+       これなら、ReadLock()中に中断されても、
+       インクリメント、デクリメント両方とも起こらず、安全性は保たれる。
 
 ◆〔6〕6-6 
 ○ (1) waitWrite, preferWriteフィールドの意味 
 ○ (2) Writeが待機している場合に優先的に WriteにLockをまわすためのフィールド 
-× (3) これを無くすと、... => ○: 後述 
+× (3) これを無くすと、... 
+=> ○: 後述 
+
 */ 
 /*==== Appendix ==== 
  *@date: 2022-02-12 (土) 
