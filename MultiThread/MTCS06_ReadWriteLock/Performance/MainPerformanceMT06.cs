@@ -93,18 +93,4 @@ Main Cost Time: 52534 (milliSeconds)
 ReadWriteLockMT06()は ほぼ同時に終了するが、
 BothLockMT06()は 間に何行も表示してから終了する。
 
-ReaderThread.Run()内で
-同様のコードを while(count > LIMIT)とすると、
-すぐに終了してしまう。
-
-reader0 Cost Time: 0 (milliSeconds)
-reader2 Cost Time: 0 (milliSeconds)
-reader5 Cost Time: 0 (milliSeconds)
-reader1 Cost Time: 0 (milliSeconds)
-reader3 Cost Time: 0 (milliSeconds)
-reader4 Cost Time: 0 (milliSeconds)
-Main Cost Time: 3 (milliSeconds)
-
-それを for(int i = 0; i < LIMIT; i++)だと
-ちゃんと動作する。
  */
