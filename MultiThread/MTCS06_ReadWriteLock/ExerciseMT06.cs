@@ -50,7 +50,7 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock
 
 ◆〔4〕6-4 
 ○ (1) Databaseクラスに Concurrentの ReaderWriterLockクラスを導入 
-○ (2) => 別紙 
+○ (2) => 〔SafeDictionary / MainDictionary.cs〕
 
 ◆〔5〕6-5 
 ○ (1) || Before/After ||の try{}内に lock()を入れた場合 
