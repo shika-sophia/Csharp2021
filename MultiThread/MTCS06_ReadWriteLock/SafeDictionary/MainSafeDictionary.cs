@@ -37,12 +37,12 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.SafeDictionary
 { 
     class MainSafeDictionary 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var here = new MainSafeDictionary();
             var db = new DatabaseMT06<int, char>();
-
+            
             WriteDicThread[] writeAry = new WriteDicThread[6];
             for (int i = 0; i < writeAry.Length; i++)
             {
