@@ -32,8 +32,8 @@ namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Semaphore
 { 
     class MainSemaphore 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var resource = new LimitedResourceMT01(3);
             var thUse = new UseResourceThreadMT01(resource);
