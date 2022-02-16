@@ -11,7 +11,7 @@
  *         仕事を依頼したThreadは、実行処理を待たずに終了している。
  *         Request()の応答性は Handle()の処理時間に影響されない。
  *         
- *@subject || Thread per Message ||
+ *@subject || Thread per Message || パターン
  *         ＊応答性を上げ、遅延時間を下げる目的で利用するパターン
  *           GUIアプリケーションに応用可
  *         ＊仕事ごとに new Thread()するので、
