@@ -28,7 +28,7 @@
 /*
  *@subject [Java] 匿名クラス
  *         new Thread(){
- *             public void Run() { }
+ *             public void run() { }
  *         }.start();
  *         
  *@subject [C#] 匿名メソッド 〔CS 81 | p474〕
@@ -36,11 +36,11 @@
  *         new Thread(ThreadStart()).Start()
  *           └ delegate void ThreadStart()
  *               └ XxxxxThread.Run(){ }
- *               
+ *           ↓
  *         ＊XxxxThreadクラス Run()を匿名メソッドとして delegate()で定義
  *         new Thread(
  *             new ThreadStart(
- *                 delegate 
+ *                 delegate()
  *                 {
  *                     //Run()内の処理
  *                 }
