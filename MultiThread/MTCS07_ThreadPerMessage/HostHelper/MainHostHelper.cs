@@ -24,12 +24,18 @@
  *         ＊サーバーの応答性を上げるために応用される。
  *         ＊「メソッド呼出」と「メソッドの実行処理」を分離した非同期通信
  */
-#region -> [Java] 匿名クラス / [C#] 匿名メソッド
+#region -> [Java] 匿名クラス / [C#] 匿名メソッド / Lambda
 /*
  *@subject [Java] 匿名クラス
  *         new Thread(){
  *             public void run() { }
  *         }.start();
+ *         
+ *         new Thread(
+ *             new Runnable(){
+ *                 public void run() { } 
+ *             }
+ *         ).start();
  *         
  *@subject [C#] 匿名メソッド 〔CS 81 | p474〕
  *         ＊Threadクラスの構造
@@ -38,6 +44,8 @@
  *               └ XxxxxThread.Run(){ }
  *           ↓
  *         ＊XxxxThreadクラス Run()を匿名メソッドとして delegate()で定義
+ *          ([Java] Runnable = [C#] delegate ThreadStart 機能的に等価)
+ *          
  *         new Thread(
  *             new ThreadStart(
  *                 delegate()
@@ -46,15 +54,19 @@
  *                 }
  *             )
  *         ).Start();
+ *           ↓
+ *         ＊匿名メソッドで Run()を定義できるなら、ラムダ式でも定義可。
+ *         〔=> see HostLambda.cs〕
  *         
- *@class MainHostHelper
- *      //◆Main()
- *          new HostMT07()
- *          host.RequestMT07(int count, char c); * 3
+ *         new Thread(() => //Run()内の処理//).Start();          
  */
 #endregion
 #region -> [HostHelper] Class Chart
-/*
+/*@class MainHostHelper
+ *      //◆Main()
+ *          new HostMT07()
+ *          host.RequestMT07(int count, char c); * 3
+ *          
  *@class HostMT07
  *       / - readonly ◇HelperMT07 helper /
  *       + RequestMT07(int count, char c)
@@ -77,6 +89,8 @@
  *@author shika 
  *@date 2022-02-17 
 */
+
+using CsharpBegin.MultiThread.MTCS07_ThreadPerMessage.ThreadLambda;
 using System; 
 using System.Collections.Generic; 
 using System.Linq; 
@@ -92,7 +106,8 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage.HostHelper
         {
             Console.WriteLine("Main BEGIN");
 
-            var host = new HostMT07();
+            //var host = new HostMT07();
+            var host = new HostLambda();
             host.RequestMT07(10, 'A');
             host.RequestMT07(20, 'B');
             host.RequestMT07(30, 'C');
@@ -104,6 +119,7 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage.HostHelper
 }
 
 /*
+//---- HostMT07 ----
 Main BEGIN
 Request [10, A] BEGIN
 Request [10, A] END    <- Handle [10, A] BEGINより先に終了
@@ -120,5 +136,24 @@ Handle [10, A] END
 BCCBBCCBCBBCBCBCCBCB <- 2 Threadの出力が混在
 Handle [20, B] END
 CCCCCCCCCC           <- last Threadの出力
+Handle [30, C] END
+
+//---- HostLambda ----
+Main BEGIN
+Request [10, A] BEGIN
+Request [10, A] END
+Request [20, B] BEGIN
+Request [20, B] END
+Request [30, C] BEGIN
+Handle [20, B] BEGIN
+Handle [10, A] BEGIN
+Request [30, C] END
+Main END
+Handle [30, C] BEGIN
+BACCABCBAACBBCAABCCBAABCBACCBA
+Handle [10, A] END
+CBBCCBBCCBCBBCBCBCB
+Handle [20, B] END
+CCCCCCCCCCC
 Handle [30, C] END
  */
