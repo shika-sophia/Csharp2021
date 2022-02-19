@@ -2,13 +2,16 @@
  *@title CsharpBegin / MultiThread / TaskSample.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@content TaskSample / C# p524 / List11-2
- *@subject ◆[C#4-] System.Threading.Tasks.Task
+ *@subject ◆[C#4-|.NET 4.5-] System.Threading.Tasks.Task
  *         Task Task.Run(Action<T>) //内部的にスレッドプールを行う
  *         void task.Wait()
  *         voud task.Wait(long milliSecond);
-           void Task.WaitAny(Task, Task, ...);
-           void Task.WaitAll(Task, Task, ...);
-
+ *         void Task.WaitAny(Task, Task, ...) 
+ *                  いずれかのTaskが終了するまで待機
+ *         void Task.WaitAll(Task, Task, ...) 
+ *                  すべてのTaskが終了するまで待機
+ *         => see MTCS07_ThreadPerMessage / ThreadPoolSample / MainThreadPool.cs 
+ *         
  *@author shika 
  *@date 2021-11-11 
 */
