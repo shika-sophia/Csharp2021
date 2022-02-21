@@ -57,7 +57,8 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage
 
 ◆〔5〕7-5 
 ○ (1) Swing利用の問題 
-× (2) C#でどう再現しようか考える => ○: 後述 
+× (2) C#でどう再現しようか考える
+  => 別フォルダ 〔ResponseGUI/MainResponseGUI.cs〕
 
 ◆〔6〕7-6 
 ○ (1) MultiThread対応の Server programに修正 
