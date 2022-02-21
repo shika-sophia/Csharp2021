@@ -4,24 +4,35 @@
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content GUIのButton応答性を速くする
  */
-#region -> [C#] GUIプログラム (未完成)
+#region -> [C#] GUIプログラム
 /*
  *@subject [C#] GUIプログラム 〔VS2019〕
  *         ASP.NET Frameworkを利用すべきだが、
- *         [C#] System.Windows.Controls名前空間に Frameクラスが用意されている。
+ *         Windows Formは C#プログラムから起動できる GUIである。
+ *         => see /WinFormGUI
  *         
- *         ◆System.Windows.Controls.Frameクラス
- *         Buttonクラス
- *         //var frame = new Frame();
- *         //var button = new Button();
- *         //frame.Content = button;
- *         //System.InvalidOperationException:
- *         //呼び出しスレッドは、多数の UI コンポーネントが必要としているため、
- *         //STA である必要があります。
+ *@subject Main
+ *         void System.Windows.Forms.Application.
+ *             EnableVisualStyles();  スタイル描画を有効化
+ *         void System.Windows.Forms.Application.
+ *             Run(Form);             実行
+ *             
+ *         ◆System.Windows.Forms
+ *         ＊Label
+ *         string label.Text;
  *         
- *         //これを利用するには力不足。GUIのプログラムは別途、学習すべし。
+ *         ＊Button
+ *         string button.Text;
+ *         Size   button.Size;
+ *         EventHandler button.Click;
+ *            += new EventHandler(object sender, EventArgs e);
  *         
- *         ここでは、Console表示を使って、GUIの応答性をあげる機能のみを実装
+ *         ＊Form
+ *         Point form.Location;
+ *         bool  form.AutoSize;
+ *         ControlCollection form.Controls
+ *               form.Controls.Add(Control);
+ *         
  */
 #endregion
 /*
@@ -76,25 +87,27 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage.ResponseGUI
 { 
     class MainResponseGUI 
     { 
-        //static void Main(string[] args) 
-        public void Main(string[] args) 
+        static void Main(string[] args) 
+        //public void Main(string[] args) 
         {
-            Random random = new Random();
-            var frame = new MyFrame();
-            int thNum = 3;  //Thread数
+            var form = new MyFormMT07();
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.Run(form);
 
-            //ボタンを押すThread
-            for(int i = 0; i < thNum; i++)
-            {
-                new Thread(() =>
-                {
-                    while (true)
-                    {
-                        Thread.Sleep(500 + random.Next(500));
-                        frame.Btn_OnClick();
-                    }//while
-                }).Start();                        
-            }//for
+            ////---- ボタンを押すThread ----
+            //int thNum = 3;  //Thread数
+            //Random random = new Random();
+            //for (int i = 0; i < thNum; i++)
+            //{
+            //    new Thread(() =>
+            //    {
+            //        while (true)
+            //        {
+            //            Thread.Sleep(500 + random.Next(500));
+            //            form.Btn_OnClick();
+            //        }//while
+            //    }).Start();
+            //}//for
 
         }//Main() 
  
