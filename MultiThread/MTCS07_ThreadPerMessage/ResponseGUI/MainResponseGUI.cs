@@ -1,5 +1,5 @@
 /** 
- *@title CsharpBegin / MultiThread / MTCS07_ThreadPerMessage / ResponseGUI  / MainWindowsFrame.cs 
+ *@title CsharpBegin / MultiThread / MTCS07_ThreadPerMessage / ResponseGUI  / MainResponseGUI.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content GUIのButton応答性を速くする
