@@ -1,0 +1,166 @@
+
+■プログラミングC#
+◆ローカルで使うWebサーバーを立てる
+https://yryr.me/programming/local-http-server.html
+2014.10.06
+
+過去のブログのアーカイブ
+この記事は前身のブログのアーカイブを引き継いだものです． 画像が正しく表示できないなど，コンテンツの表示に問題がある恐れがあります．
+C#では標準でWebサーバーのクラスが用意されており、ローカルのみで使用する場合はこれで十分だったりします。
+また、ローカルのみの場合はファイアーウォールの許可も必要なく、楽に立てることができます。
+私の作ってるアプリケ＾ションではウェブサーバーを立てて何かをする機械が多いのでライブラリ化してみました。
+
+.NETでのWebサーバー
+立てる
+.NETで簡易サーバーを起てる場合はHttpListenerクラスを使用するのが便利です。
+このクラスを使用するとサーバーを立てるだけなら3行だけでできます。
+
+HttpListener listener = new HttpListener();
+listener.Prefixes.Add("http://localhost:80/");
+listener.Start();
+HttpListenerでサーバーを起てる場合、IPアドレスはコンピューターのプライベートIPアドレスで立てられます。
+処理するURLはhttp://localhost:80/のようにポート番号をくっつけて指定します。
+
+リクエスト処理
+HttpListenerクラスで処理させる場合はこのようなコードとなります。
+このサンプルでは非同期メソッドを使用しているので複数のリクエストが来た場合はThreadPoolにて処理します。
+仕組み上、処理を分散させているわけですが、やはりHttpListenerではそこまで効果がないようで…外部サーバーには向いていませんね。
+
+while (true) {
+    IAsyncResult result = listener.BeginGetContext(new AsyncCallback(
+        (asyncRes) =>
+        {
+            HttpListener listr = (HttpListener)asyncRes.AsyncState;
+            HttpListenerContext context = listr.EndGetContext(asyncRes);
+            HttpListenerRequest req = context.Request;
+            HttpListenerResponse res = context.Response;
+            Console.WriteLine(req.RawUrl);
+            res.Close();
+        }, listener);
+    result.AsyncWaitHandle.WaitOne(500);
+}
+このサンプルではリクエストが来たURLをコンソールに表示するしかしていません。
+処理はHttpListenerRequestクラスとHttpListenerResponseクラスで対応します。
+画面に情報を出力させる場合はHttpListenerResponse.OutputStreamを使用します。
+たとえURLの拡張子がhtmlであってもHttpListenerResponse.ContentTypeにMIMEタイプの情報を入れてあげる必要があります。
+
+ファイルの出力
+ファイルの出力は大雑把にこの様な感じです。
+
+string path = @"C:\index.html";
+using (Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+{
+    int count = -1; byte[] buffer = new byte[4096];
+    for (; (count = stream.Read(buffer, 0, buffer.Length)) != 0; )
+        res.OutputStream.Write(buffer, 0, count);
+}
+MIMEタイプ
+MIMEタイプは以下のように定義してあります。
+
+説明	タイプ	代表の拡張子
+テキストファイル	text/plain	.txt
+HTMLファイル	text/html	.html, .htm
+PNGファイル	image/png	.png
+JPEGファイル	image/jpeg	.jpg, .jpeg
+Javascript	text/javascript	.js
+MIMEタイプの詳細はこのサイトが便利です。
+MIMEタイプ一覧: http://www.geocities.co.jp/Hollywood/9752/mime.html
+
+問題点
+このように簡単に立てれるHttpListenerなのですが、使う上での欠点があります。
+高性能な処理ができないことについては次項に書いています。
+それは、非同期処理を組む際にHttpListener自身もスレッドを立てています。
+サーバーを動かす際にスレッドを立てて非同期で処理してやろうと思って、サーバーを使い終わった時にAbortしてもスレッドが終了してくれないのです。
+つまり、アプリケーションのフォームを閉じて、他の処理も終わりきった状態でもサーバーのスレッドは立ち続けているのです。これが非常にやっかい。
+対策方法はサーバーのURLに対してなんでもいいのでリクエストを送ってあげることです。本当に面倒ですね、これ
+とりあえず適当なリクエストを送るサンプルも置いておきます。
+
+try
+{
+    using (WebClient wc = new WebClient())
+        wc.DownloadString(this.Setting.Suffix);
+}
+catch { }
+高性能なサーバーを立てる
+外部サーバーとして使ったり、高性能な処理をする場合、HttpListenerでは非力な存在です。
+その場合はSocketクラスやTcpClient1クラスを使用するなどする必要があります。
+ただし今回はローカルで簡単に組み込む、というのだけが目的なので今回は割愛します。
+
+ライブラリ化
+HttpListenerは確かに簡単にWebサーバーを立てれて便利なのですが、実際はそう簡単ではなかったりします。
+
+例えば、標準のファイル(index.html)の処理を自分で組まないといけない。
+エラーページが表示されない。
+拡張子を判別してMIMEタイプうぃ指定してあげないといけない
+非同期でサーバーを動かすと終了処理が非常に面倒くさい
+使う機会が多いのでこの機能をいちいちつけるのは非常に面倒です。
+とりあえずサーバーとして最低限な機能を揃えて簡単に立てれるようにライブラリを作っておきました。
+ご使用は自由にどうぞ。あ、ライブラリ単体での再配布と無断の逆コンパイル、作者を名乗ることだけは禁止します。
+
+サンプルソース
+確実に終了できるような処理を組み込むとこのようなソースコードになります。
+肝心なのはWebServerとserver.Run();の部分でしょうか。最短2行で書くことができます。
+
+using (WebServer server = new WebServer())
+{
+    server.Run();
+    // サーバーを立ててしたいこと
+    // ...
+    server.Stop();
+}
+初期設定はこのようになっています。
+
+URL	http://localhost:80/
+ローカル側のファイルパス	{アプリケーションのあるフォルダ}\httpdoc\
+初期設定ではポート番号が80になっています。ただ、初期設定ポート番号のままだとエラーが起きやすいので別の適当な番号にしていすることをオススメします。1024～65000ぐらいがいいと思います。
+このWebServerは非同期で実行するとうにしています。もしもDisposeやStopを呼び忘れるとプロセスが残り続ける状態になります。その点だけ注意してください。
+
+ダウンロード
+こちらからダウンロードすることができます。
+[wpdm_file id=13] Readmeもお読みください。大したことは書いてないですが
+ライセンスは基本こちらを適応いたします。
+
+C# プログラミングC#HttpListenerWebサーバーライブラリ
+ 1 個のコメント
+ 中川誠三 より:
+2018年8月30日 3:37 PM
+初めまして
+記事に興味がありまして、downloadしたのですが
+ファイルには、readme.txtとSharoLib.WSev.pdbしか入っていないようなのです。
+正しいファイルはないでしょうか。
+
+返信する
+コメントを残す
+メールアドレスが公開されることはありません。 * が付いている欄は必須項目です
+
+コメント
+
+名前 *
+
+メール *
+
+サイト
+
+ 次回のコメントで使用するためブラウザーに自分の名前、メールアドレス、サイトを保存する。
+
+	LINEで口座確認や取引に思うこと
+ロシアの国営テレビをネットで見る	
+2022年2月
+月	火	水	木	金	土	日
+ 	1	2	3	4	5	6
+7	8	9	10	11	12	13
+14	15	16	17	18	19	20
+21	22	23	24	25	26	27
+28	 
+« 11月    
+最近の投稿
+strongSwanでIKEv2環境を整える(NAT使用) 2020.11.17
+unboundでDNS構築 2020.11.11
+auタブレット用SIMをスマートフォンに入れて認識するのか 2019.01.17
+PPTPに接続する際に[MPPE required but peer refused]と出る対処 2018.10.23
+Brainfuckインタープリタのコードを短くする 2018.06.07
+カテゴリー
+
+カテゴリーを選択
+©Copyright2022 Citizen of undefined.All Rights Reserved.
+
