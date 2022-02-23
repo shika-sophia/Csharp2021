@@ -62,7 +62,7 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage
 
 ◆〔6〕7-6 
 ○ (1) MultiThread対応の Server programに修正 
-○ (2) => 別フォルダ 
+○ (2) => 別フォルダ 〔MiniServer/MainMiniServer.cs〕
 
 ◆〔7〕7-7 
 ○ (1) BlackHole.magic()の記述 
