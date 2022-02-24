@@ -87,8 +87,8 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage.ResponseGUI
 { 
     class MainResponseGUI 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var form = new MyFormMT07();
             System.Windows.Forms.Application.EnableVisualStyles();
