@@ -62,15 +62,19 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage
 
 ◆〔6〕7-6 
 ○ (1) MultiThread対応の Server programに修正 
-○ (2) => 別フォルダ 〔MiniServer/MainMiniServer.cs〕
+○ (2) => 別フォルダ 〔MiniServer/MainMiniServer.cs〕〔未完成〕
 
 ◆〔7〕7-7 
 ○ (1) BlackHole.magic()の記述 
-○ (2) => 別フォルダ 
+○ (2) => 別フォルダ 〔Blackholl/BlackhollSample.cs〕
 
 ◆〔8〕7-8 
 ○ (1) Executor(){ execute(Runnable) }.execute(Runnable){ run() } 
-× (2) これで、どちらが実行されるのだろう？ => ○: 解 それぞれが実行される。別解プログラムを参照 
+× (2) これで、どちらが実行されるのだろう？
+  => ○: 解 それぞれが実行される。
+  => 別解プログラム
+     [Java]と[C#]の仕様の違いで同様のプログラムはつくりづらいので、
+略
 */
 /*==== Appendix ==== 
  *@date: 2022-02-20 (日) 
