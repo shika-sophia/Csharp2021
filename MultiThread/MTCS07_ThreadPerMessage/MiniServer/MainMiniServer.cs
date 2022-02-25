@@ -19,14 +19,14 @@
  *@reference (Web) プログラミングC#
  *           ◆ローカルで使うWebサーバーを立てる
  *             https://yryr.me/programming/local-http-server.html
- *             => see 〔HttpLisenerReference.txt〕
+ *             => see 〔LocalHost / HttpLisenerReference.txt〕
  *@subject [C#] HttpListenerクラス
  *         C#では標準でWebサーバーのクラスが用意されており、
  *         ローカルのみで使用する場合はこれで十分だったりします。
  *         また、ローカルのみの場合はファイアーウォールの許可も必要なく、
  *         楽に立てることができます。
  *         
- *@class MainMiniServer
+ *@class MainMiniServer 〔未完成〕
  *
  *@see ../WebClientSample.cs
  *@see HttpLisenerReference.txt
