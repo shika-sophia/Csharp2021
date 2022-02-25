@@ -1,0 +1,829 @@
+■ Microsoft Document
+◆ Socketクラス
+https://docs.microsoft.com/ja-jp/dotnet/api/system.net.sockets.socket?redirectedfrom=MSDN&view=net-6.0
+
+Docs .NET .NET API ブラウザー System.Net.Sockets Socket
+
+System.Net.Sockets
+AddressFamily
+IOControlCode
+IPProtectionLevel
+ProtocolFamily
+ProtocolType
+SelectMode
+Socket
+
+コンストラクター
+SocketAsyncOperation
+SocketError
+SocketFlags
+SocketInformationOptions
+SocketOptionLevel
+SocketOptionName
+SocketShutdown
+SocketType
+TransmitFileOptions
+Socket クラス
+リファレンス
+ 
+定義
+名前空間:
+System.Net.Sockets
+アセンブリ:
+System.Net.Sockets.dll
+Berkeley ソケット インターフェイスを実装します。
+
+この記事の内容
+定義
+例
+注釈
+コンストラクター
+プロパティ
+メソッド
+拡張メソッド
+適用対象
+スレッド セーフ
+こちらもご覧ください
+C#
+
+コピー
+public class Socket : IDisposable
+継承
+Object
+Socket
+実装
+IDisposable
+例
+次のコード例は、 クラスを使用して HTTP サーバーにデータを送信し、応答 Socket を受信する方法を示しています。 この例では、ページ全体が受信されるまでブロックされます。
+
+C#
+
+コピー
+using System;
+using System.Text;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+
+public class GetSocket
+{
+    private static Socket ConnectSocket(string server, int port)
+    {
+        Socket s = null;
+        IPHostEntry hostEntry = null;
+
+        // Get host related information.
+        hostEntry = Dns.GetHostEntry(server);
+
+        // Loop through the AddressList to obtain the supported AddressFamily. This is to avoid
+        // an exception that occurs when the host IP Address is not compatible with the address family
+        // (typical in the IPv6 case).
+        foreach(IPAddress address in hostEntry.AddressList)
+        {
+            IPEndPoint ipe = new IPEndPoint(address, port);
+            Socket tempSocket =
+                new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+            tempSocket.Connect(ipe);
+
+            if(tempSocket.Connected)
+            {
+                s = tempSocket;
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+        return s;
+    }
+
+    // This method requests the home page content for the specified server.
+    private static string SocketSendReceive(string server, int port)
+    {
+        string request = "GET / HTTP/1.1\r\nHost: " + server +
+            "\r\nConnection: Close\r\n\r\n";
+        Byte[] bytesSent = Encoding.ASCII.GetBytes(request);
+        Byte[] bytesReceived = new Byte[256];
+        string page = "";
+
+        // Create a socket connection with the specified server and port.
+        using(Socket s = ConnectSocket(server, port)) {
+
+            if (s == null)
+                return ("Connection failed");
+
+            // Send request to the server.
+            s.Send(bytesSent, bytesSent.Length, 0);
+
+            // Receive the server home page content.
+            int bytes = 0;
+            page = "Default HTML page on " + server + ":\r\n";
+
+            // The following will block until the page is transmitted.
+            do {
+                bytes = s.Receive(bytesReceived, bytesReceived.Length, 0);
+                page = page + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+            }
+            while (bytes > 0);
+        }
+
+        return page;
+    }
+
+    public static void Main(string[] args)
+    {
+        string host;
+        int port = 80;
+
+        if (args.Length == 0)
+            // If no server name is passed as argument to this program,
+            // use the current host name as the default.
+            host = Dns.GetHostName();
+        else
+            host = args[0];
+
+        string result = SocketSendReceive(host, port);
+        Console.WriteLine(result);
+    }
+}
+注釈
+クラス Socket は、ネットワーク通信用の豊富なメソッドとプロパティのセットを提供します。 クラスを使用すると、列挙型に記載されている通信プロトコルを使用して、同期データ転送と非同期データ転送 Socket の両方を実行 ProtocolType できます。
+
+クラス Socket は、非同期メソッド.NET Framework名前付けパターンに従います。 たとえば、同期メソッド Receive は非同期メソッドと メソッドに BeginReceive EndReceive 対応します。
+
+実行中にアプリケーションで必要なスレッドが 1 つのみである場合は、同期操作モード用に設計された次のメソッドを使用します。
+
+TCP などの接続指向プロトコルを使用している場合、サーバーは メソッドを使用して接続をリッスン Listen できます。 メソッド Accept は、受信した接続要求を処理し、リモート ホストとデータを通信するために使用できる Socket を返します。 返された を使用して Socket 、 メソッドまたは メソッド Send を呼び出 Receive します。 ローカル Bind IP アドレスとポート番号を指定する場合は、 メソッドを呼び出す前 Listen に メソッドを呼び出します。 基になるサービス プロバイダーに無料のポートを割り当てる場合は、ポート番号 0 を使用します。 リッスンしているホストに接続する場合は、 メソッドを呼び出 Connect します。 データを通信するには、 メソッドまたは メソッド Send を呼び Receive 出します。
+
+UDP などのコネクションレス プロトコルを使用している場合は、接続をリッスンする必要があります。 メソッドを呼 ReceiveFrom び出して、受信データグラムを受け入れる。 メソッドを SendTo 使用して、リモート ホストにデータグラムを送信します。
+
+実行中に個別のスレッドを使用して通信を処理するには、非同期操作モード用に設計された次のメソッドを使用します。
+
+TCP などの接続指向プロトコルを使用している場合は、および メソッドを使用して、リッスン ホスト Socket BeginConnect EndConnect に接続します。 メソッドと BeginSend メソッド EndSend または BeginReceive メソッドを EndReceive 使用して、データを非同期的に通信します。 受信接続要求は、 と を使用して処理 BeginAccept できます EndAccept 。
+
+UDP などのコネクションレス プロトコルを使用している場合は、 と を使用してデータグラムを送信し、データグラムを受信 BeginSendTo EndSendTo BeginReceiveFrom EndReceiveFrom できます。
+
+ソケットに対して複数の非同期操作を実行する場合は、開始順に完了するとは限りません。
+
+データの送受信が完了したら、 メソッドを使用して Shutdown を無効にします Socket 。 を呼び Shutdown 出した後、 メソッドを Close 呼び出して、 に関連付けられているすべてのリソースを解放します Socket 。
+
+クラス Socket を使用すると、 メソッドを Socket 使用して を構成 SetSocketOption できます。 メソッドを使用してこれらの設定を GetSocketOption 取得します。
+
+ 注意
+
+比較的単純なアプリケーションを作成し、最大のパフォーマンスを必要としない場合は、および TcpClient の使用 TcpListener を検討してください UdpClient 。 これらのクラスは、通信に対するよりシンプルで使い分け的なインターフェイスを提供 Socket します。
+
+コンストラクター
+コンストラクター
+Socket(AddressFamily, SocketType, ProtocolType)	
+指定したアドレス ファミリ、ソケットの種類、およびプロトコルを使用して、Socket クラスの新しいインスタンスを初期化します。
+
+Socket(SafeSocketHandle)	
+ソケット ハンドルを指定して Socket クラスの新しいインスタンスを初期化します。
+
+Socket(SocketInformation)	
+DuplicateAndClose(Int32) から返された値を指定して、Socket クラスの新しいインスタンスを初期化します。
+
+Socket(SocketType, ProtocolType)	
+指定したソケットの種類とプロトコルを使用して、Socket クラスの新しいインスタンスを初期化します。 オペレーティング システムが IPv6 をサポートしている場合、このコンストラクターはデュアル モード ソケットを作成します。それ以外の場合は、IPv4 ソケットが作成されます。
+
+プロパティ
+プロパティ
+AddressFamily	
+Socket のアドレス ファミリを取得します。
+
+Available	
+ネットワークから受信した、読み取り可能なデータ量を取得します。
+
+Blocking	
+Socket がブロッキング モードかどうかを示す値を取得または設定します。
+
+Connected	
+最後に実行された Send 操作または Receive 操作の時点で、Socket がリモート ホストに接続されていたかどうかを示す値を取得します。
+
+DontFragment	
+Socket でインターネット プロトコル (IP) データグラムの断片化を許可するかどうかを指定する値を、取得または設定します。
+
+DualMode	
+Socketが IPv4 と IPv6 の両方に使用されるデュアルモードソケットであるかどうかを指定する値を取得または設定します。
+
+EnableBroadcast	
+Socket でブロードキャスト パケットの送受信を許可するかどうかを指定する Boolean 値を取得または設定します。
+
+ExclusiveAddressUse	
+Socket で 1 つのプロセスだけにポートのバインドを許可するかどうかを指定する Boolean 値を取得または設定します。
+
+Handle	
+Socket のオペレーティング システム ハンドルを取得します。
+
+IsBound	
+Socket が特定のローカル ポートにバインドされているかどうかを示す値を取得します。
+
+LingerState	
+Socket で、すべての保留中のデータを送信しようとするときにソケットを遅延して閉じるかどうかを指定する値を取得または設定します。
+
+LocalEndPoint	
+ローカル エンドポイントを取得します。
+
+MulticastLoopback	
+発信マルチキャスト パケットが送信元アプリケーションに配信されるかどうかを指定する値を取得または設定します。
+
+NoDelay	
+ストリーム Socket が Nagle アルゴリズムを使用するかどうかを指定する Boolean 値を取得または設定します。
+
+OSSupportsIPv4	
+基になるオペレーティング システムおよびネットワーク アダプターが、インターネット プロトコル バージョン 4 (IPv4) をサポートするかどうかを示します。
+
+OSSupportsIPv6	
+基になるオペレーティング システムおよびネットワーク アダプターが、インターネット プロトコル バージョン 6 (IPv6) をサポートするかどうかを示します。
+
+OSSupportsUnixDomainSockets	
+基になるオペレーティング システムで Unix ドメイン ソケットがサポートされているかどうかを示します。
+
+ProtocolType	
+Socket のプロトコルの種類を取得します。
+
+ReceiveBufferSize	
+Socket の受信バッファーのサイズを指定する値を取得または設定します。
+
+ReceiveTimeout	
+同期の Receive 呼び出しがタイムアウトするまでの合計時間を指定する値を取得または設定します。
+
+RemoteEndPoint	
+リモート エンドポイントを取得します。
+
+SafeHandle	
+現在の Socket オブジェクトによってカプセル化されているソケット ハンドルを表す SafeSocketHandle を取得します。
+
+SendBufferSize	
+Socket の送信バッファーのサイズを指定する値を取得または設定します。
+
+SendTimeout	
+同期の Send 呼び出しがタイムアウトするまでの合計時間を指定する値を取得または設定します。
+
+SocketType	
+Socket の型を取得します。
+
+SupportsIPv4	
+互換性のために残されています。
+現在のホストで IPv4 サポートが使用可能で有効になっているかどうかを示す値を取得します。
+
+SupportsIPv6	
+互換性のために残されています。
+互換性のために残されている特定の Dns メンバー向けに、フレームワークが IPv6 をサポートしているかどうかを示す値を取得します。
+
+Ttl	
+Socket によって送信されたインターネット プロトコル (IP) パケットの有効期間 (TTL) の値を指定する値を取得または設定します。
+
+UseOnlyOverlappedIO	
+互換性のために残されています。
+ソケットが重複 i/o モードのみを使用する必要があるかどうかを指定する値を取得または設定します。 .NET 5 以降 (.NET Core バージョンを含む) では、値は常に false です。
+
+メソッド
+メソッド
+Accept()	
+新しく作成された接続に対して新しい Socket を作成します。
+
+AcceptAsync()	
+受信接続を受け入れる。
+
+AcceptAsync(CancellationToken)	
+受信接続を受け入れる。
+
+AcceptAsync(Socket)	
+受信接続を受け入れる。
+
+AcceptAsync(Socket, CancellationToken)	
+受信接続を受け入れる。
+
+AcceptAsync(SocketAsyncEventArgs)	
+受信接続の試行を受け入れる非同期操作を開始します。
+
+BeginAccept(AsyncCallback, Object)	
+受信接続の試行を受け入れる非同期操作を開始します。
+
+BeginAccept(Int32, AsyncCallback, Object)	
+受信接続の試行を受け入れる非同期操作を開始し、クライアント アプリケーションによって送信されるデータの最初のブロックを受信します。
+
+BeginAccept(Socket, Int32, AsyncCallback, Object)	
+指定したソケットから受信接続の試行を受け入れる非同期操作を開始し、クライアント アプリケーションによって送信されるデータの最初のブロックを受信します。
+
+BeginConnect(EndPoint, AsyncCallback, Object)	
+リモート ホスト接続への非同期要求を開始します。
+
+BeginConnect(IPAddress, Int32, AsyncCallback, Object)	
+リモート ホスト接続への非同期要求を開始します。 ホストは IPAddress とポート番号で指定されます。
+
+BeginConnect(IPAddress[], Int32, AsyncCallback, Object)	
+リモート ホスト接続への非同期要求を開始します。 ホストは、IPAddress 配列とポート番号で指定されます。
+
+BeginConnect(String, Int32, AsyncCallback, Object)	
+リモート ホスト接続への非同期要求を開始します。 ホストはホスト名とポート番号で指定されます。
+
+BeginDisconnect(Boolean, AsyncCallback, Object)	
+リモート エンドポイントからの切断の非同期要求を開始します。
+
+BeginReceive(Byte[], Int32, Int32, SocketFlags, AsyncCallback, Object)	
+接続されている Socket からの非同期のデータ受信を開始します。
+
+BeginReceive(Byte[], Int32, Int32, SocketFlags, SocketError, AsyncCallback, Object)	
+接続されている Socket からの非同期のデータ受信を開始します。
+
+BeginReceive(IList<ArraySegment<Byte>>, SocketFlags, AsyncCallback, Object)	
+接続されている Socket からの非同期のデータ受信を開始します。
+
+BeginReceive(IList<ArraySegment<Byte>>, SocketFlags, SocketError, AsyncCallback, Object)	
+接続されている Socket からの非同期のデータ受信を開始します。
+
+BeginReceiveFrom(Byte[], Int32, Int32, SocketFlags, EndPoint, AsyncCallback, Object)	
+指定したネットワーク デバイスから、データの非同期の受信を開始します。
+
+BeginReceiveMessageFrom(Byte[], Int32, Int32, SocketFlags, EndPoint, AsyncCallback, Object)	
+指定した SocketFlags を使用し、指定したバイト数のデータの非同期受信を開始して、データ バッファー内の指定した位置に格納します。さらに、エンドポイントとパケット情報を格納します。
+
+BeginSend(Byte[], Int32, Int32, SocketFlags, AsyncCallback, Object)	
+接続されている Socket にデータを非同期的に送信します。
+
+BeginSend(Byte[], Int32, Int32, SocketFlags, SocketError, AsyncCallback, Object)	
+接続されている Socket にデータを非同期的に送信します。
+
+BeginSend(IList<ArraySegment<Byte>>, SocketFlags, AsyncCallback, Object)	
+接続されている Socket にデータを非同期的に送信します。
+
+BeginSend(IList<ArraySegment<Byte>>, SocketFlags, SocketError, AsyncCallback, Object)	
+接続されている Socket にデータを非同期的に送信します。
+
+BeginSendFile(String, AsyncCallback, Object)	
+UseDefaultWorkerThread フラグを使用して、接続されている Socket オブジェクトにファイル fileName を送信します。
+
+BeginSendFile(String, Byte[], Byte[], TransmitFileOptions, AsyncCallback, Object)	
+接続された Socket オブジェクトに、ファイルとデータのバッファーを非同期的に送信します。
+
+BeginSendTo(Byte[], Int32, Int32, SocketFlags, EndPoint, AsyncCallback, Object)	
+特定のリモート ホストにデータを非同期的に送信します。
+
+Bind(EndPoint)	
+Socket をローカル エンドポイントと関連付けます。
+
+CancelConnectAsync(SocketAsyncEventArgs)	
+リモート ホスト接続への非同期要求を取り消します。
+
+Close()	
+Socket 接続を閉じ、関連付けられたすべてのリソースを解放します。
+
+Close(Int32)	
+Socket 接続を閉じ、すべての関連付けられているリソースを指定したタイムアウトで解放して、キューに置かれたデータの送信を許可します。
+
+Connect(EndPoint)	
+リモート ホストへの接続を確立します。
+
+Connect(IPAddress, Int32)	
+リモート ホストへの接続を確立します。 ホストは、IP アドレスとポート番号で指定されます。
+
+Connect(IPAddress[], Int32)	
+リモート ホストへの接続を確立します。 ホストは、IP アドレスの配列とポート番号で指定されます。
+
+Connect(String, Int32)	
+リモート ホストへの接続を確立します。 ホストはホスト名とポート番号で指定されます。
+
+ConnectAsync(EndPoint)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(EndPoint, CancellationToken)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(IPAddress, Int32)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(IPAddress, Int32, CancellationToken)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(IPAddress[], Int32)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(IPAddress[], Int32, CancellationToken)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(SocketAsyncEventArgs)	
+リモート ホストに接続する非同期要求を開始します。
+
+ConnectAsync(SocketType, ProtocolType, SocketAsyncEventArgs)	
+リモート ホストに接続する非同期要求を開始します。
+
+ConnectAsync(String, Int32)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(String, Int32, CancellationToken)	
+リモート ホストへの接続を確立します。
+
+Disconnect(Boolean)	
+ソケット接続を閉じ、ソケットを再利用できるようにします。
+
+DisconnectAsync(Boolean, CancellationToken)	
+接続されているソケットをリモートホストから切断します。
+
+DisconnectAsync(SocketAsyncEventArgs)	
+リモート エンドポイントからの切断の非同期要求を開始します。
+
+Dispose()	
+Socket クラスの現在のインスタンスによって使用されているすべてのリソースを解放します。
+
+Dispose(Boolean)	
+Socket が使用しているアンマネージド リソースを解放します。オプションでマネージド リソースも破棄します。
+
+DuplicateAndClose(Int32)	
+ターゲット プロセスのソケット参照を複製してこのプロセスのソケットを閉じます。
+
+EndAccept(Byte[], IAsyncResult)	
+受信接続の試行を非同期的に受け入れ、新しい Socket オブジェクトを作成してリモート ホスト通信を処理します。 このメソッドは、転送される初期データを格納するバッファーを返します。
+
+EndAccept(Byte[], Int32, IAsyncResult)	
+受信接続の試行を非同期的に受け入れ、新しい Socket オブジェクトを作成してリモート ホスト通信を処理します。 このメソッドは、初期データと、転送されたバイト数を格納するバッファーを返します。
+
+EndAccept(IAsyncResult)	
+受信接続の試行を非同期的に受け入れ、新しい Socket を作成してリモート ホスト通信を処理します。
+
+EndConnect(IAsyncResult)	
+保留中の非同期接続要求を終了します。
+
+EndDisconnect(IAsyncResult)	
+保留中の非同期切断要求を終了します。
+
+EndReceive(IAsyncResult)	
+保留中の非同期読み取りを終了します。
+
+EndReceive(IAsyncResult, SocketError)	
+保留中の非同期読み取りを終了します。
+
+EndReceiveFrom(IAsyncResult, EndPoint)	
+特定のエンドポイントからの、保留中の非同期読み込みを終了します。
+
+EndReceiveMessageFrom(IAsyncResult, SocketFlags, EndPoint, IPPacketInformation)	
+特定のエンドポイントからの、保留中の非同期読み込みを終了します。 また、このメソッドは、EndReceiveFrom(IAsyncResult, EndPoint) よりもパケットに関するより多くの情報を示します。
+
+EndSend(IAsyncResult)	
+保留中の非同期送信を終了します。
+
+EndSend(IAsyncResult, SocketError)	
+保留中の非同期送信を終了します。
+
+EndSendFile(IAsyncResult)	
+ファイルの保留中の非同期送信を終了します。
+
+EndSendTo(IAsyncResult)	
+特定の場所への、保留中の非同期送信を終了します。
+
+Equals(Object)	
+指定されたオブジェクトが現在のオブジェクトと等しいかどうかを判断します。
+
+(継承元 Object)
+Finalize()	
+Socket クラスによって使用されていたリソースを解放します。
+
+GetHashCode()	
+既定のハッシュ関数として機能します。
+
+(継承元 Object)
+GetRawSocketOption(Int32, Int32, Span<Byte>)	
+プラットフォーム固有のレベル識別子と名前識別子を使用して、ソケット オプションの値を取得します。
+
+GetSocketOption(SocketOptionLevel, SocketOptionName)	
+指定した Socket オプションの値をオブジェクトとして返します。
+
+GetSocketOption(SocketOptionLevel, SocketOptionName, Byte[])	
+指定した Socket オプション設定をバイト配列として返します。
+
+GetSocketOption(SocketOptionLevel, SocketOptionName, Int32)	
+指定した Socket オプションの値を配列で返します。
+
+GetType()	
+現在のインスタンスの Type を取得します。
+
+(継承元 Object)
+IOControl(Int32, Byte[], Byte[])	
+数値制御コードを使用して、Socket の下位操作モードを設定します。
+
+IOControl(IOControlCode, Byte[], Byte[])	
+IOControlCode 列挙型を使用して制御コードを指定し、Socket の下位操作モードを設定します。
+
+Listen()	
+Socket をリッスン状態にします。
+
+Listen(Int32)	
+Socket をリッスン状態にします。
+
+MemberwiseClone()	
+現在の Object の簡易コピーを作成します。
+
+(継承元 Object)
+Poll(Int32, SelectMode)	
+Socket の状態を確認します。
+
+Receive(Byte[])	
+バインドされた Socket からデータを受信し、受信バッファーに格納します。
+
+Receive(Byte[], Int32, Int32, SocketFlags)	
+指定した SocketFlags を使用し、バインドされた Socket から指定したバイト数のデータを受信して、受信バッファー内の指定したオフセット位置に格納します。
+
+Receive(Byte[], Int32, Int32, SocketFlags, SocketError)	
+指定した SocketFlags を使用し、バインドされた Socket からデータを受信して受信バッファーに格納します。
+
+Receive(Byte[], Int32, SocketFlags)	
+指定した SocketFlags を使用し、バインドされた Socket から指定したバイト数のデータを受信して受信バッファーに格納します。
+
+Receive(Byte[], SocketFlags)	
+指定した SocketFlags を使用し、バインドされた Socket からデータを受信して受信バッファーに格納します。
+
+Receive(IList<ArraySegment<Byte>>)	
+バインドされた Socket からデータを受信して、受信バッファーのリストに格納します。
+
+Receive(IList<ArraySegment<Byte>>, SocketFlags)	
+指定した SocketFlags を使用し、バインドされた Socket からデータを受信して受信バッファーのリストに格納します。
+
+Receive(IList<ArraySegment<Byte>>, SocketFlags, SocketError)	
+指定した SocketFlags を使用し、バインドされた Socket からデータを受信して受信バッファーのリストに格納します。
+
+Receive(Span<Byte>)	
+バインドされた Socket からデータを受信し、受信バッファーに格納します。
+
+Receive(Span<Byte>, SocketFlags)	
+指定した SocketFlags を使用し、バインドされた Socket からデータを受信して受信バッファーに格納します。
+
+Receive(Span<Byte>, SocketFlags, SocketError)	
+指定した SocketFlags を使用し、バインドされた Socket からデータを受信して受信バッファーに格納します。
+
+ReceiveAsync(ArraySegment<Byte>, SocketFlags)	
+接続されたソケットからデータを受信します。
+
+ReceiveAsync(IList<ArraySegment<Byte>>, SocketFlags)	
+接続されたソケットからデータを受信します。
+
+ReceiveAsync(Memory<Byte>, SocketFlags, CancellationToken)	
+接続されたソケットからデータを受信します。
+
+ReceiveAsync(SocketAsyncEventArgs)	
+接続されている Socket オブジェクトからデータを受信する非同期要求を開始します。
+
+ReceiveFrom(Byte[], EndPoint)	
+データグラムを受信してデータバッファーに格納します。さらに、エンドポイントを格納します。
+
+ReceiveFrom(Byte[], Int32, Int32, SocketFlags, EndPoint)	
+指定した SocketFlags を使用して、指定したバイト数のデータを受信して、データ バッファー内の指定した位置に格納します。またエンドポイントを格納します。
+
+ReceiveFrom(Byte[], Int32, SocketFlags, EndPoint)	
+指定した SocketFlags を使用し、指定したバイト数のデータを受信してデータ バッファーに格納します。さらに、エンドポイントを格納します。
+
+ReceiveFrom(Byte[], SocketFlags, EndPoint)	
+指定した SocketFlags を使用し、データグラムを受信してデータバッファーに格納します。さらに、エンドポイントを格納します。
+
+ReceiveFrom(Span<Byte>, EndPoint)	
+データグラムを受信してデータバッファーに格納します。さらに、エンドポイントを格納します。
+
+ReceiveFrom(Span<Byte>, SocketFlags, EndPoint)	
+指定した SocketFlags を使用し、データグラムを受信してデータバッファーに格納します。さらに、エンドポイントを格納します。
+
+ReceiveFromAsync(ArraySegment<Byte>, SocketFlags, EndPoint)	
+データを受信し、送信ホストのエンドポイントを返します。
+
+ReceiveFromAsync(Memory<Byte>, SocketFlags, EndPoint, CancellationToken)	
+データを受信し、送信ホストのエンドポイントを返します。
+
+ReceiveFromAsync(SocketAsyncEventArgs)	
+指定したネットワーク デバイスから、データの非同期の受信を開始します。
+
+ReceiveMessageFrom(Byte[], Int32, Int32, SocketFlags, EndPoint, IPPacketInformation)	
+指定した SocketFlags を使用して、指定したバイト数のデータをデータ バッファー内の指定した位置で受信して、エンドポイントおよびパケット情報を格納します。
+
+ReceiveMessageFrom(Span<Byte>, SocketFlags, EndPoint, IPPacketInformation)	
+指定した socketFlags を使用して、指定したバイト数のデータをデータ バッファー内の指定した位置で受信して、エンドポイントおよびパケット情報を格納します。
+
+ReceiveMessageFromAsync(ArraySegment<Byte>, SocketFlags, EndPoint)	
+データを受信し、メッセージの送信者に関する追加情報を返します。
+
+ReceiveMessageFromAsync(Memory<Byte>, SocketFlags, EndPoint, CancellationToken)	
+データを受信し、メッセージの送信者に関する追加情報を返します。
+
+ReceiveMessageFromAsync(SocketAsyncEventArgs)	
+指定された SocketFlags を使用し、指定されたバイト数のデータの非同期受信を開始して、データ バッファー内の指定された場所に格納します。さらに、エンドポイントとパケットの情報を格納します。
+
+Select(IList, IList, IList, Int32)	
+1 つまたは複数のソケットのステータスを判断します。
+
+Send(Byte[])	
+接続された Socket にデータを送信します。
+
+Send(Byte[], Int32, Int32, SocketFlags)	
+指定したオフセットから開始し、指定した SocketFlags を使用して、指定したバイト数のデータを接続された Socket に送信します。
+
+Send(Byte[], Int32, Int32, SocketFlags, SocketError)	
+指定したオフセットから開始し、指定した SocketFlags を使用して、指定したバイト数のデータを接続された Socket に送信します。
+
+Send(Byte[], Int32, SocketFlags)	
+指定した SocketFlags を使用し、指定したバイト数のデータを、接続された Socket に送信します。
+
+Send(Byte[], SocketFlags)	
+指定した SocketFlags を使用して、接続された Socket にデータを送信します。
+
+Send(IList<ArraySegment<Byte>>)	
+リスト内のバッファーのセットを接続された Socket に送信します。
+
+Send(IList<ArraySegment<Byte>>, SocketFlags)	
+指定した SocketFlags を使用して、リスト内のバッファーのセットを接続された Socket に送信します。
+
+Send(IList<ArraySegment<Byte>>, SocketFlags, SocketError)	
+指定した SocketFlags を使用して、リスト内のバッファーのセットを接続された Socket に送信します。
+
+Send(ReadOnlySpan<Byte>)	
+接続された Socket にデータを送信します。
+
+Send(ReadOnlySpan<Byte>, SocketFlags)	
+指定した SocketFlags を使用して、接続された Socket にデータを送信します。
+
+Send(ReadOnlySpan<Byte>, SocketFlags, SocketError)	
+指定した SocketFlags を使用して、接続された Socket にデータを送信します。
+
+SendAsync(ArraySegment<Byte>, SocketFlags)	
+接続されているソケットでデータを送信します。
+
+SendAsync(IList<ArraySegment<Byte>>, SocketFlags)	
+接続されているソケットでデータを送信します。
+
+SendAsync(ReadOnlyMemory<Byte>, SocketFlags, CancellationToken)	
+接続されているソケットでデータを送信します。
+
+SendAsync(SocketAsyncEventArgs)	
+接続されている Socket オブジェクトに、データを非同期に送信します。
+
+SendFile(String)	
+UseDefaultWorkerThread 送信フラグを使用して、接続されている Socket オブジェクトにファイル fileName を送信します。
+
+SendFile(String, Byte[], Byte[], TransmitFileOptions)	
+指定した TransmitFileOptions 値を使用して、接続された Socket オブジェクトにファイル fileName およびデータのバッファーを送信します。
+
+SendFile(String, ReadOnlySpan<Byte>, ReadOnlySpan<Byte>, TransmitFileOptions)	
+指定した TransmitFileOptions 値を使用して、接続された Socket オブジェクトにファイル fileName およびデータのバッファーを送信します。
+
+SendFileAsync(String, CancellationToken)	
+fileName接続されているオブジェクトにファイルを送信し Socket ます。
+
+SendFileAsync(String, ReadOnlyMemory<Byte>, ReadOnlyMemory<Byte>, TransmitFileOptions, CancellationToken)	
+指定した TransmitFileOptions 値を使用して、接続された Socket オブジェクトにファイル fileName およびデータのバッファーを送信します。
+
+SendPacketsAsync(SocketAsyncEventArgs)	
+接続されている Socket オブジェクトに、ファイルのコレクションまたはメモリ内のデータ バッファーを非同期に送信します。
+
+SendTo(Byte[], EndPoint)	
+指定したエンドポイントにデータを送信します。
+
+SendTo(Byte[], Int32, Int32, SocketFlags, EndPoint)	
+指定した SocketFlags を使用し、指定したバイト数のデータを、指定したエンドポイントに送信します。送信はバッファー内の指定した位置から開始されます。
+
+SendTo(Byte[], Int32, SocketFlags, EndPoint)	
+指定した SocketFlags を使用し、指定したバイト数のデータを、指定したエンドポイントに送信します。
+
+SendTo(Byte[], SocketFlags, EndPoint)	
+指定した SocketFlags を使用して、特定のエンドポイントにデータを送信します。
+
+SendTo(ReadOnlySpan<Byte>, EndPoint)	
+指定したエンドポイントにデータを送信します。
+
+SendTo(ReadOnlySpan<Byte>, SocketFlags, EndPoint)	
+指定した SocketFlags を使用して、特定のエンドポイントにデータを送信します。
+
+SendToAsync(ArraySegment<Byte>, SocketFlags, EndPoint)	
+指定されたリモートホストにデータを送信します。
+
+SendToAsync(ReadOnlyMemory<Byte>, SocketFlags, EndPoint, CancellationToken)	
+指定されたリモートホストにデータを送信します。
+
+SendToAsync(SocketAsyncEventArgs)	
+特定のリモート ホストにデータを非同期的に送信します。
+
+SetIPProtectionLevel(IPProtectionLevel)	
+ソケットの IP 保護レベルを設定します。
+
+SetRawSocketOption(Int32, Int32, ReadOnlySpan<Byte>)	
+プラットフォーム固有のレベル識別子と名前識別子を使用して、ソケット オプションの値を設定します。
+
+SetSocketOption(SocketOptionLevel, SocketOptionName, Boolean)	
+指定した Socket オプションを、指定した Boolean 値に設定します。
+
+SetSocketOption(SocketOptionLevel, SocketOptionName, Byte[])	
+指定した Socket オプションを、指定した値に設定します。この値はバイト配列で表されます。
+
+SetSocketOption(SocketOptionLevel, SocketOptionName, Int32)	
+指定した Socket オプションを、指定した整数値に設定します。
+
+SetSocketOption(SocketOptionLevel, SocketOptionName, Object)	
+指定した Socket オプションを、指定した値に設定します。この値はオブジェクトで表されます。
+
+Shutdown(SocketShutdown)	
+Socket での送受信を無効にします。
+
+ToString()	
+現在のオブジェクトを表す文字列を返します。
+
+(継承元 Object)
+明示的なインターフェイスの実装
+拡張メソッド
+拡張メソッド
+AcceptAsync(Socket)	
+ソケットでの受信接続の試行を受け入れる非同期操作を実行します。
+
+AcceptAsync(Socket, Socket)	
+ソケットでの受信接続の試行を受け入れる非同期操作を実行します。
+
+ConnectAsync(Socket, EndPoint)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(Socket, EndPoint, CancellationToken)	
+リモート ホストへの接続を確立します。
+
+ConnectAsync(Socket, IPAddress, Int32)	
+リモート ホストへの接続を確立します。 ホストは、IP アドレスとポート番号で指定されます。
+
+ConnectAsync(Socket, IPAddress, Int32, CancellationToken)	
+リモート ホストへの接続を確立します。これは IP アドレスとポート番号で指定します。
+
+ConnectAsync(Socket, IPAddress[], Int32)	
+リモート ホストへの接続を確立します。 ホストは、IP アドレスの配列とポート番号で指定されます。
+
+ConnectAsync(Socket, IPAddress[], Int32, CancellationToken)	
+リモート ホストへの接続を確立します。これは IP アドレスの配列とポート番号で指定します。
+
+ConnectAsync(Socket, String, Int32)	
+リモート ホストへの接続を確立します。 ホストはホスト名とポート番号で指定されます。
+
+ConnectAsync(Socket, String, Int32, CancellationToken)	
+リモート ホストへの接続を確立します。これはホスト名とポート番号で指定します。
+
+ReceiveAsync(Socket, ArraySegment<Byte>, SocketFlags)	
+接続されたソケットからデータを受信します。
+
+ReceiveAsync(Socket, IList<ArraySegment<Byte>>, SocketFlags)	
+接続されたソケットからデータを受信します。
+
+ReceiveAsync(Socket, Memory<Byte>, SocketFlags, CancellationToken)	
+接続されたソケットからデータを受信します。
+
+ReceiveFromAsync(Socket, ArraySegment<Byte>, SocketFlags, EndPoint)	
+指定したネットワーク デバイスからデータを受信します。
+
+ReceiveMessageFromAsync(Socket, ArraySegment<Byte>, SocketFlags, EndPoint)	
+指定した SocketFlags を使用して、指定したバイト数のデータをデータ バッファー内の指定した位置で受信して、エンドポイントおよびパケット情報を格納します。
+
+SendAsync(Socket, ArraySegment<Byte>, SocketFlags)	
+接続されたソケットにデータを送信します。
+
+SendAsync(Socket, IList<ArraySegment<Byte>>, SocketFlags)	
+接続されたソケットにデータを送信します。
+
+SendAsync(Socket, ReadOnlyMemory<Byte>, SocketFlags, CancellationToken)	
+接続されたソケットにデータを送信します。
+
+SendToAsync(Socket, ArraySegment<Byte>, SocketFlags, EndPoint)	
+特定のリモート ホストにデータを非同期的に送信します。
+
+適用対象
+適用対象
+製品	バージョン
+.NET	Core 1.0, Core 1.1, Core 2.0, Core 2.1, Core 2.2, Core 3.0, Core 3.1, 5, 6
+.NET Framework	1.1, 2.0, 3.0, 3.5, 4.0, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, 4.8
+.NET Standard	1.3, 1.4, 1.6, 2.0, 2.1
+UWP	10.0
+Xamarin.iOS	10.8
+Xamarin.Mac	3.0
+スレッド セーフ
+このクラスのインスタンスはスレッド セーフです。
+
+こちらもご覧ください
+System.Net
+System.Net.Cache
+System.Net.Security
+SocketAsyncEventArgs
+.NET Framework のネットワーク プログラミング
+System.Net クラスのベスト プラクティス
+ネットワーク アプリケーションのキャッシュ管理
+インターネット プロトコル バージョン 6
+ネットワーク プログラミングのサンプル
+.NET Framework のネットワークのトレース
+ネットワーク プログラミングにおけるセキュリティ
+バージョン 3.5 のソケット パフォーマンスの強化
+推奨コンテンツ
+Socket.Send メソッド (System.Net.Sockets)
+接続された Socket にデータを送信します。
+Socket.Listen メソッド (System.Net.Sockets)
+Socket をリッスン状態にします。
+Socket.Receive メソッド (System.Net.Sockets)
+バインドされた Socket からデータを受信します。
+Socket.BeginReceive メソッド (System.Net.Sockets)
+接続されている Socket からの非同期のデータ受信を開始します。
+以前のバージョンのドキュメント
+ブログ
+投稿
+プライバシー & Cookie
+利用条件
+商標
+© Microsoft 2022
