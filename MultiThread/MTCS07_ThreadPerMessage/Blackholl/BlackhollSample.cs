@@ -58,8 +58,8 @@ namespace CsharpBegin.MultiThread.MTCS07_ThreadPerMessage.Blackholl
             Thread.Sleep(50);//上記new Threadが lockを取るまで待機
         }//Magic() 
  
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             new BlackhollSample().Enter(new Object());
         }//Main() 
