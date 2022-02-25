@@ -6,7 +6,8 @@
  *           https://yryr.me/programming/local-http-server.html
  *           => @see HttpListenerReference.txt
  *           
- *@content HttpListenerSample
+ *@content HttpListenerSample〔未完成〕
+ *         C# Referenceで勉強してから再チャレンジしよう。
  *
  *@see HttpListenerReference.txt
  *@author shika 
@@ -24,8 +25,8 @@ namespace CsharpBegin.LocalHost
 { 
     class HttpListenerSample 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             //---- C# Web Server ----
             var listener = new HttpListener();
@@ -47,7 +48,7 @@ namespace CsharpBegin.LocalHost
                                 listenerAsync.EndGetContext(asyncResult);
                             HttpListenerRequest req = context.Request;
                             res = context.Response;
-
+                            
                             Console.WriteLine($"Request URL: {req.RawUrl}");
                             
                         }, listener);
