@@ -89,8 +89,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 { 
     class MainWorkerMT08 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             //---- WorkerThread ----
             int thNum = 5; //number of WorkerThread
