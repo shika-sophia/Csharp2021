@@ -1,17 +1,34 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS08_WorkerThread / Worker / MainWorkerMT08.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content MT 第８章 WorkerThread / p262 / List 8-1 ～ 8-5
  *         (alternation) Background Thread, Thread Pool
  *         
  *         || Thread per Message || (第７章)
- *             仕事のたびに new Threadを起動 
+ *         ・非同期処理
+ *         ・仕事のたびに new Threadを起動 
  *             
- *         || WorkerThread || 呼出と実行の分離 = 応答性の向上
+ *         || WorkerThread || 
+ *         ・非同期処理: invocation(呼出)と execution(実行)の分離
+ *           => 応答性の向上, 実行順序制御(スケジューリング), Cancel機能, 分散処理
+ *           => [Java] Runnable / [C#] delegate void ThreadStart()
+ *               └ 処理内容をオブジェクトとして渡す仕組み
+ *               
+ *         ・capacity と resourceの trade-off
+ *           Thread Poolや Request保持できる上限を上げると処理を速く、多量にできるが
+ *           必要以上の capacityは メモリを占有し resource逼迫を招く可能性がある。。
+ *           起動時に capacityを静的に定義するのではなく、
+ *           処理量に応じて動的に増減する仕組みにすることが望ましい・
+ *           
  *         ・WorkerThreadが new Threadされるのは初回のみで、
  *           仕事のたびに new Threadを起動する必要はない。= 起動時間の短縮
+ *           
  *         ・Request 依頼(= 仕事)
+ *           Channel, Client, Workerには個々の仕事の情報はなく、Requestに集約。
+ *           仕事を Requestというオブジェクトにすることで、
+ *           Requestをサブクラス化すると多態性(Polymorphism)を持たせた処理も可能。
+ *           
  *         ・Client 依頼者
  *           仕事 Requestインスタンスを生成し、Channelに渡す。
  *         ・Cannel 仲介者
@@ -78,6 +95,7 @@
  *@author shika 
  *@date 2022-02-26 
 */
+using CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool;
 using System; 
 using System.Collections.Generic; 
 using System.Linq; 
@@ -94,7 +112,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
         {
             //---- WorkerThread ----
             int thNum = 5; //number of WorkerThread
-            var channel = new ChannelMT08(thNum);
+            AbsChannelMT08 channel = new ChannelMT08(thNum);
             channel.StartWorker();
 
             //---- ClientThread ----

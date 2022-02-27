@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 {
-    class ChannelMT08
+    class ChannelMT08 : AbsChannelMT08
     {
         private const int MAX_REQ = 100;
         private readonly RequestMT08[] reqAry;
@@ -30,7 +31,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
             }//for
         }//constructor
 
-        public void StartWorker()
+        public override void StartWorker()
         {
             foreach(WorkerThreadMT08 worker in threadPool)
             {
@@ -40,7 +41,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
             }//foreach
         }//StartWorker()
 
-        public void PutRequest(RequestMT08 req)
+        public override void PutRequest(RequestMT08 req)
         {
             reCondition:
             while(count >= reqAry.Length)
@@ -63,7 +64,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
             }//lock
         }//PutRequest()
 
-        public RequestMT08 TakeRequest()
+        public override RequestMT08 TakeRequest()
         {
             reCondition:
             while(count <= 0)

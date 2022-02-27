@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 {
     class WorkerThreadMT08
     {
-        private readonly ChannelMT08 channel;
+        private readonly AbsChannelMT08 channel;
         internal readonly string thName;
 
-        public WorkerThreadMT08(string thName, ChannelMT08 channel)
+        public WorkerThreadMT08(string thName, AbsChannelMT08 channel)
         {
             this.thName = thName;
             this.channel = channel;

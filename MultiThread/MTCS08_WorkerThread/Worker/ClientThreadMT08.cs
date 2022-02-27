@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
     class ClientThreadMT08
     {
         private readonly Random random = new Random();
-        private readonly ChannelMT08 channel;
+        private readonly AbsChannelMT08 channel;
         private readonly string thName;
 
-        public ClientThreadMT08(string thName, ChannelMT08 channel)
+        public ClientThreadMT08(string thName, AbsChannelMT08 channel)
         {
             this.thName = thName;
             this.channel = channel;
