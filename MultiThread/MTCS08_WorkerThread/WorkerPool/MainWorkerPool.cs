@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS08_WorkerThread / WorkerPool / MainWorkerPool.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第８章 WorkerThread / 補講２ ThreadPool / p284
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第８章 WorkerThread / 補講２ ThreadPool / p284
  *         [Java] Executors.newFixThreadPool(int)
  *         [C#]   ChannelPool 〔自己定義〕
  *         ThreadPoolを持つクラスを自己定義し、
