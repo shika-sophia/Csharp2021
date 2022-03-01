@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS08_WorkerThread / ExerciseMT08.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第８章 WorkerThread / 練習問題 8-1, 8-2, 8-3, 8-4, 8-5, 8-6, 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第８章 WorkerThread / 練習問題 8-1, 8-2, 8-3, 8-4, 8-5, 8-6, 
  * 
  *@author shika 
  *@date 2022-03-01 
