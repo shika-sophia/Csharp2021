@@ -6,5 +6,6 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
         public abstract void StartWorker();
         public abstract void PutRequest(RequestMT08 req);
         public abstract RequestMT08 TakeRequest();
+
     }//class
 }

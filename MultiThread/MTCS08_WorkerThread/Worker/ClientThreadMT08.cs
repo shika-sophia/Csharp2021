@@ -14,7 +14,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
         private readonly AbsChannelMT08 channel;
         private readonly string thName;
 
-        public ClientThreadMT08(string thName, AbsChannelMT08 channel)
+        public ClientThreadMT08(
+            string thName, AbsChannelMT08 channel)
         {
             this.thName = thName;
             this.channel = channel;
@@ -28,7 +29,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
                 {
                     RequestMT08 req = new RequestMT08(thName, i);
                     channel.PutRequest(req);
-                    Thread.Sleep(random.Next(1000));
+                    //Thread.Sleep(random.Next(1000));
                 }//for loop
             }
             catch (ThreadInterruptedException) { }

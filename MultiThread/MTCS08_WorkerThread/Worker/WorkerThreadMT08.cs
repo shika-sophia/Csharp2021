@@ -13,7 +13,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
         private readonly AbsChannelMT08 channel;
         internal readonly string thName;
 
-        public WorkerThreadMT08(string thName, AbsChannelMT08 channel)
+        public WorkerThreadMT08(
+            string thName, AbsChannelMT08 channel)
         {
             this.thName = thName;
             this.channel = channel;
@@ -25,7 +26,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
             {
                 RequestMT08 req = channel.TakeRequest();
                 req.ReqExecute();
-            }
+            }//while
         }//Run()
     }//class
 }

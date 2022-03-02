@@ -58,8 +58,8 @@
  *       - override string ToString()
  *       
  *@class ChannelMT08 
- *       / - const int MAX_REQ;
- *         - ◇RequestMT08[] reqAry;
+ *       / - const int QUEUE_SIZE;
+ *         - ◇RequestMT08[] queue;
  *         - ◇WorkerThreadMt08[] threadPool;
  *         - int head;
  *         - int tail;

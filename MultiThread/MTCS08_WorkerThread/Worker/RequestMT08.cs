@@ -26,7 +26,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 
             try
             {
-                Thread.Sleep(random.Next(1000));
+                //Thread.Sleep(random.Next(1000));
             }
             catch (ThreadInterruptedException) { }
         }//ReqExecute()

@@ -10,8 +10,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 {
     class ChannelMT08 : AbsChannelMT08
     {
-        private const int MAX_REQ = 100;
-        private readonly RequestMT08[] reqAry;
+        private const int QUEUE_SIZE = 300;
+        internal readonly RequestMT08[] queue;
         private readonly WorkerThreadMT08[] threadPool;
         private int head;
         private int tail;
@@ -19,7 +19,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 
         public ChannelMT08(int thNum)
         {
-            reqAry = new RequestMT08[MAX_REQ];
+            queue = new RequestMT08[QUEUE_SIZE];
             this.head = 0;
             this.tail = 0;
             this.count = 0;
@@ -44,7 +44,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
         public override void PutRequest(RequestMT08 req)
         {
             reCondition:
-            while(count >= reqAry.Length)
+            while(count >= queue.Length)
             {
                 try
                 {
@@ -55,10 +55,10 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
 
             lock (this)
             {
-                if(count >= reqAry.Length) { goto reCondition; }
+                if(count >= queue.Length) { goto reCondition; }
 
-                reqAry[tail] = req;
-                tail = (tail + 1) % reqAry.Length;
+                queue[tail] = req;
+                tail = (tail + 1) % queue.Length;
                 count++;
                 Thread.Yield();
             }//lock
@@ -76,8 +76,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
             {
                 if(count <= 0) { goto reCondition; }
 
-                RequestMT08 req = reqAry[head];
-                head = (head + 1) % reqAry.Length;
+                RequestMT08 req = queue[head];
+                head = (head + 1) % queue.Length;
                 count--;
                 Thread.Yield();
 
