@@ -18,12 +18,12 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool
     class ChannelPool : AbsChannelMT08
     {
         private const int REQ_LIMIT = 100;
-        private readonly ConcurrentQueue<RequestMT08> queue
+        internal readonly ConcurrentQueue<RequestMT08> queue
             = new ConcurrentQueue<RequestMT08>();
         private List<WorkerThreadMT08> workerList;
         private int poolNum; //initial workerPool
 
-        public ChannelPool(int poolNum = 2)
+        public ChannelPool(int poolNum = 3)
         {
             this.poolNum = poolNum;
 
@@ -63,7 +63,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool
             {
                 Thread.Sleep(100);
 
-                if(sw.ElapsedMilliseconds >= 500)
+                if(sw.ElapsedMilliseconds >= 200)
                 {
                     AddWorker();
                     sw.Restart();
