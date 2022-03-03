@@ -12,8 +12,6 @@ namespace CsharpBegin.MultiThread.MTCS06_ReadWriteLock.SafeDictionary
         private readonly Random random = new Random(314159);
         private readonly DatabaseMT06<int, char> db;
         private readonly string thName;
-        private string key;
-        private string value;
 
         public WriteDicThread(
             DatabaseMT06<int, char> db, string thName)
