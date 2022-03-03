@@ -11,9 +11,11 @@
  *       起動したWorkerThreadを保持
  *       
  *       Channel.StopAllWorker() 
- *         [Java] Thread.Stop()
+ *         [Java] Thread.stop()  ※非推奨: lock中でも停止してしまう
+ *                Thread.interrupt() を利用
+ *                Executor.shutdown()
  *         [C#]   Thread.Abort()
- *         
+ *                       
  *@author shika 
  *@date 2022-03-03 
 */
@@ -32,8 +34,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerStop
 { 
     class MainWorkerStop 
     { 
-        //static void Main(string[] args) 
-        public void Main(string[] args) 
+        static void Main(string[] args) 
+        //public void Main(string[] args) 
         {
             //---- Channel ----
             AbsChannelMT08 channel = new ChannelMT08(3);
@@ -66,7 +68,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerStop
                 channel.StopAllWorker();
             }
             catch (ThreadAbortException) { }
-
+            
         }//Main() 
     }//class 
 }
