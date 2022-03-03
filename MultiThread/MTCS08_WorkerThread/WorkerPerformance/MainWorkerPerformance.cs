@@ -12,6 +12,8 @@
  *            
  *@subject 練習問題 8-3 
  *         各Channelでの 10秒後の処理結果数を調べることで処理の速さを計測
+ *         Client, Request内の Thread.Sleep(random.Next(1000))はコメントアウト
+ *         
  *         [Java] java.lang.System.exit(0)
  *         [C#] System.Environment.Exit(0) プログラムの終了
  *              System.Application.Exit(0)
@@ -32,27 +34,20 @@
 using CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker;
 using CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool;
 using System; 
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq; 
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks; 
  
 namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPerformance 
 { 
     class MainWorkerPerformance 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
-            var sw = new Stopwatch();
-            sw.Start();
-
             //---- Channel ----
-            //AbsChannelMT08 channel = new ChannelMT08(3);
+            AbsChannelMT08 channel = new ChannelMT08(3);
             //AbsChannelMT08 channel = new ChannelPool(3);
-            AbsChannelMT08 channel = new ChannelThreadPerMessage(3);
+            //AbsChannelMT08 channel = new ChannelThreadPerMessage(3);
 
             //---- WorkerThread ----
             channel.StartWorker();
@@ -71,7 +66,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPerformance
             }//foreach
 
             Thread.Sleep(10000);
-            Environment.Exit(0);            
+            Environment.Exit(0);
         }//Main() 
     }//class 
 }

@@ -12,7 +12,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
     {
         private const int QUEUE_SIZE = 300;
         internal readonly RequestMT08[] queue;
-        private readonly WorkerThreadMT08[] threadPool;
+        private readonly WorkerThreadMT08[] workerAry;
+        protected readonly Thread[] threadPool;
         private int head;
         private int tail;
         private int count;
@@ -24,22 +25,32 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.Worker
             this.tail = 0;
             this.count = 0;
 
-            this.threadPool = new WorkerThreadMT08[thNum];
-            for(int i = 0; i < threadPool.Length; i++)
+            this.workerAry = new WorkerThreadMT08[thNum];
+            this.threadPool = new Thread[thNum];
+
+            for(int i = 0; i < workerAry.Length; i++)
             {
-                threadPool[i] = new WorkerThreadMT08($"Worker-{i}", this);
+                workerAry[i] = new WorkerThreadMT08($"Worker-{i}", this);
             }//for
         }//constructor
 
         public override void StartWorker()
         {
-            foreach(WorkerThreadMT08 worker in threadPool)
+            for(int i = 0; i < workerAry.Length; i++) 
             {
-                Thread workerTh = new Thread(worker.Run);
-                workerTh.Name = worker.thName;
-                workerTh.Start(); 
+                threadPool[i] = new Thread(workerAry[i].Run);
+                threadPool[i].Name = workerAry[i].thName;
+                threadPool[i].Start(); 
             }//foreach
         }//StartWorker()
+
+        public override void StopAllWorker()
+        {
+            foreach(Thread workerTh in threadPool)
+            {
+                workerTh.Abort();
+            }
+        }//StopAllWorker()
 
         public override void PutRequest(RequestMT08 req)
         {

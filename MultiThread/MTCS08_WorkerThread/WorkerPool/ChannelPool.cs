@@ -21,13 +21,15 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool
         internal readonly ConcurrentQueue<RequestMT08> queue
             = new ConcurrentQueue<RequestMT08>();
         private List<WorkerThreadMT08> workerList;
+        private List<Thread> threadPoolList;
         private int poolNum; //initial workerPool
 
         public ChannelPool(int poolNum = 3)
         {
             this.poolNum = poolNum;
-
             workerList = new List<WorkerThreadMT08>();
+            threadPoolList = new List<Thread>();
+
             for (int i = 0; i < poolNum; i++)
             {
                 workerList.Add(
@@ -41,6 +43,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool
             {
                 Thread workerTh = new Thread(worker.Run);
                 workerTh.Name = worker.thName;
+                threadPoolList.Add(workerTh);
                 workerTh.Start();
             }//foreach
         }//StartWorker()
@@ -52,8 +55,17 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerPool
             workerList.Add(workerNew);
             Thread workerTh = new Thread(workerNew.Run);
             workerTh.Name = workerNew.thName;
+            threadPoolList.Add(workerTh);
             workerTh.Start();
         }
+
+        public override void StopAllWorker()
+        {
+            foreach(Thread workerTh in threadPoolList)
+            {
+                workerTh.Abort();
+            }
+        }//StopAllWorker()
 
         public override void PutRequest(RequestMT08 req)
         {

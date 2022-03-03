@@ -60,7 +60,7 @@
  *@class ChannelMT08 
  *       / - const int QUEUE_SIZE;
  *         - ◇RequestMT08[] queue;
- *         - ◇WorkerThreadMt08[] threadPool;
+ *         - ◇WorkerThreadMt08[] workerAry;
  *         - int head;
  *         - int tail;
  *         - int count; /
