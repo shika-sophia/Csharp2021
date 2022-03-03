@@ -28,7 +28,7 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
     }//class 
-} 
+}
 /* 
 2022-03-01 (火)
 ==== Exercise Result ==== 
@@ -41,11 +41,11 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread
 
 ◆〔2〕8-2 
 ○ (1) Channelを Thread per Messageに修正 
-○ (2) => 略 
+○ (2) => 別フォルダ〔WorkerPerformance/ChannelThreadPerMessage〕
 
 ◆〔3〕8-3 
 ○ (1) ||Thread per Message||と||WorkerThread||で ThroughPut(=起動時のOverhead)の違いを計測 
-○ (2) => 別フォルダ 
+○ (2) => 別フォルダ 〔WorkerPerformance/MainWorkerPerformance〕
 
 ◆〔4〕8-4 
 ○ (1) SwingUtilities.invokeAndWait()を EventDispatchingThreadから呼んではいけない理由 
@@ -60,14 +60,14 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread
 ◆〔5〕8-5 
 ○ (1) GUI - Swingへの応用 
 ○ (2) => System.Windows.Forms.Formクラス 
-○ (3) => 別フォルダ〔〕 
+○ (3) => 別フォルダ〔未完成〕 
 
 ◆〔6〕8-6 
 ○ (1) WorkerThreadの停止コード 
-○ (2) => 別フォルダ〔〕 
-*/ 
+○ (2) => 別フォルダ〔WorkerStop〕
+*/
 /*==== Appendix ==== 
  *@date: 2022-03-01 (火) 
  *@time: 15:17 ～ 15:33 (16分) 
  *@rate: 76.47％ (○ 13 問 / 全 17 問) 
-*/ 
+*/
