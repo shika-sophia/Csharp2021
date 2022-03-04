@@ -73,8 +73,8 @@ namespace CsharpBegin.MultiThread.MTCS09_Future.FutureSample
 {
     class MainFutureSample 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Console.WriteLine("Main() BEGIN");
             HostMT09 host = new HostMT09();
