@@ -34,8 +34,8 @@ namespace CsharpBegin.MultiThread.MTCS08_WorkerThread.WorkerStop
 { 
     class MainWorkerStop 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             //---- Channel ----
             AbsChannelMT08 channel = new ChannelMT08(3);
