@@ -5,20 +5,29 @@
  *@content 第９章 Future / p296 / List 9-1 ～ 9-5
  *         戻り値のある非同期実行プログラムを Threadクラスを用いて実装
  *         (非同期実行の専用クラス )
- *         ([Java] Callable<T> / [C#] Task<T>は別フォルダ)
- *
+ *         [Java] java.util.concurret.Callable<T> = [C#] delegate void ThreadStart()
+ *                java.util.concurrent.Future<T> <<interface>>
+ *                java.util.concurrent.FutureTask<T> class
+ *         
+ *         [C#] System.Threading.Tasks.Task<T>
+ *         => 別フォルダ〔FutureTask〕
+ *         
  *content || Future ||
  *        ＊Client = Main
  *          Hostに Request()を依頼、戻り値 VirtualData
  *        ＊Host
  *          || Thread per Message ||
- *          Request()を受けると new Threadを生成し、RealDataの生成開始
- *          RealDataの生成には時間が掛かるので、
- *          戻り値は VirtualDataを即座に返し、Mainに制御を戻す。
+ *          ・Request()を受けると new Threadを生成し、RealDataの生成開始
+ *          ・RealDataの生成には時間が掛かるので、
+ *            戻り値は VirtualDataを即座に返し、Mainに制御を戻す。
+ *          ・|| Immutable || MultiThread環境だが、fieldを持たないため、
+ *            クラスの状態は変化しない。(synchronized不要) 
+ *          
  *        ＊VirtualData = AbsDataMT09
  *          FutureData, RealDataを同一視
  *        ＊Future 
  *          RealDataの「引換券」として Hostから Mainに発行される戻り値
+ *          || GuardedSuspension || 
  *          || Balking || RealDataが完成するまではキャンセル
  *          
  *        ＊RealData
