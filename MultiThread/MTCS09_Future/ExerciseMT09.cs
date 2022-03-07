@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS09_Future / ExerciseMT09.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第９章 Future / 練習問題 9-1, 9-2, 9-3, 9-4, 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第９章 Future / 練習問題 9-1, 9-2, 9-3, 9-4, 
  * 
  *@author shika 
  *@date 2022-03-07 
