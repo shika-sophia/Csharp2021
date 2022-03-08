@@ -6,7 +6,10 @@
  *
  *         Directory.GetCurrentDirectory();
            => C:\Users\sophia\source\repos\CsharpBegin\CsharpBegin\bin\Debug
- * 
+ *@NOTE [yahoo.html][hyuki.html]に
+ *     「<!-- -->」が含まれており、コメントアウト不可。
+ *     文字化けもしているので、実行後削除。
+ *     
  *@author shika 
  *@date 2022-03-08 
 */
@@ -23,8 +26,8 @@ namespace CsharpBegin.MultiThread.MTCS09_Future.WebContentSingle
 { 
     class MainWebSingle 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var here = new MainWebSingle();
             Console.WriteLine("Main() BEGIN");
@@ -34,12 +37,12 @@ namespace CsharpBegin.MultiThread.MTCS09_Future.WebContentSingle
             sw.Start();
 
             AbsContentMT09 content1 = WebReadMT09.ReadSiteSync("http://www.yahoo.com/");
-            AbsContentMT09 content2 = WebReadMT09.ReadSiteSync("http://www.google.com/");
-            AbsContentMT09 content3 = WebReadMT09.ReadSiteSync("http://www.hyuki.com/");
+            //AbsContentMT09 content2 = WebReadMT09.ReadSiteSync("http://www.google.com/");
+            //AbsContentMT09 content3 = WebReadMT09.ReadSiteSync("http://www.hyuki.com/");
 
             here.SaveToFile("yahoo.html", content1);
-            here.SaveToFile("google.html", content2);
-            here.SaveToFile("hyuki.html", content3);
+            //here.SaveToFile("google.html", content2);
+            //here.SaveToFile("hyuki.html", content3);
 
             sw.Stop();
             Console.WriteLine($"Cost Time: {sw.ElapsedMilliseconds} msec");
