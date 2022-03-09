@@ -53,7 +53,7 @@ namespace CsharpBegin.MultiThread.MTCS09_Future
 
 ◆〔3〕9-3 
 ○ (1) URLからWebコンテンツを取得するプログラム 
-○ (2) => 別フォルダ 
+○ (2) => 別フォルダ〔WebContentSingle, WebContentAsync〕
 
 ◆〔4〕9-4 
 ○ (1) Futureパターンでの例外処理 
