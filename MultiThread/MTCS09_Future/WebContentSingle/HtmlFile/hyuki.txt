@@ -1,0 +1,1306 @@
+﻿<!-- 
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="æ¸ç±ãæ°å­¦ã¬ã¼ã«ãä½èãçµåæµ©ã®åäººãµã¤ããæ°å­¦ããã­ã°ã©ãã³ã°ãæç« æ¸ãã«é¢ããæå ±ã¨ãæ°è»½ãªèª­ã¿ç©ã">
+    <meta name="author" content="çµåæµ© / Hiroshi Yuki">
+    <meta name="keywords" content="çµåæµ©,Hiroshi Yuki,ãã­ã°ã©ãã³ã°,ã³ã³ãã¥ã¼ã¿,æ°å­¦,ã¢ã«ã´ãªãºã ,Java,Perl,C,ã­ãªã¹ãæ,ã¯ãªã¹ãã£ã³,æç« ,ã¡ã³ã¿ã«ãã«ã¹" >
+    <link rel="icon" href="//www.hyuki.com/favicon.ico">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://www.hyuki.com/common/hyuki-font/hyuki-font.css" rel="stylesheet">
+
+
+    <title>çµåæµ© / Hiroshi Yuki / The Essence of Programming / ãã­ã°ã©ãã³ã°ã®ã¨ãã»ã³ã¹</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="https://www.hyuki.com/common/style3.css">
+
+    <style>
+  body {
+    /* ... */
+  }
+</style>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <meta property="og:title" content="çµåæµ© / Hiroshi Yuki">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.hyuki.com/icon/1200x630-facebook.png">
+<meta property="og:site_name" content="çµåæµ©ã®å¬å¼Webãµã¤ã">
+<meta property="og:description" content="æ¸ç±ãæ°å­¦ã¬ã¼ã«ãä½èãçµåæµ©ã®åäººãµã¤ããæ°å­¦ããã­ã°ã©ãã³ã°ãæç« æ¸ãã«é¢ããæå ±ã¨ãæ°è»½ãªèª­ã¿ç©ã"> 
+<meta property="og:url" content="https://www.hyuki.com/">
+
+
+    <meta name="twitter:card" content="summary_large_image"> 
+<meta name="twitter:site" content="@hyuki">
+<meta name="twitter:creator" content="@hyuki"> 
+<meta name="twitter:title" content="çµåæµ©">
+<meta name="twitter:description" content="æ¸ç±ãæ°å­¦ã¬ã¼ã«ãä½èãçµåæµ©ã®åäººãµã¤ããæ°å­¦ããã­ã°ã©ãã³ã°ãæç« æ¸ãã«é¢ããæå ±ã¨ãæ°è»½ãªèª­ã¿ç©ã">
+<meta name="twitter:image:src" content="https://www.hyuki.com/icon/600x600.png">
+
+
+    <meta name="google-site-verification" content="kKhA0iIGt74w20pR1FGKFy9VVrWklgmgzWwG9B3tQNU" />
+
+  </head>
+
+  <body>
+
+    <!-- Facebook SDK -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="TOOLTIP navbar-brand" title="çµåæµ©ã®Webãµã¤ã" href="https://www.hyuki.com/"><img style="vertical-align:middle;" height="24" src="https://www.hyuki.com/icon/50x42trans.png" /></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+              <li class="hidden">
+                  <a href="#page-top"></a>
+              </li>
+              <li><a href="https://www.hyuki.com/"><span class="fa fa-fw fa-home"></span>&nbsp;Home</a></li>
+
+              <li><a class="TOOLTIP" title="çµåæµ©ã®Twitter" href="https://twitter.com/hyuki"><span class="fa fa-fw fa-twitter "></span>&nbsp;Twitter</a></li>
+<li><a class="TOOLTIP" title="çµåæµ©ã®æ¸ããæ¬" href="https://www.hyuki.com/pub/books.html"><span class="fa fa-fw fa-book "></span>&nbsp;Books</a></li>
+<li><a class="TOOLTIP" title="çµåæµ©ã®æ¥è¨" href="https://www.hyuki.com/d/"><span class="fa fa-fw fa-newspaper-o "></span>&nbsp;Diary</a></li>
+<li><a class="TOOLTIP" title="ãã­ãã£ã¼ã«" href="https://www.hyuki.com/info/profile.html"><span class="fa fa-fw fa-info-circle "></span>&nbsp;Profile</a></li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li><a class="TOOLTIP" title="ãã£ã¼ãããã¯" href="https://www.hyuki.com/feed/"><span class="fa fa-fw fa-envelope-o "></span>&nbsp;Feedback</a></li>
+<li><a class="TOOLTIP" title="æ¤ç´¢" href="https://www.hyuki.com/search/"><span class="fa fa-fw fa-search "></span>&nbsp;Search</a></li>
+
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>
+
+çµåæµ©
+</h1><p>
+<p><span style="color: #6bb36b;"><em>Hiroshi Yuki</em></span>
+</p><p>çµåæµ©ã®å¬å¼ãµã¤ãã§ãã
+</p><p>å·ç­ããæ¸ç±ã®æå ±ããæ°è»½ãªèª­ã¿ç©ãªã©ãããã¾ãã
+</p>
+    </p>
+  </div>
+</div>
+<div class="container"><!-- whole container -->
+  <div class="row">
+    <div class="col-md-12">
+
+
+<h2 class="section"><a name="note15" id="note15">è¨¼æããããã¾ããï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-EK1fv
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note15.hyuki.net/note15.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-EK1fv
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼å³å½¢ã®è¨¼æã</em>
+</p><p>æ°å­¦ãè¦æãªãããã¡ããããå³å½¢ã®è¨¼æã«ææ¦ï¼
+</p><p>è¨¼æããçç±ãè¨¼æã®èãæ¹ãè¨¼æã®æ¸ãæ¹â¦â¦
+</p><p>ä¸­å­¦çãé«æ ¡çã¯ãã¡ããã®ãã¨ã
+</p><p>æããç«å ´ã«ããæ¹ãã«ãèª­ãã§ããã ãããä¸åï¼
+</p><p><a href="https://www.amazon.co.jp/dp/4815609764/?tag=hyuki-22"><img width="100%" src="https://img.hyuki.net/20220218171456-36597eb50b3799aa.jpg"></a>
+</p>
+
+<p><a href="
+https://www.amazon.co.jp/dp/4815609764/?tag=hyuki-22
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<h2 class="section"><a name="dp" id="dp">ãã¶ã¤ã³ãã¿ã¼ã³ãèº«ã«ã¤ãããã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="./dp/"><img width="100%" src="https://img.hyuki.net/20211005151703-e9b8cd655df3e225.jpg"></a>
+</p><p><a href="
+https://www.amazon.co.jp/dp/4815609802/?tag=hyuki-22
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>Javaãéãã¦<em>ãã¶ã¤ã³ãã¿ã¼ã³</em>ãèº«ã«ã¤ãããã
+</p><p>ãªããªãåå¼·ã®æ©ä¼ãã¤ãããªãæ¹ã
+</p><p>æ¬ãèª­ãã ããã©ãä½ã ããé£ããããã¨æããæ¹ã
+</p><p>æ½è±¡ã¯ã©ã¹ãã¤ã³ã¿ãã§ã¼ã¹ããããã«ããã¨ããæ¹ã
+</p><p>ãªãã¸ã§ã¯ãæåãä½é¨çã«ãã¤ããã§ãããªãæ¹ã
+</p><p>æ¬æ¸ã¯ããããªæ¹ã«ãå§ãã§ãã
+</p><p><a href="
+https://www.hyuki.com/dp/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<h2 class="section"><a name="pnote1" id="pnote1">ããããã¥ã¼ãã³ã«ææ¦ãããï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-ziNeU
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://img.hyuki.net/20210611115657-7c53eae0943a6cc7.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-ziNeU
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç©çãã¼ãï¼ãã¥ã¼ãã³åå­¦ã</em>
+</p><p>æ°ã·ãªã¼ãºãæ°å­¦ã¬ã¼ã«ã®<em>ç©ç</em>ãã¼ããå§åï¼
+</p><p>ç©çå­¦ã¯ã¾ãããã¥ã¼ãã³åå­¦ããã
+</p><p>æ°å­¦ã¬ã¼ã«ãã¡ã¨ææ¦ãããï¼
+</p><p><a href="https://www.amazon.co.jp/dp/4815609772/?tag=hyuki-22"><img width="100%" src="https://img.hyuki.net/20211212190137-7c57bca619ca56e0.jpg"></a>
+</p>
+
+<p><a href="
+https://www.amazon.co.jp/dp/B093PZLQMQ/?tag=hyuki-22
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/dp/4815609772/?tag=hyuki-22
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+https://pnote1.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+
+<h2 class="section"><a name="discover" id="discover">æ¥å¸¸ããåçºè¦ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-UnD8T
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://img.hyuki.net/20210127181930-1608f717d35f05d5.png
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-UnD8T
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãåçºè¦ã®çºæ³æ³ã</em>
+</p><p>æè¡èã®çºæ³ãæ¥å¸¸ã«çãããï¼
+</p><p><a href="https://www.amazon.co.jp/dp/4797395311/?tag=hyuki-22"><img width="100%" src="https://img.hyuki.net/20210222220547-e48511c795ad781d.jpg"></a>
+</p>
+
+<p></p><p><a href="
+https://www.amazon.co.jp/dp/B08S2LY9VG/?tag=hyuki-22
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/dp/4797395311/?tag=hyuki-22
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-UnD8T
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<h2 class="section"><a name="note14" id="note14">ãã¾ããå­¦ã¶ãç¢ºçã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-oNy-3
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note14.hyuki.net/note14.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-oNy-3
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼ç¢ºçã®åéºã</em>
+</p><p>ã¨ãã«ã¯ãå½ãã«é¢ããç¢ºçã
+</p><p>ä¸çå½¹ã«ç«ã¤æ°å­¦ãããã¾ããå­¦ã³å§ãããï¼
+</p>
+<ul><li>
+ç¬¬1ç« ãç¢ºç1/2ã®è¬ã
+</li>
+<li>
+ç¬¬2ç« ãå¨ä½ã®ãã¡ãã©ãããã? ã
+</li>
+<li>
+ç¬¬3ç« ãæ¡ä»¶ä»ãç¢ºçã
+</li>
+<li>
+ç¬¬4ç« ãå½ã«é¢ããç¢ºçã
+</li>
+<li>
+ç¬¬5ç« ãæªå®ã®ã²ã¼ã ã
+</li></ul>
+<p></p><p><a href="
+https://www.amazon.co.jp/dp/B08KT5LZ16/?tag=hyuki-22
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/dp/481560603X/?tag=hyuki-22
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-oNy-3
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<h2 class="section"><a name="note13" id="note13">è¤ç´ æ°ã£ã¦ãã©ããªæ°ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-AFP7o
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note13.hyuki.net/note13notobi.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-AFP7o
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼è¤ç´ æ°ã®åºããã</em>
+</p><p>æ°ç´ç·ã¯ä¸æ¬¡åã®ä¸çã
+</p><p>è¤ç´ æ°ã¯äºæ¬¡åã®ä¸çã
+</p><p>ã©ããªä¸çãåºãããã ããï¼
+</p>
+<ul><li>
+ç¬¬1ç« ãç´ç·ä¸ãè¡ã£ããæ¥ããã
+</li>
+<li>
+ç¬¬2ç« ãå¹³é¢ä¸ãåãåã£ã¦ã
+</li>
+<li>
+ç¬¬3ç« ãæ°´é¢ã«æ ãæã®å½±ã
+</li>
+<li>
+ç¬¬4ç« ãçµã¿ç«ã¦ãã³ã¿ã´ã³ã
+</li>
+<li>
+ç¬¬5ç« ãä¸æ¬¡åã®æ°ãåæ¬¡åã®æ°ã
+</li></ul>
+<p></p><p><a href="
+https://www.amazon.co.jp/dp/4815606021/?tag=hyuki-22
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-AFP7o
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="note12" id="note12">æ°å­¦ã£ã¦ãæè¨ãããã¡ãªã®ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-v2TrQ
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note12.hyuki.net/note12.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-v2TrQ
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼å­¦ã¶ããã®å¯¾è©±ã</em>
+</p><p>æ°å­¦ãè¦æãªãããã¡ãããã¯ã
+</p><p>å­¦ã¶ããã«ãä½ãã©ããã¦ããããããã¾ããã
+</p><p>ãããªå½¼å¥³ã¯ãå¯¾è©±ããéãã¦ãå­¦ã¶ãã¨ãæãããã¨ãçè§£ãããã¨ã«åºä¼ãã¾ãã
+</p><p>ä¸­å­¦çãé«æ ¡çãå¤§å­¦çã¯ãã¡ããã®ãã¨ã
+</p><p>å­¦æ ¡ã®åçããä¿è­·èã®æ¹ãã«ãèª­ãã§ããã ãããä¸åï¼
+</p>
+<p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B081RBRMFB/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4815603995/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-v2TrQ
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="note11" id="note11">äºã¤ã®æ°ãçã¿åºãä¸çã¸ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-oPU7T
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note11.hyuki.net/note11.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-oPU7T
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼ãããã¨ãã¤ããªã¼ã</em>
+</p><p>ã·ãªã¼ãºç¬¬11ä½ç®ã
+</p><p>ãã¼ãã¯ããããã¨ãã¤ããªã¼ãã
+</p><p>ã³ã³ãã¥ã¼ã¿ãæ¯ããæ°å­¦ãå­¦ã¼ãï¼
+</p>
+<p><a href="
+https://note11.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B07TYKJQFK/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4797391391/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-oPU7T
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="lc" id="lc">Cè¨èªã®åæ­©ã®åæ­©</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-RNmt8
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://img.textfile.org/2018-12-28_lc.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-RNmt8
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãCè¨èªãã­ã°ã©ãã³ã°ã¬ãã¹ã³å¥éç·¨ ç¬¬3çã</em>
+</p><p>ã­ã³ã°ã»ã©ã¼ãå¨é¢æ¹è¨ï¼
+</p><p>Cè¨èªãã¾ãã¯ããããå§ãããã
+</p>
+<p><a href="
+https://www.hyuki.com/lc/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B07MX3K72G/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4797398582/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-RNmt8
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="note10" id="note10">æ°ãä¸¦ã¹ã¦ãä½ãå§ã¾ãï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-PAwkh
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note10.hyuki.net/note10.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-PAwkh
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼è¡åãæããã®ã</em>
+</p><p>ããããã·ãªã¼ãºåä½ç®ã
+</p><p>ãã¼ãã¯ãè¡åãã
+</p><p>è¡åãä½ãæãã®ããããªããç¢ºããããï¼
+</p>
+<p><a href="
+https://note10.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B07JB2MSQT/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4797395303/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-PAwkh
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="girl6" id="girl6">ããããå½¢ããæ¢ãæã¸ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-L4Hfe
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://img.textfile.org/girl6.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-L4Hfe
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ï¼ãã¢ã³ã«ã¬äºæ³ã</em>
+</p><p>å­å¹´ã¶ãã®ãæ°å­¦ã¬ã¼ã«ãã·ãªã¼ãºææ°ä½ã
+</p><p>ãã¼ãã¯ããã¢ã³ã«ã¬äºæ³ãã
+</p><p>ãå½¢ããæ¢ãæã¸ãããåºããããï¼
+</p>
+<p><a href="
+https://www.hyuki.com/girl/poincare.html
+" class="btn btn-default btn-lg" role="button">more </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B07C46Q7PW/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4797384786/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-L4Hfe
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="math" id="math">æ°å­¦ããæ¥½ããå­¦ã¼ãã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-yCEtr
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://img.textfile.org/2017-12-20_math1b.png
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-yCEtr
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ããã­ã°ã©ãã®æ°å­¦ ç¬¬2çã</em>ã¯ãæ°å­¦çãªèãæ¹ããå­¦ã¶æ¬ã
+</p><p>é£ããæ°å¼ã¯ä½¿ãã¾ããã
+</p><p>ããããã®å³ã¨ããºã«ã«ããããè§£èª¬ã
+</p><p>ãã­ã°ã©ãã³ã°ã®åå¿èã§ãã æ°å­¦ã®è¦æãªäººã§ããæ¥½ããèª­ãã¾ãã
+</p><p>ä»é²ãæ©æ¢°å­¦ç¿ã¸ã®ç¬¬ä¸æ­©ããæ°ãã«å ç­ï¼
+</p><p><a href="
+https://www.hyuki.com/math/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B079JLW5YN/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4797395451/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-L4Hfe
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="note9" id="note9">ç©åã¯ãå¾®åã®éæ¼ç®ã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-plQaU
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note9.hyuki.net/note9.png
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-plQaU
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼ç©åãè¦ã¤ãã¦ã</em>ç»å ´ï¼
+</p><p>å¾®åã¨åããã¦ç©åãå­¦ã¼ãï¼
+</p>
+<ul><li>
+ããªãã¸
+</li>
+<li>
+ãã­ã­ã¼ã°
+</li>
+<li>
+ç¬¬1ç« ãå¤åãè¦ã¤ããæãç®
+</li>
+<li>
+ç¬¬2ç« ãã¯ãã¿ãã¡ã§æ±ããã
+</li>
+<li>
+ç¬¬3ç« ãå¾®åç©åå­¦ã®åºæ¬å®ç
+</li>
+<li>
+ç¬¬4ç« ãå¼ã®å½¢ãè¦æã
+</li>
+<li>
+ç¬¬5ç« ãåã®é¢ç©ãæ±ããã
+</li>
+<li>
+ã¨ãã­ã¼ã°
+</li>
+<li>
+è§£ç­
+</li>
+<li>
+ãã£ã¨èãããããªãã®ããã«
+</li>
+<li>
+ãã¨ãã
+</li></ul><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B073F45B97/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797391383/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-plQaU
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p><p><a href="
+https://note9.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="note8" id="note8">å¹³åã ãããããã®ãããªãã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-0yG-O
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note8.hyuki.net/note8.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-0yG-O
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼ããããçµ±è¨ã</em>å¤§å¥½è©ï¼
+</p><p>æ°å­¦ã¬ã¼ã«ã¨çµ±è¨ãæ¥½ãããï¼
+</p>
+<ul><li>
+ããªãã¸
+</li>
+<li>
+ãã­ã­ã¼ã°
+</li>
+<li>
+ç¬¬1ç«  ã°ã©ãã®ããªãã¯
+</li>
+<li>
+ç¬¬2ç«  å¹³ãã«åãå¹³å
+</li>
+<li>
+ç¬¬3ç«  åå·®å¤ã®é©ã
+</li>
+<li>
+ç¬¬4ç«  ã³ã¤ã³ã10åæããã¨ã
+</li>
+<li>
+ç¬¬5ç«  æããã³ã¤ã³ã®æ­£ä½ã¯
+</li>
+<li>
+ã¨ãã­ã¼ã°
+</li>
+<li>
+è§£ç­
+</li>
+<li>
+ãã£ã¨èãããããªãã®ããã«
+</li>
+<li>
+ãã¨ãã
+</li></ul><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B01MSJMKMW/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797387122/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-0yG-O
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p><p><a href="
+https://note8.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="note7" id="note7">ãæ°ãããã£ã¦ã©ããªãã¨ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><div class="TACHIYOMI-DIV"><a href="
+  http://ul.sbcr.jp/MATH-SJddk
+" target="_blank" title="Webç«ã¡èª­ã¿ç"><img src="
+  https://note7.hyuki.net/note7.jpg
+" width="100%"></a><a href="
+  http://ul.sbcr.jp/MATH-SJddk
+" target="_blank" title="Webç«ã¡èª­ã¿ç" class="TACHIYOMI-PLAY"><i class="fa fa-play"></i></a></div>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼å ´åã®æ°ã</em>ã¯ãæ°ã·ãªã¼ãºæ¸ç±ç¬¬ä¸å¼¾ã
+</p><p>é åã»çµã¿åããã«ãã£ã¬ã³ã¸ãããï¼
+</p>
+<ul><li>
+ããªãã¸
+</li>
+<li>
+ãã­ã­ã¼ã°
+</li>
+<li>
+ç¬¬1ç«  ã¬ã¤ã¸ã¼ã¹ã¼ã¶ã³ãè²¬ããªãã§
+</li>
+<li>
+ç¬¬2ç«  çµã¿åããã§éã¼ã
+</li>
+<li>
+ç¬¬3ç«  ã´ã§ã³å³ã®ãã¿ã¼ã³
+</li>
+<li>
+ç¬¬4ç«  ããªãã¯èª°ã¨æãã¤ãªãï¼
+</li>
+<li>
+ç¬¬5ç«  å°å³ãæã
+</li>
+<li>
+ã¨ãã­ã¼ã°
+</li>
+<li>
+è§£ç­
+</li>
+<li>
+ãã£ã¨èãããããªãã®ããã«
+</li>
+<li>
+ãã¨ãã
+</li></ul><p></p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B01EL08HVS/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797387114/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p><p><a href="
+http://ul.sbcr.jp/MATH-SJddk
+" class="btn btn-warning btn-lg" role="button">Webç«ã¡èª­ã¿ </a>
+</p><p><a href="
+https://note7.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="note6" id="note6">ãã¯ãã«ã£ã¦æ°ãªã®ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797382325/hyuki-22/"><img src="https://www.hyuki.com/girl/jpg/note6img.jpg" width="100%" alt="" title="ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼ãã¯ãã«ã®çå®ãï¼ã¢ãã¾ã³ã¸ï¼" /></a></p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797382325/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼ãã¯ãã«ã®çå®ã</em>ã¯ãæ°ã·ãªã¼ãºæ¸ç±ç¬¬å­å¼¾ã
+</p><p>æ°å­¦ã¬ã¼ã«ãã¡ã¨ãããããæ°å­¦ãã¼ã¯ãæ¥½ãã¿ã¾ãããï¼
+</p>
+<ul><li>
+ããªãã¸
+</li>
+<li>
+ãã­ã­ã¼ã°
+</li>
+<li>
+ç¬¬1ç«  ãããªç§ã«åãè²¸ãã¦
+</li>
+<li>
+ç¬¬2ç«  ç¡æ°ã®ç­ããç¢
+</li>
+<li>
+ç¬¬3ç«  æãç®ã®ä½ãæ¹
+</li>
+<li>
+ç¬¬4ç«  å½¢ãè¦æã
+</li>
+<li>
+ç¬¬5ç«  ãã¯ãã«ã®å¹³å
+</li>
+<li>
+ã¨ãã­ã¼ã°
+</li>
+<li>
+è§£ç­
+</li>
+<li>
+ãã£ã¨èãããããªãã®ããã«
+</li>
+<li>
+ãã¨ãã
+</li></ul><p><a href="
+https://note6.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="cr" id="cr">ç¾ä»£ã®æå·ã¯ãããªã£ã¦ããã®ãã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/4797382228/hyuki-22/"><img src="https://img.textfile.org/cr3.jpg" width="100%" alt="" title="ãæå·æè¡å¥é ç¬¬3ç ç§å¯ã®å½ã®ã¢ãªã¹ãï¼ã¢ãã¾ã³ã¸ï¼" /></a></p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/4797382228/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>æå·æè¡ãã¦ãã­ãã«è§£èª¬ããå®çªå¥éæ¸ã§ãã
+</p><p>2015å¹´ããããã³ã¤ã³ãæ¥åæ²ç·æå·ã«ã¤ãã¦å¤§å¹å ç­ï¼
+</p>
+<p><a href="
+https://www.hyuki.com/cr/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="note5" id="note5">å¾®åãå­¦ã¼ãï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797382317/hyam-22/"><img src="https://www.hyuki.com/girl/png/note5img.png" width="100%" alt="" title="ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼å¾®åãè¿½ãããã¦ãï¼ã¢ãã¾ã³ã¸ï¼" /></a></p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797382317/hyam-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãï¼å¾®åãè¿½ãããã¦ã</em>ã¯ãæ°ã·ãªã¼ãºæ¸ç±ç¬¬äºå¼¾ã
+</p><p>æ°å­¦ã¬ã¼ã«ãã¡ã¨ãããããæ°å­¦ãã¼ã¯ãæ¥½ãã¿ã¾ãããï¼
+</p>
+<ul><li>
+ããªãã¸
+</li>
+<li>
+ãã­ã­ã¼ã°
+</li>
+<li>
+ç¬¬1ç«  ä½ç½®ã®å¤å
+</li>
+<li>
+ç¬¬2ç«  éåº¦ã®å¤å
+</li>
+<li>
+ç¬¬3ç«  ãã¹ã«ã«ã®ä¸è§å½¢
+</li>
+<li>
+ç¬¬4ç«  ä½ç½®ã¨éåº¦ã¨å éåº¦ã¨
+</li>
+<li>
+ç¬¬5ç«  å²ãç®ã¨æãç®ã®ããã«
+</li>
+<li>
+ã¨ãã­ã¼ã°
+</li>
+<li>
+è§£ç­
+</li>
+<li>
+ãã£ã¨èãããããªãã®ããã«
+</li>
+<li>
+ãã¨ãã
+</li></ul><p><a href="
+https://note5.hyuki.net/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+<h2 class="section"><a name="mw2" id="mw2">æç« ããã©ãç´ããã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4480095268/hyuki-22/"><img src="https://www.hyuki.com/mw/jpg/mwcover2.jpg" width="100%" alt="" title="ãæ°å­¦æç« ä½æ³ æ¨æ²ç·¨ãï¼ã¢ãã¾ã³ã¸ï¼" /></a></p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/B00UWBR406/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4480095268/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>ã<em>èª­èã®ãã¨ãèãã</em>ãã¨ããååã
+</p><p>æ¨æ²ã«ãããã®ååãçããã¾ãããã
+</p><p>æ°å¼ã¾ããã®èª¬ææãé¡æã®ä¸­å¿ã§ããã
+</p><p>èª¬ææãæ¸ãäººãªãã©ãªãã«ãå½¹ç«ã¡ã¾ãã
+</p><p>æç« ãæ¸ãã£ã±ãªãã«ããããªãããªãã®ããã«ã
+</p><p>çµåæµ© è
+</p><p>ç­æ©æ¸æ¿ãã¡ãã¾å­¦è¸æåº«
+</p>
+<ul><li>
+ç¬¬1ç« ãèª­èã®è¿·ã
+</li>
+<li>
+ç¬¬2ç« ãæ¨æ²ã®åºæ¬
+</li>
+<li>
+ç¬¬3ç« ãèªå¥
+</li>
+<li>
+ç¬¬4ç« ãæã®æ¨æ²
+</li>
+<li>
+ç¬¬5ç« ãæç« å¨ä½ã®ãã©ã³ã¹
+</li>
+<li>
+ç¬¬6ç« ãã¬ãã¥ã¼
+</li>
+<li>
+ç¬¬7ç« ãæ¨æ²ã®ã³ã
+</li>
+<li>
+ç¬¬8ç« ãæ¨æ²ãçµããã¨ã
+</li>
+<li>
+ç¬¬9ç« ãæ¨æ²ã®ãã§ãã¯ãªã¹ã
+</li></ul><p><a href="
+http://mw2.textfile.org/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+
+<h2 class="section"><a name="kindlegirl" id="kindlegirl">Kindleã§ãæ°å­¦ã¬ã¼ã«ï¼</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B00EYXMA9I/hyuki-22/"><img width="100%" src="https://www.hyuki.com/images/mathgirl1.png" /></a></p><p><a href="
+https://www.amazon.co.jp/exec/obidos/ASIN/B00EYXMA9I/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>ãå¾ãããã¾ããã
+</p><p>ãæ°å­¦ã¬ã¼ã«ãã·ãªã¼ãºã®Kindleçãç»å ´ã§ãã
+</p>
+<ul><li>
+<a href="https://www.amazon.co.jp/exec/obidos/ASIN/B00EYXMA9I/hyuki-22/">æ°å­¦ã¬ã¼ã«</a>
+</li>
+<li>
+<a href="https://www.amazon.co.jp/exec/obidos/ASIN/B00I8AT1CM/hyuki-22/">æ°å­¦ã¬ã¼ã«ï¼ãã§ã«ãã¼ã®æçµå®ç</a>
+</li>
+<li>
+<a href="https://www.amazon.co.jp/exec/obidos/ASIN/B00I8AT1D6/hyuki-22/">æ°å­¦ã¬ã¼ã«ï¼ã²ã¼ãã«ã®ä¸å®å¨æ§å®ç</a>
+</li>
+<li>
+<a href="https://www.amazon.co.jp/exec/obidos/ASIN/B00I8AT1FO/hyuki-22/">æ°å­¦ã¬ã¼ã«ï¼ä¹±æã¢ã«ã´ãªãºã </a>
+</li>
+<li>
+<a href="https://www.amazon.co.jp/exec/obidos/ASIN/B00L0PDMK4/hyuki-22/">æ°å­¦ã¬ã¼ã«ï¼ã¬ã­ã¢çè«</a>
+</li></ul><div class="FOOTNOTE"><span class="fa fa-fw fa-chevron-right"></span>
+åºå®ã¬ã¤ã¢ã¦ãã§ããå¿ãç¡æãµã³ãã«ã§ä½¿ç¨æããç¢ºãããã ããã
+</div>
+</div></div>
+
+
+<hr>
+
+<h2 class="section"><a name="birth" id="birth">çæ³ã®æ°å­¦å¯¾è©±ãæ±ãã¦ã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797373253/hyuki-22/"><img src="https://www.hyuki.com/girl/png/birthcover2.png" width="100%" alt="" title="ãæ°å­¦ã¬ã¼ã«ã®èªçãï¼ã¢ãã¾ã³ã¸ï¼" /></a></p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/B00NAQA33A/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797373253/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>ãæ°å­¦ã¬ã¼ã«ã®èªçã</em>ã¯ã
+çµåæµ©ã¯ããã¦ã®è¬æ¼éã§ãã
+</p><p>ãæ°å­¦ã¬ã¼ã«ãã·ãªã¼ãºèªçã®ç§å¯ã¨é­åãæããã«ã
+</p>
+<ul><li>
+ãæ°å­¦ã¬ã¼ã«ããã©ã®ããã«ãã¦èªçããã
+</li>
+<li>
+ãæ°å­¦ã¬ã¼ã«ããèª­ã¿ãããããããããã®ã¯ãªãã
+</li>
+<li>
+ãæ°å­¦ã¬ã¼ã«ãã«æããã¦ãããæããå§¿å¢ã»å­¦ã¶å§¿å¢ãã¨ã¯ä½ã
+</li></ul><p>æããäººãæ¸ãäººãèããäººã«å¿è¦ã®ä¸åã§ãã
+</p><p><a href="https://www.hyuki.com/girl/birth.html"></a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="mw1" id="mw1">æ­£ç¢ºã§èª­ã¿ãããæç« ãæ¸ãããã«ã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/448009525X/hyuki-22/"><img src="https://www.hyuki.com/mw/jpg/mwcover.jpg" width="100%" alt="" title="ãæ°å­¦æç« ä½æ³ åºç¤ç·¨ãï¼ã¢ãã¾ã³ã¸ï¼" /></a></p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/B00O9YUJUE/hyuki-22/
+" class="btn btn-warning btn-lg" role="button">Kindle </a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/448009525X/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>ã<em>èª­èã®ãã¨ãèãã</em>ãã¨ããååã
+</p><p>ããããããªãã«ä¼ãããããã£ãã²ã¨ã¤ã®ãã¨ã
+</p><p>æ°å¼ã¾ããã®èª¬ææãé¡æã®ä¸­å¿ã§ããã
+</p><p>èª¬ææãæ¸ãäººãªãã©ãªãã«ãå½¹ç«ã¡ã¾ãã
+</p><p>æ­£ç¢ºã§èª­ã¿ãããæç« ãæ¸ãããããªãã®ããã«ã
+</p><p>çµåæµ© è
+</p><p>ç­æ©æ¸æ¿ãã¡ãã¾å­¦è¸æåº«
+</p>
+<ul><li>
+ã¯ããã«
+</li>
+<li>
+ç¬¬1ç« ãèª­è
+</li>
+<li>
+ç¬¬2ç« ãåºæ¬
+</li>
+<li>
+ç¬¬3ç« ãé åºã¨éå±¤
+</li>
+<li>
+ç¬¬4ç« ãæ°å¼ã¨å½é¡
+</li>
+<li>
+ç¬¬5ç« ãä¾
+</li>
+<li>
+ç¬¬6ç« ãåãã¨ç­ã
+</li>
+<li>
+ç¬¬7ç« ãç®æ¬¡ã¨ç´¢å¼
+</li>
+<li>
+ç¬¬8ç« ããã£ãã²ã¨ã¤ã®ä¼ããããã¨
+</li>
+<li>
+åèæç®
+</li>
+<li>
+ç´¢å¼
+</li></ul><p><a href="
+http://mw1.textfile.org/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="girl" id="girl">ãæ°å­¦ã¬ã¼ã«ãã·ãªã¼ãºã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="https://www.hyuki.com/girl/"><img width="100%" src="https://www.hyuki.com/images/mathgirl1.png" /></a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>ãæ°å­¦ã¬ã¼ã«ãã¯ã
+ãã«ã«ããï¼ããã©ã¡ããï¼ãåãã¨ããä¸äººã®é«æ ¡çã¨ã
+ä¸­å­¦çã®ã¦ã¼ãªããã²ã¨ããéãæ°å­¦ã«ãã£ã¬ã³ã¸ããæ¥½ããç©èªã
+</p><p>èª­ã¿ç©å½¢å¼ã§ãããªãããåãæ±ãæ°å­¦çåå®¹ã¯æ¬æ ¼çã
+</p><p>å­¦çããããç¤¾ä¼äººã¾ã§å¤§äººæ°ã®ã·ãªã¼ãºã§ãã
+</p><p><a href="
+https://www.hyuki.com/girl/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="mm" id="mm">ç«ææ¥ã¯ãçµåã¡ã«ãã¬ã®æ¥ã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="https://www.hyuki.com/mm/"><img width="100%" src="https://secure-dcdn.cdn.nimg.jp/nicochannel/material/design/1871947/channel_banner4.jpg" /></a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>çµåã¡ã«ãã¬</em>ã¯æ¯é±ç«ææ¥ãæ7æã«å±ãã¾ãã
+</p><p></p>
+<ul><li>
+æç« ãæ¸ããã³ã
+</li>
+<li>
+äººã«æããã¨ãã®ããµã
+</li>
+<li>
+æ¬ãæ¸ãå¿ãã
+</li>
+<li>
+ã³ãã¥ãã±ã¼ã·ã§ã³ã®ãã¿ã¼ã³ã©ã³ã²ã¼ã¸
+</li>
+<li>
+å·ç­éä¸­ã®æ¸ç±ãã¬ãã¥ã¼
+</li></ul><p><a href="
+https://www.hyuki.com/mm/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="cakes" id="cakes">éææ¥ã¯ããæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ããã®æ¥ã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="https://www.hyuki.com/girl/note.html"><img width="100%" src="https://www.hyuki.com/girl/png/girlnote_480x480.png" /></a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p><em>Webé£è¼ãæ°å­¦ã¬ã¼ã«ã®ç§å¯ãã¼ãã</em>ã¯ã
+ãæ°å­¦ã¬ã¼ã«ãã·ãªã¼ãºã§ããªãã¿ã®ãã«ã«ãããããã©ã¡ãããã¡ãã
+å¯¾è©±å½¢å¼ã§æ°å­¦ç¨èªãè§£èª¬ããæ¥½ããèª­ã¿ç©ã§ãã
+</p><p>æ¯é±éææ¥ãcakesï¼ã±ã¤ã¯ã¹ï¼ã§é£è¼ä¸­ï¼
+</p><p><a href="https://www.hyuki.com/girl/note.html"></a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="program" id="program">ãã­ã°ã©ãã³ã°ãããã£ããå­¦ã¼ãã</a></h2>
+<div class="row"><div class="col-md-3 col-xs-6">
+<a href="https://www.hyuki.com/jb/"><img  width="100%" src="https://img.textfile.org/jba.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<a href="https://www.hyuki.com/pb/"><img  width="100%" src="https://img.textfile.org/pb.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<a href="https://www.hyuki.com/lc/"><img  width="100%" src="https://img.textfile.org/2018-12-28_lc.jpg" /></a>
+</div></div>
+
+<hr>
+
+<hr>
+
+
+<h2 class="section"><a name="ref" id="ref">ã¹ãããã»ãã¤ã»ã¹ãããã§è¨­è¨æ¹åã</a></h2>
+<div class="row"><div class="col-md-4 col-xs-6">
+<p><a href="https://www.hyuki.com/ref/"><img width="100%" src="https://www.hyuki.com/images/ref1.png" /></a>
+</p><p><a href="
+http://www.amazon.co.jp/exec/obidos/ASIN/4797337990/hyuki-22/
+" class="btn btn-lg btn-warning" role="button">Amazon </a>
+</p>
+</div><div class="clearfix visible-xs-block"></div><div class="col-md-8">
+<p>Javaè¨èªã§<em>ãªãã¡ã¯ã¿ãªã³ã°</em>ãå­¦ã³ã¾ãããã
+</p><p>ããããªã½ã¼ã¹ã¯èª­ãã®ãæ¥½ã§ãä¿®æ­£ããã®ãæ¥½ã§ããããã°ããã®ãæ¥½ã§ãã
+</p><p>ã©ãããã°ãããããªã½ã¼ã¹ãã«ãªãã®ã§ãããã
+</p><p>ããã«å¯¾ããè©¦ã¿ããªãã¡ã¯ã¿ãªã³ã°ã§ãã
+</p><p>æ¬æ¸ã§ãªãã¡ã¯ã¿ãªã³ã°ãå­¦ã³ã¾ãããã
+</p><p><a href="
+https://www.hyuki.com/ref/
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+
+<h2 class="section"><a name="amazon" id="amazon">ã¢ãã¾ã³ã«ãçµåæµ©ã®èèãã¼ã¸ãããã¾ãã</a></h2>
+<div class="row"><div class="col-md-12">
+<p><a href="http://www.amazon.co.jp/%E7%B5%90%E5%9F%8E%E6%B5%A9/e/B003UW60OA/?_encoding=UTF8&tag=hyuki-22&linkCode=ur2&camp=247&creative=7399"><img title="çµåæµ©ã®èèãã¼ã¸ï¼ã¢ãã¾ã³ï¼" src="https://www.hyuki.com/images/amazon.png" /></a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="kdp" id="kdp">Kindleã¹ãã¢ã«ãæ¬ãåºãã¾ããã</a></h2>
+
+<div class="row"><div class="col-md-3 col-xs-6">
+<a href="https://bit.ly/kmatchgirl"><img width="100%" title="ãããå£²ãã®å°å¥³" src="https://www.hyuki.com/images/match.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<a href="https://bit.ly/happyprince"><img width="100%" src="https://www.hyuki.com/images/prince.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<a href="https://bit.ly/kselfish"><img width="100%" src="https://www.hyuki.com/images/selfish.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<a href="https://bit.ly/kindlemagi"><img width="100%" src="https://www.hyuki.com/images/magi.jpg" /></a>
+</div></div>
+
+<hr>
+
+<div class="row"><div class="col-md-3 col-xs-6">
+<a href="https://bit.ly/kindleleaf"><img width="100%" src="https://www.hyuki.com/images/leaf.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00AIZ3NFQ/hyuki-22/"><img width="100%" src="https://www.hyuki.com/images/ehonpat.jpg" /></a>
+</div><div class="col-md-3 col-xs-6">
+<p><a href="
+https://www.hyuki.com/pub/kdp.html
+" class="btn btn-default btn-lg" role="button">more </a>
+</p>
+</div></div>
+
+<hr>
+
+<div class="row"><div class="col-md-6"><h2 class="section">
+å¿ã®å¥åº·ãå®ãããã«ã
+</h2>
+<p><a class="btn btn-default btn-lg" type="button" style="width: 100%" href="
+https://www.hyuki.com/kokoro/
+" >
+ãã­ã°ã©ãã®å¿ã®å¥åº·
+</a>
+</p>
+</div><div class="col-md-6"><h2 class="section">
+ä¿¡ä»°ã¨ãå¸æã¨ãæã
+</h2>
+<p><a class="btn btn-default btn-lg" type="button" style="width: 100%" href="
+https://www.hyuki.com/pray/
+" >
+ããªãã®ããã«ãç¥ãã¾ã
+</a>
+</p><p><a class="btn btn-default btn-lg" type="button" style="width: 100%" href="
+https://www.hyuki.com/bible/
+" >
+èæ¸ã®è¨è</a>
+</a>
+</p><p><a class="btn btn-default btn-lg" type="button" style="width: 100%" href="
+https://www.hyuki.com/church/
+" >
+æä¼ã¸è¡ããã</a>
+</a>
+</p><p><a class="btn btn-default btn-lg" type="button" style="width: 100%" href="
+https://www.hyuki.com/four/laws.html
+" >
+è±ããªäººçã®ããã®åã¤ã®æ³å</a>
+</a>
+</p>
+</div></div>
+
+<hr>
+
+<h2 class="section"><a name="contact" id="contact">SNS &amp; Contact</a></h2>
+<div class="row"><div class="col-md-4">
+<a title="ææ³ãéãWebãã©ã¼ã ã¸" href="https://www.hyuki.com/feed/" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;"><i class="fa-comment-o fa fa-1x fa-fw"></i> Feedback</a>
+</div><div class="col-md-4">
+<a title="çµåæµ©ã®Twitterã¸" href="https://twitter.com/#!/hyuki/" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;"><i class="fa-twitter fa fa-1x fa-fw"></i> Twitter</a>
+</div><div class="col-md-4">
+<a title="çµåæµ©ã®Facebookã¸" href="https://www.facebook.com/hyuki0000/" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;"><i class="fa-facebook fa fa-1x fa-fw"></i> Facebook</a>
+</div></div>
+<br>
+<div class="row"><div class="col-md-4">
+<a title="çµåæµ©ã®noteã¸" href="https://mm.hyuki.net/" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;"><img src="https://img.hyuki.net/20200317213042-e05f8523ed31852b.png" width="32"> note</a>
+</div><div class="col-md-4">
+<a title="çµåæµ©ã«èãã¦ã¿ãã" href="https://ask.hyuki.net" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;"><i class="fa-question-circle fa fa-1x fa-fw"></i> Ask</a>
+</div><div class="col-md-4">
+<a title="çµåæµ©ã®èæ¸ä¸è¦§" href="https://www.hyuki.com/pub/books.html" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;">çµåæµ©ã®æ¸ããæ¬</a>
+</div></div>
+<br>
+<div class="row"><div class="col-md-4">
+<a title="ãã­ãã£ã¼ã«" href="https://www.hyuki.com/info/profile.html" type="button" class="btn btn-default" style="width: 100%; padding: 1em; font-size: x-large;">ãã­ãã£ã¼ã«</a>
+</div><div class="col-md-4">
+</div><div class="col-md-4">
+</div></div>
+
+<hr>
+
+    </div><!-- col -->
+  </div><!-- row -->
+</div><!-- whole container -->
+<footer><div class="container">
+<p>  <a href="https://www.hyuki.com/">çµåæµ© / Hiroshi Yuki / The Essence of Programming / ãã­ã°ã©ãã³ã°ã®ã¨ãã»ã³ã¹</a><br>
+  <a href="https://www.hyuki.com/">https://www.hyuki.com/</a><br>
+</p><p>  <div class="fb-like" data-href="https://www.hyuki.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+&nbsp; <!-- facepile is deprecated. -->
+
+</p><p>  <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://www.hyuki.com/" data-text="çµåæµ© / Hiroshi Yuki / The Essence of Programming / ãã­ã°ã©ãã³ã°ã®ã¨ãã»ã³ã¹" data-via="hyuki">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</p>
+  <div class="row"><div class="col-md-3">
+<h2 class="section"><a name="i1" id="i1">Reading Material</a></h2>
+<ul><li>
+<a href="https://www.hyuki.com/mm/">çµåã¡ã«ãã¬</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/note/">çµåæµ©ã®noteï¼ãã¼ãï¼</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/mini/">çµåæµ©ããæåº«</a>
+</li>
+<li>
+<a href="http://bit.ly/hyuki-mine">çµåæµ©ã®mineï¼ãã¤ã³ï¼</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/newsletter/">çµåæµ©ãã¥ã¼ã¹ã¬ã¿ã¼</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/writing/">çµåæµ©ã®å¿ãã</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/dig/">æ¥è¨ãã¤ã¸ã§ã¹ã</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/story/">å¿ã®ç©èª</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/vtalk/">å¤¢ã®ä¸­ã®å¯¾è©±</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/trans/">ç¿»è¨³</a>
+</li></ul></div><div class="col-md-3">
+<h2 class="section"><a name="i2" id="i2">Blog &amp; Contact</a></h2>
+<ul><li>
+<a href="https://mm.hyuki.net/">note</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/d/">çµåæµ©ã®æ¥è¨</a>
+</li>
+<li>
+<a href="https://twitter.com/#!/hyuki/">Twitter (@hyuki)</a>
+</li>
+<li>
+<a href="https://www.facebook.com/hyuki0000/">Facebook (çµåæµ©)</a>
+</li>
+<li>
+<a href="https://ask.hyuki.net">çµåæµ©ã«èãã¦ã¿ããï¼è³ªåç®±ï¼</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/feed/">Feedback</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/info/eprofile.html">English</a>
+</li></ul></div><div class="col-md-3">
+<h2 class="section"><a name="i3" id="i3">Prayer &amp; Christianity</a></h2>
+<ul><li>
+<a href="https://www.hyuki.com/roba/">çæ§ã®è³ã¯ã­ãã®è³</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/pray/">ããªãã®ããã«ãç¥ãã¾ã</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/bible/">èæ¸ã®è¨è</a>
+</li>
+<li>
+<a href="https://www.hyuki.com/church/">æä¼ã»èæ¸</a>
+</li>
+<li>
+<a title="ã¤ã¨ã¹ã»ã­ãªã¹ããããªãã«ä¸ããæãã«ã¤ãã¦" href="https://www.hyuki.com/four/laws.html">è±ããªäººçã®ããã®åã¤ã®æ³å</a>
+</li></ul></div><div class="col-md-3">
+<h2 class="section"><a name="i4" id="i4">About</a></h2>
+<ul><li>
+<a href="https://www.hyuki.com/feed/">Feedback</a>
+</li></ul></div></div>
+
+  <hr>
+  <div class="footer_copyright">
+    &copy;  çµåæµ©<br>
+    <a href="https://www.hyuki.com/">https://www.hyuki.com/</a><br>
+    <a href="https://www.hyuki.com/feed/">ãã£ã¼ãããã¯ã¯ãã¡ãããã</a><br>
+    <br>
+  </div>
+  <p style="text-align: right;">
+  <a title="ã¤ã¨ã¹ã»ã­ãªã¹ããããªãã«ä¸ããæãã«ã¤ãã¦" href="https://www.hyuki.com/four/laws.html">è±ããªäººçã®ããã®åã¤ã®æ³å</a>
+</p>
+
+</div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+$('.TOOLTIP').tooltip({
+  placement: 'auto',
+});
+</script>
+
+<script>
+/* https://ben.balter.com/2014/03/13/pages-anchor-links/ */
+$(function() {
+  return $("h2.section").each(function(i, h2) {
+    let $h2 = $(h2);
+    return $h2.children("a").each(function(j, a) {
+      let $a = $(a);
+      let id = $a.attr('id');
+      if (id) {
+        return $h2.append($("<a />")
+          .addClass("PERMALINK")
+          .attr("href", "#" + id + '-permalink')
+          .attr("id", id + '-permalink')
+          .attr("name", id + '-permalink')
+          .html('<i class="fa fa-link"></i>'));
+      }
+    });
+  });
+});
+</script>
+<script>
+</script>
+
+</body>
+</html>
+
+
+ -->

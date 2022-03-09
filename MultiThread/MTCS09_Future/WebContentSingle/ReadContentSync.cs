@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Text;
 
 namespace CsharpBegin.MultiThread.MTCS09_Future.WebContentSingle
 {
@@ -13,6 +14,7 @@ namespace CsharpBegin.MultiThread.MTCS09_Future.WebContentSingle
             {
                 using (var wc = new WebClient())
                 {
+                    wc.Encoding = Encoding.UTF8;
                     this.byteAry = wc.DownloadData(url);
                     wc.Dispose();
                 }//using
