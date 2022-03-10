@@ -43,6 +43,15 @@
  *       wc.Encoding = Encoding.UTF8; 
  *       wc.Encoding = Encoding.GetEncoding("Shift-JIS");
  *     どちらも解決せず。
+ *     byte[]を charに変換しているため、
+ *     マルチバイト文字を正しく表示できないことが原因と思われる。
+ *     テキストのサンプルコードではマルチバイト用の配列を定義。
+ *     
+ *     string WebClient.DownloadStringTaskAsync(string url)
+ *     戻り値を stringにすると「hyuki.txt」のほうは解決。
+ *     「yahoo.txt」は Shift-JISの可能性あり。
+ *     動的にWebページの文字コードを取得し、
+ *     読込とファイル保存に反映させる仕組みが必要。
  *     
  */
 #region -> StreamWiter / StreamReader / FileStream
