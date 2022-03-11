@@ -89,7 +89,7 @@ namespace CsharpBegin.MultiThread.MTCS09_Future.FutureSample
             HostMT09 host = new HostMT09();
 
             //---- Request ----
-            AbsDataMT09 data1 = host.RequestData(10, 'A');
+            AbsDataMT09 data1 = host.RequestData(-1, 'A');
             AbsDataMT09 data2 = host.RequestData(20, 'B');
             AbsDataMT09 data3 = host.RequestData(30, 'C');
 
