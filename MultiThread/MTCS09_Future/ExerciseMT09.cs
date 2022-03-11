@@ -57,7 +57,7 @@ namespace CsharpBegin.MultiThread.MTCS09_Future
 
 ◆〔4〕9-4 
 ○ (1) Futureパターンでの例外処理 
-○ (2) => 別フォルダ 
+○ (2) => 別フォルダ 〔FutureException〕
 */ 
 /*==== Appendix ==== 
  *@date: 2022-03-07 (月) 
