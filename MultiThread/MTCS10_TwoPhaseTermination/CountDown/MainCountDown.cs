@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS10_TwoPhaseTermination / CountDown / MainCountDown.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第10章 TwoPhaseTermination / 補講２ CountDownLatch / p342 / List 10-4, 10-5
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第10章 TwoPhaseTermination / 補講２ CountDownLatch / p342 / List 10-4, 10-5
  *         graceful termination (= 優雅な終了)のために、
  *         仕事の総量をあらかじめ指定し、指定回数に達したら終了するプログラム
  *         
