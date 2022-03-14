@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS10_TwoPhaseTermination / CyclicBarrier / MainCyclicBarrier.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content MT 第10章 TwoPhaseTermination / 補講２ CyclicBarrier / p347 / List 10-6, 10-7, 
  *
  *@subject [Java] java.util.concurrent.CyclicBarrierクラス
