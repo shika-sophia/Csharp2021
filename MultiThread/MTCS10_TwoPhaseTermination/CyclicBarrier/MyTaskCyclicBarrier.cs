@@ -9,13 +9,12 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.CyclicBarrier
 {
     class MyTaskCyclicBarrier
     {
-        private const int phaseNum = 5;
         private readonly Random random = new Random(314159);
-        private int context;
 
-        private void PhaseAction(int phase)
+        public void PhaseAction(int context, int phase)
         {
-            String name = $"Task-{Task.CurrentId}";
+            string name = $"Task-{Task.CurrentId}";
+            
             Console.WriteLine(
                 $"{name} MyTask BEGIN: context = {context}, phase = {phase}");
 
@@ -25,9 +24,11 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.CyclicBarrier
             }
             catch (ThreadInterruptedException) { }
 
-        }
+            Console.WriteLine(
+                $"{name} MyTask END  : context = {context}, phase = {phase}");
+        }//PhaseAction()
 
-        private void BarrierAction()
+        public void BarrierAction()
         {
             Console.WriteLine("-- BarrierAction --");
         }

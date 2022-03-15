@@ -36,15 +36,83 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.CyclicBarrier
 { 
     class MainCyclicBarrier 
     {
-        private const int thNum = 3;  //ThreadPool数
+        private const int thNum = 3;   //ThreadPool数
+        private const int phaseNum = 5;
 
         static void Main(string[] args) 
         //public void Main(string[] args) 
         {
             Console.WriteLine("Main BEGIN");
-            
+            var myTask = new MyTaskCyclicBarrier();            
 
+            Task[] taskAry = new Task[thNum];            
+            try
+            {
+                for(int phase = 0; phase < phaseNum; phase++)
+                {
+                    taskAry[0] = Task.Run(
+                        () => myTask.PhaseAction(0, phase));
+                    taskAry[1] = Task.Run(
+                        () => myTask.PhaseAction(1, phase));
+                    taskAry[2] = Task.Run(
+                        () => myTask.PhaseAction(2, phase));
+                    Task.WaitAll(taskAry);
+                    myTask.BarrierAction();
+                }//for
+            }
+            finally
+            {
+                foreach(var task in taskAry)
+                {
+                    task.Dispose();
+                }
+                Console.WriteLine("Main END");
+            }
         }//Main() 
  
     }//class 
-} 
+}
+
+/*
+Main BEGIN
+Task-1 MyTask BEGIN: context = 0, phase = 0
+Task-2 MyTask BEGIN: context = 2, phase = 0
+Task-3 MyTask BEGIN: context = 1, phase = 0
+Task-3 MyTask END  : context = 1, phase = 0
+Task-1 MyTask END  : context = 0, phase = 0
+Task-2 MyTask END  : context = 2, phase = 0
+-- BarrierAction --
+Task-4 MyTask BEGIN: context = 0, phase = 1
+Task-6 MyTask BEGIN: context = 1, phase = 1
+Task-5 MyTask BEGIN: context = 2, phase = 1
+Task-5 MyTask END  : context = 2, phase = 1
+Task-6 MyTask END  : context = 1, phase = 1
+Task-4 MyTask END  : context = 0, phase = 1
+-- BarrierAction --
+Task-7 MyTask BEGIN: context = 0, phase = 2
+Task-9 MyTask BEGIN: context = 1, phase = 2
+Task-8 MyTask BEGIN: context = 2, phase = 2
+Task-9 MyTask END  : context = 1, phase = 2
+Task-8 MyTask END  : context = 2, phase = 2
+Task-7 MyTask END  : context = 0, phase = 2
+-- BarrierAction --
+Task-10 MyTask BEGIN: context = 0, phase = 3
+Task-11 MyTask BEGIN: context = 1, phase = 3
+Task-12 MyTask BEGIN: context = 2, phase = 3
+Task-10 MyTask END  : context = 0, phase = 3
+Task-11 MyTask END  : context = 1, phase = 3
+Task-12 MyTask END  : context = 2, phase = 3
+-- BarrierAction --
+Task-13 MyTask BEGIN: context = 0, phase = 4
+Task-14 MyTask BEGIN: context = 1, phase = 4
+Task-15 MyTask BEGIN: context = 2, phase = 4
+Task-14 MyTask END  : context = 1, phase = 4
+Task-15 MyTask END  : context = 2, phase = 4
+Task-13 MyTask END  : context = 0, phase = 4
+-- BarrierAction --
+Main END
+
+【NOTE 考察】
+サンプルと似た結果を作ることができたが、
+Taskは本来 3つで済むのに、各 phaseごとに新しいTaskを定義しているので要修正。
+ */
