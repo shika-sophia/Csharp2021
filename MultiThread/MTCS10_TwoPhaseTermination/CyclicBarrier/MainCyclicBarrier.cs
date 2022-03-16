@@ -39,8 +39,8 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.CyclicBarrier
         private const int thNum = 3;   //ThreadPool数
         private const int phaseNum = 5;//Phase数
 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Console.WriteLine("Main BEGIN");
             var myTask = new MyTaskCyclicBarrier();            
