@@ -29,8 +29,8 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.CyclicBarrier
 { 
     class Main2CyclicBarrierMod 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Console.WriteLine("Main BEGIN");
             var myTask = new MyTask2CyclicBarrierMod();
