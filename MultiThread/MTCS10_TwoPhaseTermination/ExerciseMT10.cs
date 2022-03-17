@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS10_TwoPhaseTermination / ExerciseMT10.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第10章 TwoPhaseTermination / p
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第10章 TwoPhaseTermination / p352, p575
  *         練習問題 10-1, 10-2, 10-3, 10-4, 10-5, 10-6, 10-7, 10-8, 
  * 
  *@author shika 
@@ -23,8 +23,8 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination
 { 
     class ExerciseMT10 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         { 
             new CsharpBegin.Exercise.ExerciseEditor(""); 
         }//Main()  
