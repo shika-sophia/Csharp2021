@@ -56,8 +56,8 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.TwoPhaseTermination
 { 
     class MainTwoPhaseTermination 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Thread.CurrentThread.Name = "MainThread";
             
