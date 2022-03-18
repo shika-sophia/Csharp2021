@@ -43,10 +43,10 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination
     どのThreadが呼び出しても、このインスタンスに Interrupt()が掛かる
 
 ◆〔2〕10-2 
-× (1) Interrupt状態の変化 => [C#]適用不可
+× (1) Interrupt状態の変化 => [C#] 適用不可
 
 ◆〔3〕10-3 
-○ (1) ファイル保存 => 別フォルダ 
+○ (1) ファイル保存 => modified〔TwoPhaseTermination.CountupThread〕 
 
 ◆〔4〕10-4 
 ○ (1) TempleteMethod => 別フォルダ 
