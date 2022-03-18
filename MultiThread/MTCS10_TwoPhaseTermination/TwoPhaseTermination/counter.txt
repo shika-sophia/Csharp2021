@@ -1,0 +1,1 @@
+DoShutdown(): counter = 10

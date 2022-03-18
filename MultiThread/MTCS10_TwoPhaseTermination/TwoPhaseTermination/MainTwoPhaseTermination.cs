@@ -56,8 +56,8 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.TwoPhaseTermination
 { 
     class MainTwoPhaseTermination 
     { 
-        //static void Main(string[] args) 
-        public void Main(string[] args) 
+        static void Main(string[] args) 
+        //public void Main(string[] args) 
         {
             Thread.CurrentThread.Name = "MainThread";
             
@@ -70,7 +70,7 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.TwoPhaseTermination
                 th.Start();
 
                 Thread.Sleep(5000);
-
+                
                 Console.WriteLine("Main: ShutdownRequest()");
                 countTh.ShutdownRequest(new Thread[] { th });
 
@@ -88,6 +88,25 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination.TwoPhaseTermination
 }
 
 /*
+//---- DoShutdownWrite() ----
+Main: BEGIN
+DoWork(): counter = 1
+DoWork(): counter = 2
+DoWork(): counter = 3
+DoWork(): counter = 4
+DoWork(): counter = 5
+DoWork(): counter = 6
+DoWork(): counter = 7
+DoWork(): counter = 8
+DoWork(): counter = 9
+DoWork(): counter = 10
+Main: ShutdownRequest()
+Main: Join()
+CountThread is interrupted.
+DoShutdown(): counter = 10
+WroteFile to [counter.txt]
+Main: END
+
 //---- CounterThread.Interrupt() ----
 Main: BEGIN
 DoWork(): counter = 1
