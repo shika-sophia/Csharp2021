@@ -49,7 +49,7 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination
 ○ (1) ファイル保存 => modified〔TwoPhaseTermination.CountupThread〕 
 
 ◆〔4〕10-4 
-○ (1) TempleteMethod => 別フォルダ 
+○ (1) TempleteMethod =>〔GracefulTermination〕
 
 ◆〔5〕10-5 
 ○ (1) GUIへの応用 => 後日 
