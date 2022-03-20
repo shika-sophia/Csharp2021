@@ -61,7 +61,7 @@ namespace CsharpBegin.MultiThread.MTCS10_TwoPhaseTermination
 ○ (4) 常に新しい値をメモリからロードして、値の変更に敏感に反応するため 
 
 ◆〔7〕10-7 
-○ (1) ハノイの塔 => 別フォルダ 
+○ (1) ハノイの塔 => 別フォルダ〔HanoiTower〕
 
 ◆〔8〕10-8 
 ○ (1) パズル 
