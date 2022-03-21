@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS11_ThreadSpecificStorage / LogFile / MainLogFile.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第11章 ThreadSpecificStorage / p364 / List 11-1, 11-2
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第11章 ThreadSpecificStorage / p364 / List 11-1, 11-2
  *         ～ Threadごとのコインロッカー ～
  *         [英] specific: 固有の, 特定の
  *         [英] storage:  記憶領域, 貯蔵庫, 記憶装置
@@ -44,8 +44,8 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage.LogFileStorage
 { 
     class MainLogFile 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             Console.WriteLine("Main BEGIN");
             const int LIMIT = 10;
