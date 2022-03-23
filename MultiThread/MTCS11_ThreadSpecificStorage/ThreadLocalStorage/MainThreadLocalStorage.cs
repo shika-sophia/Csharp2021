@@ -3,14 +3,62 @@
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content 第11章 Thread Specific Storage / サンプル２ / p369 / List 11-3 ～　11-6
+ *         || Thread Specific Storage ||
+ *           ・Thread間の排他制御が必要ない(= ThreadLocalクラスに内部化)
+ *           ・スループット(= 処理速度)よりも、再利用性のためのパターン
+ *           ・再利用性: プログラム構造を修正する必要はない。
+ *                      排他制御が内部化されているため、データ競合の誤りを防ぐ
+ *           ・context(=文脈, データの状態)利用
+ *             Thread分類に「GetWriter()を呼び出す現在Thread」という文脈(= データの状態を利用。
+ *             処理内容が明確に記述されていないため、
+ *             引数を渡す必要がないなど、コードをシンプルにできる反面、
+ *             可読性を落としバグ究明を困難にする可能性を含む。
+ *                    
+ *         ＊Client 依頼者 = ClientThreadMT11
+ *           ・ThreadSpecific-ObjectProxyに処理を依頼
+ *           ・１つの ThreadSpecific-ObjectProxyを複数のClientで利用。
+ *           
+ *         ＊ThreadSpecific-ObjectProxy スレッド固有オブジェクトの代理人
+ *           = LogLocalStorage
+ *           ・Clientからの依頼を処理
+ *           ・Collectionを利用して、Clientに対応するオブジェクトを取得
+ *           ・実際の処理は取得したオブジェクトに委譲。
+ *           
+ *         ＊ThreadSpecific-Collection スレッド固有オブジェクトの集まり
+ *           = ThreadLocalクラス
+ *           ・現在Threadに対応した ThreadSpecific-Objectを保持。
+ *           ・GetWriter()を呼び出した 現在Threadに対応した ThreadSpecific-Objectを取得。
+ *           
+ *         ＊ThreadSpecific-Object    スレッド固有オブジェクト
+ *           = LogWriterSpecific
+ *           ・Collectionで管理
+ *           ・FileStream, StreamWriterで Thread固有の ログファイルに書き込み。
  *
  *@subject ◆サンプル２ Threadごとに別のログファイルに保存するプログラム
  *         サンプル１: LogWriterクラスによる Single-Thread処理
  *         サンプル２: static ThreadLocalクラスに
  *                    Threadごとの LogWriterを保持した Multi-Thread処理
  *
- *@subject p373-
+ *@subject ◆ThreadLocal<LogWriterSpecific>
+ *         Thread固有の LogWriterSpecificインスタンスを保持。
+ *         GetWriter()によって、呼び出した現在Threadを自動的に判別し、
+ *         そのThreadの LogWriterSpecificインスタンスを取得。
  *         
+ *         Threadごとに LogWriterAlice, LogWriterBobby..などを作る必要がない。
+ *         引数に keyとなる Thread.Nameなどを渡す必要もない。
+ *         Thread振り分けの条件式は ThreadLocalクラスに内部化されており、記述不要。
+ *         
+ *@subject ◆Thread固有情報の保管場所
+ *         ＊Thread-stack:    Thread内には局所変数を保持するスタック領域が存在する
+ *                            メソッド呼出時に利用され、メソッド処理終了時に破棄される。
+ *         ＊Thread-internal: Thread内のフィールドに サブクラスのThreadを保持
+ *                            Thread固有の処理を保持でき、コードを見れば処理内容が判るので可読性が高い。
+ *         ＊Thread-external: Thread固有の情報を外部クラスで保持。
+ *                            Threadを表す既存クラス(= ClientThread)を修正する必要がない。
+ *                            他クラスにThread固有の情報が分離しているので、可動性に劣る。
+ *                            ThreadLocalクラスを利用することで、
+ *                            Thread固有の情報を他Threadから操作されることがない。
+ *                            (= 排他制御は必要ない)                            
  *
  *@subject [Java] java.lang.ThreadLocal<T>クラス
  *         void thLocal.set( T )
@@ -26,7 +74,7 @@
  *         bool     thLocal.IsValueCreated オブジェクトが初期化されているか
  *         void     thLocal.Dispose() このインスタンスで保持している全てのリソースを解放
  */
-#region -> 〔Class Chart〕ThreadLocalStorage
+#region -> 〔Class Chart〕 ThreadLocalStorage
 /*
  *@class MainThreadLocalStorage
  *       new ClientThreadMT11(string thName)
