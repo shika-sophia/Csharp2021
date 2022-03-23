@@ -19,16 +19,23 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage.ThreadLocalStorag
             }
 
             return logWriter;
-        }
+        }//GetWriter()
 
         public static void WriteLog(string content)
         {
             GetWriter().WriteLog(content);
-        }
+        }//WriteLog()
 
         public static void WriteFinish()
         {
-            GetWriter().WriteFinish();
-        }
+            try
+            {
+                GetWriter().WriteFinish();
+            }
+            finally
+            {
+                thLocal.Dispose();
+            }
+        }//WriteFinish()
     }//class
 }
