@@ -13,6 +13,10 @@
  *             処理内容が明確に記述されていないため、
  *             引数を渡す必要がないなど、コードをシンプルにできる反面、
  *             可読性を落としバグ究明を困難にする可能性を含む。
+ *           ・|| WorkerThread ||との併用不可
+ *             WorkerThread, ThreadPoolは 同じThreadで何回も処理させる仕組み。
+ *             Threadごとのオブジェクトで処理をする || ThreadSpecificStorage ||を
+ *             利用するには、確実に別のThreadで実行されることを保証しないと利用できない。
  *                    
  *         ＊Client 依頼者 = ClientThreadMT11
  *           ・ThreadSpecific-ObjectProxyに処理を依頼
@@ -33,7 +37,7 @@
  *           = LogWriterSpecific
  *           ・Collectionで管理
  *           ・FileStream, StreamWriterで Thread固有の ログファイルに書き込み。
- *
+ *           
  *@subject ◆サンプル２ Threadごとに別のログファイルに保存するプログラム
  *         サンプル１: LogWriterクラスによる Single-Thread処理
  *         サンプル２: static ThreadLocalクラスに
@@ -126,8 +130,8 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage.ThreadLocalStorag
 { 
     class MainThreadLocalStorage 
     {
-        static void Main(string[] args)
-        //public void Main(string[] args) 
+        //static void Main(string[] args)
+        public void Main(string[] args) 
         {
             var clientAry = new ClientThreadMT11[]
             {
