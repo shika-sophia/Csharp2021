@@ -37,5 +37,10 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage.ThreadLocalStorag
                 thLocal.Dispose();
             }
         }//WriteFinish()
+
+        public static void Close()
+        {
+            thLocal.Dispose();
+        }
     }//class
 }

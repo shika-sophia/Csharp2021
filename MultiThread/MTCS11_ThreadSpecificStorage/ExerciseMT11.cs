@@ -50,7 +50,7 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage
 
 ◆〔3〕11-3 
 ○ (1) ClientThread内で WriteFinish()を自動化 
-○ (2) 別フォルダ => 
+○ (2) 別フォルダ => 〔./AutoTermination〕
 
 ◆〔4〕11-4 
 ○ (1) ClientThreadのコンストラクタは MainThread呼出なので、
