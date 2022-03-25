@@ -40,8 +40,8 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage.AutoTermination
 { 
     class MainAutoTermination 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var clientAry = new ClientThreadBuildContent[]
             {
