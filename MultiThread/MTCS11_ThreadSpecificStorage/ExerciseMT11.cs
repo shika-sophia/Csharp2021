@@ -71,8 +71,11 @@ namespace CsharpBegin.MultiThread.MTCS11_ThreadSpecificStorage
 ○ (3) 仕事が完了したら他の仕事をする仕組み 
 ○ (4) ThreadSpecificStorageはThreadごとの記憶領域なので 
 ○ (5) 3つのThreadから呼ばれて仕事をしたら close()する 
-× (6) 2回目以降は...? 
-  => ○: 後述 
+× (6) 
+  => 仕事が10個でも、WorkerThreadが ThreadPoolに 3つなら
+     3つのファイルしか作られない。
+  => 別フォルダ〔WithThreadPool〕
+
 */
 /*==== Appendix ==== 
  *@date: 2022-03-24 (木) 
