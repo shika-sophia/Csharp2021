@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / MultiThread / MTCS12_ActiveObject / ActiveObjectSample / MainActiveObjectSample.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
- *@content 第12章 Active Object / サンプル１ / p392 / List 12-1 ～ 12-15
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
+ *@content MT 第12章 Active Object / サンプル１ / p392 / List 12-1 ～ 12-15
  *
  *
  *@class MainActiveObjectSample
