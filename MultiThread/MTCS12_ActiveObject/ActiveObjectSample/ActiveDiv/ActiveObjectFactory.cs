@@ -12,7 +12,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
         public static AbsActiveObjectMT12 CreateActiveObject()
         {
             var server = new ServerMT12();
-            var queue = new ActiveQueue();
+            var queue = new ActiveQueueMT12();
             var schedule = new SchduleThreadMT12(queue);
             var thSchesule = new Thread(schedule.Run);
             var proxy = new ProxyMT12(server, schedule);
