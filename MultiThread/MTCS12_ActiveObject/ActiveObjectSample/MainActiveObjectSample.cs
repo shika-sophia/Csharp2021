@@ -6,6 +6,16 @@
  *
  *
  *@class MainActiveObjectSample
+ *@class ActiveObjectFactory
+ *@class AbsActiveObjectMT12
+ *         └ ProxyMT12 : AbsActiveObjectMT12
+ *         └ ServerMT12 : AbsActiveObjectMT12
+ *@class AbsMethodRequest
+ *         └ MakeStringRequest : AbsMethodRequest
+ *         └ DisplayStringRequest : AbsMethodRequest
+ *@class AbsResultMT12<T>
+ *         └ FutureResult<T> : AbsResultMT12<T>
+ *         └ RealResult<T> : AbsResultMT12<T>
  * 
  *@author shika 
  *@date 2022-03-27 
