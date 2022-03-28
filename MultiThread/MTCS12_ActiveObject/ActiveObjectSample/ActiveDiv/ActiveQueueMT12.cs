@@ -11,14 +11,14 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
     class ActiveQueueMT12
     {
         private const int MAX_REQUEST = 100;
-        private readonly ConcurrentQueue<AbsMethodRequest> reqQueue;
+        private readonly ConcurrentQueue<AbsMethodRequest<object>> reqQueue;
 
         public ActiveQueueMT12()
         {
-            this.reqQueue = new ConcurrentQueue<AbsMethodRequest>();
+            this.reqQueue = new ConcurrentQueue<AbsMethodRequest<object>>();
         }
 
-        public void PutRequest(AbsMethodRequest req)
+        public void PutRequest(AbsMethodRequest<object> req)
         {
             reCondition:
             while(reqQueue.Count >= MAX_REQUEST)
@@ -36,7 +36,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             Thread.Yield();
         }//PutRequest()
 
-        public AbsMethodRequest TakeRequest()
+        public AbsMethodRequest<object> TakeRequest()
         {
             reCondition:
             while(reqQueue.Count <= 0)
@@ -44,7 +44,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
                 Thread.SpinWait(Timeout.Infinite);
             }//while
 
-            AbsMethodRequest req;
+            AbsMethodRequest<object> req;
             if(!reqQueue.TryDequeue(out req)) { goto reCondition; }
 
             Thread.Yield();
