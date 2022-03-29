@@ -6,7 +6,12 @@
  *
  *
  *@class MainActiveObjectSample
- *@class ActiveObjectFactory
+ *         //ActiveObject生成。
+ *         //MakerThread, DisplayThreadの起動
+ *@class MakerThreadMT12        //new MakeStringRequest ->
+ *@class DisplayThreadMT12      //new DisplayStringRequest ->
+ *
+ *@class ActiveObjectFactory    //各インスタンスを生成
  *@class AbsActiveObjectMT12
  *         └ ProxyMT12 : AbsActiveObjectMT12
  *         └ ServerMT12 : AbsActiveObjectMT12
