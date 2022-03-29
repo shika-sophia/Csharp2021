@@ -21,7 +21,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
 
         public override void Execute()
         {
-            AbsResultMT12<string> result = server.MakeString();
+            AbsResultMT12<string> result = server.MakeString(count, headChar);
             future.SetResult(result);
         }//Execute()
     }//class

@@ -39,7 +39,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample
                 ActiveObjectFactory.CreateActiveObject();
 
             var maker1 = new MakerThreadMT12("Alice", activeObj);
-            var maker2 = new MakerThreadMT12("Alice", activeObj);
+            var maker2 = new MakerThreadMT12("Bobby", activeObj);
             var display = new DisplayThreadMT12("Chris", activeObj);
 
             var thMaker1 = new Thread(maker1.Run);

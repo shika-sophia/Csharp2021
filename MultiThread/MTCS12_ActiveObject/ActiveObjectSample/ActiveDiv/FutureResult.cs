@@ -12,7 +12,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
         private AbsResultMT12<T> result;
         private bool ready = false;
 
-        public void SetrResult(AbsResultMT12<T> result)
+        public void SetResult(AbsResultMT12<T> result)
         {
             lock (this)
             {

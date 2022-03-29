@@ -15,14 +15,14 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             this.queue = queue;
         }
 
-        public void Invoke(AbsMethodRequest req)
+        public void Invoke(AbsMethodRequest<string> req)
         {
             queue.PutRequest(req);
         }//Invoke()
 
         public void Run()
         {
-            AbsMethodRequest req = queue.TakeRequest();
+            AbsMethodRequest<string> req = queue.TakeRequest();
             req.Execute();
         }//Run()
     }//class

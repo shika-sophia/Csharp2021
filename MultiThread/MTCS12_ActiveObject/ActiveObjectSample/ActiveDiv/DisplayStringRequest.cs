@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveDiv
 {
-    class DisplayStringRequest : AbsMethodRequest<object>
+    class DisplayStringRequest : AbsMethodRequest<string>
     {
         private readonly string content;
 

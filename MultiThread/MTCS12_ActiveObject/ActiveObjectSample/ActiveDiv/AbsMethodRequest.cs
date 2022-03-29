@@ -11,7 +11,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
         protected readonly ServerMT12 server;
         protected readonly FutureResult<T> future;
 
-        public AbsMethodRequest(Server server, FutureResult<T> future)
+        public AbsMethodRequest(ServerMT12 server, FutureResult<T> future)
         {
             this.server = server;
             this.future = future;
