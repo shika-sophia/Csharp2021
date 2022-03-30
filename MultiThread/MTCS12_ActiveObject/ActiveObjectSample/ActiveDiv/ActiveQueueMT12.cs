@@ -25,7 +25,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             {
                 try
                 {
-                    Thread.Sleep(100);
+                    Thread.SpinWait(Timeout.Infinite);
                 }
                 catch (ThreadInterruptedException) { }
             }//while
@@ -41,7 +41,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             reCondition:
             while(reqQueue.Count <= 0)
             {
-                Thread.Sleep(100);
+                Thread.SpinWait(Timeout.Infinite);
             }//while
 
             AbsMethodRequest<string> req;

@@ -21,6 +21,6 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             thSchedule.Start();
 
             return proxy;
-        }
+        }//CreateActiveObject()
     }//class
 }

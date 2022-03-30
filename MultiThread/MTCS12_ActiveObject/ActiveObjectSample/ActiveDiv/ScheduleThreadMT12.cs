@@ -22,8 +22,11 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
 
         public void Run()
         {
-            AbsMethodRequest<string> req = queue.TakeRequest();
-            req.Execute();
+            while (true)
+            {
+                AbsMethodRequest<string> req = queue.TakeRequest();
+                req.Execute();
+            }//while
         }//Run()
     }//class
 }

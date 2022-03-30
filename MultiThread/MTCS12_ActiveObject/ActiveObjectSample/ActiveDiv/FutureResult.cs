@@ -35,8 +35,10 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             }//while
 
             if(!ready) { goto reCondition; }
-
-            return result.GetResultValue();
+            lock (this)
+            {
+                return result.GetResultValue();
+            }//lock
         }//GetResultValue()
     }//class
 }
