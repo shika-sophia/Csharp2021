@@ -28,7 +28,8 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample
             {
                 for(int i = 0; true; i++)
                 {
-                    AbsResultMT12<string> result = activeObj.MakeString(i, headChar);
+                    AbsResultMT12<string> result = 
+                        activeObj.MakeString(i, headChar);
                     Thread.Sleep(10);
                     string value = result.GetResultValue();
                     Console.WriteLine($"{thName}: value = {value}");
