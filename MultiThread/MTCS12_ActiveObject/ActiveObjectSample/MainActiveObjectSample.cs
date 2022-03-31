@@ -4,6 +4,13 @@
  *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content MT 第12章 Active Object / サンプル１ / p392 / List 12-1 ～ 12-15
  *@subject || Active Object ||
+ *           ・多数のオブジェクトが強調して、１つの ActiveObjectを構成。
+ *           ・非同期的にメソッド実行 = 非同期メッセージの送信
+ *           ・メソッド呼出がオブジェクトになっているので分散処理が可能
+ *               => ネットワーク経由で呼出/実行の分離が可能
+ *           ・自由な実行スケジュール調整が可能。依頼順と実行順の調整など
+ *           ・一方向の呼出だけでなく、複数のActiveObject間で双方向通信にすることも可
+ *
  *         ＊Client 依頼者 = MakerThread, DisplayThread
  *         ・ActiveObjectのメソッドを呼出、処理を依頼。
  *         ・|| Future || 
@@ -14,11 +21,48 @@
  *         ・Clientに提供するメソッド群を定義。
  *         ・Proxy, Serverを同一視するための抽象クラス
  *         
- *         ＊Proxy 代理人
+ *         ＊Proxy 代理人 〔concurrent = 複数Threadから呼ばれてもよい〕
  *         ・Clientによるメソッドの呼出を MethodRequestオブジェクトに変換
  *         ・Clientは、変換された MethodRequestを Scheduleに渡す
  *         
  *         ＊Schedule 
+ *         ・|| WorkerThread || 
+ *             ScheduleThreadは実行を行うだけのThread
+ *         ・ClientThread:   Proxyから渡された MethodRequestを ActiveQueueに渡す。
+ *         ・ScheduleThread: ActiveQueueから、MethodRequestを取り出して実行。
+ *         ・実行のスケジュール処理を実装するならここに記述。
+ *         
+ *         ＊MethodRequest
+ *         ・Clientからのメソッド呼出を オブジェクト化したもの
+ *         ・仮の戻り値を書き込む Future, リクエストを実行する Servantをクラス内に集約
+ *         
+ *         ＊ConcreteMethodRequest 具体的なリクエスト = MakeStringRequest, DisplayStringRequest
+ *         ・MethodRequestを具体的なメソッドに対応させたオブジェクト
+ *         ・各クラスのフィールドは、対応するメソッドの引数と同じ
+ *         
+ *         ＊Servant 召使い = Server 給仕 
+ *         〔sequential = 単一Threadのみ実行可〕=> ScheduleThreadからしか呼ばれない
+ *         ・実際にリクエストを処理する役
+ *         ・ScheduleThreadによって、AciveQueueから、MethodRequestを取り出して実行。
+ *         ・AbsActiveObjectによって Proxy, Servantを同一視
+ *         ・Proxyが MethodRequestにオブジェクト化したものを、Servantが処理。
+ *         
+ *         ＊ActiveQueue 活性化キュー
+ *         ・MethodRequestを保持するクラス
+ *         ・|| Producer-Consumer || invoke(メソッド呼出)と execute(メソッド実行)の分離
+ *             ClientThread:   PutRequest() -- invoke
+ *             ScheduleThread: TakeRequest()-- execute
+ *         
+ *         ＊VirtualResult 仮想的な結果 = AbsReaultMT12<T>
+ *         ・|| Future ||
+ *         ・VirturalResult, RealResultで Futureパターン
+ *         ・AbsReaultMT12で両者を同一視
+ *         
+ *         ＊RealReasult = RealReault<T>
+ *         
+ *         ＊Future 先物 = FutureReault<T>
+ *         ・|| GuardedSuspension ||
+ *           RealResultがまだ生成されてない場合は条件式によって待機
  */
 #region -> Class Summary
 /*
@@ -36,9 +80,14 @@
  *        //Run() {queue.TakeRequest
  *                 Execute() }
  *@class ActiveQueueMT12      //AbsRequestを queueに格納
- *@class AbsActiveObjectMT12  
- *         └ ProxyMT12 : AbsActiveObjectMT12
+ *@class AbsActiveObjectMT12  //各Threadが利用するメソッド群APIを定義
+ *         └ ProxyMT12 : AbsActiveObjectMT12  
+ *            //メソッド呼出を MethodRequestオブジェクト化
+ *            //Schedule.Invoke() に渡し、ActiveQueueに格納
+ *            //仮戻り値を生成して、制御を戻す
  *         └ ServerMT12 : AbsActiveObjectMT12
+ *            //AcitveQueueから MethodRequestを取得し実行
+ *           
  *@class AbsMethodRequest
  *         └ MakeStringRequest : AbsMethodRequest
  *         └ DisplayStringRequest : AbsMethodRequest
