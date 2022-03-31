@@ -82,11 +82,7 @@
  *@class ActiveQueueMT12      //AbsRequestを queueに格納
  *@class AbsActiveObjectMT12  //各Threadが利用するメソッド群APIを定義
  *         └ ProxyMT12 : AbsActiveObjectMT12  
- *            //メソッド呼出を MethodRequestオブジェクト化
- *            //Schedule.Invoke() に渡し、ActiveQueueに格納
- *            //仮戻り値を生成して、制御を戻す
  *         └ ServerMT12 : AbsActiveObjectMT12
- *            //AcitveQueueから MethodRequestを取得し実行
  *           
  *@class AbsMethodRequest
  *         └ MakeStringRequest : AbsMethodRequest
@@ -98,7 +94,7 @@
 #endregion
 /*
  *@author shika 
- *@date 2022-03-27 
+ *@date 2022-03-27 ～　03-31
 */
 using CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveDiv;
 using System; 
