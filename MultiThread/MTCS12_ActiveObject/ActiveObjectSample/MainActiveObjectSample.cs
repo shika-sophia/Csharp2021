@@ -108,8 +108,8 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample
 { 
     class MainActiveObjectSample 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             AbsActiveObjectMT12 activeObj = 
                 ActiveObjectFactory.CreateActiveObject();
