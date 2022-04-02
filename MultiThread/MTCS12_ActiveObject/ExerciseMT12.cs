@@ -45,7 +45,7 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject
 
 ◆〔2〕12-2 
 ○ (1) メソッドの追加 
-○ (2) => 別フォルダ〔〕 
+○ (2) => 別フォルダ〔AppendMethod〕 
 
 ◆〔3〕12-3 
 ○ (1) GUIへの応用 
