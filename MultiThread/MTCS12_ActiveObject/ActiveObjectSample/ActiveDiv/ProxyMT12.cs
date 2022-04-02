@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsharpBegin.MultiThread.MTCS12_ActiveObject.AppendMethod;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,5 +31,14 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
         {
             schedule.Invoke(new DisplayStringRequest(server, content));
         }//DisplayString()
+
+        public override AbsResultMT12<string> AddString(string x, string y)
+        {
+            var future = new FutureResult<string>();
+            schedule.Invoke(
+                new AddStringRequest(server, future, x, y));
+
+            return future;
+        }//MakeString()
     }//class
 }

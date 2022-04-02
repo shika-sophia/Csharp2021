@@ -10,5 +10,6 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
     {
         public abstract AbsResultMT12<string> MakeString(int count, char headChar);
         public abstract void DisplayString(string content);
+        public abstract AbsResultMT12<string> AddString(string x, string y);
     }//class
 }

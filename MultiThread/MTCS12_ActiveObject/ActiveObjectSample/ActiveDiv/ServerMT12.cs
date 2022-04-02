@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveDiv
 {
     class ServerMT12 : AbsActiveObjectMT12
-    {
+    {       
         public override AbsResultMT12<string> MakeString(int count, char headChar)
         {
             char[] buffer = new char[count];
@@ -37,5 +38,14 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.ActiveObjectSample.ActiveD
             }
             catch (ThreadInterruptedException) { }
         }//DisplayString()
+
+        public override AbsResultMT12<string> AddString(string x, string y)
+        {
+            BigInteger bigX = BigInteger.Parse(x);
+            BigInteger bigY = BigInteger.Parse(y);
+            BigInteger bigZ = bigX + bigY;
+
+            return new RealResult<string>(bigZ.ToString());
+        }//AddString()
     }//class
 }
