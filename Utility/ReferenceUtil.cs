@@ -32,6 +32,8 @@ namespace CsharpBegin.Utility
                 "山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020",
                 ["Cryptography"] = 
                 "結城 浩 『暗号技術入門 第３版』SB Creative, 2015",
+                ["GofDesignYH"] =
+                "結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004",
             };
         
         public List<string> SeekBook(string dir)
