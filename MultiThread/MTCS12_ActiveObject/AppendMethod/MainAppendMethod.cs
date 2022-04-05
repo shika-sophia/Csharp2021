@@ -49,8 +49,8 @@ namespace CsharpBegin.MultiThread.MTCS12_ActiveObject.AppendMethod
 { 
     class MainAppendMethod 
     { 
-        static void Main(string[] args) 
-        //public void Main(string[] args) 
+        //static void Main(string[] args) 
+        public void Main(string[] args) 
         {
             var activeObject = ActiveObjectFactory.CreateActiveObject();
             var add = new AddThreadMT12("Diana", activeObject);
