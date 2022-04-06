@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / GofDesignYH / GY01_Iterator / EnumeratorSample / MainEnumeratorSample.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
- *@content 第１章 Iterator / 練習問題 1-1 / p14, 382
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference JG 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
+ *@content JG 第１章 Iterator / 練習問題 1-1 / p14, 382
  *         内部配列だと要素の追加ができないので、Listに修正する。
  *         || Iterator || は[Java][C#]の言語仕様でインターフェイス, クラスとして実装化している。
  *         
