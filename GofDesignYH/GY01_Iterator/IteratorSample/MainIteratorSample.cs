@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / GofDesignYH / GDYH01_Iterator / MainIteratorSample.cs 
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference YG 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
+ *@reference JG 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
  *@content 第１章 Iterator / p2 / List 1-1 ～ 1-6
  *         || Design Pattern || 全体
  *         ・具体的なクラスだけでコーディングすると、クラス間の結合が強くなり再利用が難しくなる
@@ -15,7 +15,9 @@
  *           => Bookの配列/List機能の変更が Iteratorクラス群には影響を与えない。
  *           => 互いに独立しているので、変更時には部分的な修正をすれば済む。
  *              (全体を修正する必要がない)
- *              
+ */
+#region -> IteratorSample Class Chart
+/*
  *@class MainIteratorSample
  *       ◆Main()
  *       new BookShelf(int)
@@ -48,7 +50,9 @@
  *       / - string name /
  *       + BookGY01(string name)
  *       + string GetName()
- *
+ */
+#endregion
+/*
  *@author shika 
  *@date 2022-04-05 
 */
