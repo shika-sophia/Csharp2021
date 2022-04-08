@@ -8,7 +8,7 @@ namespace CsharpBegin.GofDesignYH.GY02_Adapter.AdapterInherit
 {
     interface IPrintGY02
     {
-        void PrintStrong();
-        void PrintWeak();
+        void PrintStrong(); //暗黙的に public abstract
+        void PrintWeak();   //暗黙的に public abstract
     }//interface
 }

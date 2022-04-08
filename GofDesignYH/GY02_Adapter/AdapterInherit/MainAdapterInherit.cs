@@ -18,7 +18,7 @@
 /*
  *@class MainAdapterInherit
  *         ↓ use    //PrintStrong(), PrintWeak()を利用したい
- *@class IPrintGY02 <<interface>>
+ *@class IPrintGY02 <<interface>> 
  *         △
  *         : 　implements 同一視
  *@class PrintBanner : BannerGY02, IPrintGY02
