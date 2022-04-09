@@ -12,7 +12,29 @@
  *         サンプル２: インスタンスによる Adapter => aggregate 集約/委譲
  *         
  *         || Adapter ||  ～ 一皮かぶせて再利用 ～
- *         
+ *           ・既存のクラスを部品として再利用したいときに利用
+ *             (変更時に既存のクラス Adapteeを修正する必要がない)
+ *           ・バグが出ても既存のクラス Adapteeは正常に動いていたので、
+ *             Adapter, Target側のみ検証すればいい。
+ *           ・バージョンアップ時の新旧互換性を維持できる
+ *             既存クラスは変更せずに新バージョンに適用させる部分を
+ *             Adapterとして記述。
+ *             (新旧バージョンのどちらでも正しく動作する)
+ *           ・機能的に掛け離れている場合は利用できない。
+ *         ＊Target 対象 = IPrintGY02, AbsPrintGY02
+ *           利用したいメソッドを持つ既存のクラス
+ *           
+ *         ＊Client 依頼者 = Main
+ *           Targetを用いて仕事をするクラス
+ *           
+ *         ＊Adaptee 適合される者 = BannerGY02
+ *           ・既存のメソッドを持っているクラス
+ *           ・Clientの利用する Targetが Adapteeのメソッドと一致していれば
+ *             Adapterをする必要がない
+ *             
+ *         ＊Adapter 適合する者 = PrintBannerGy02, PrintBannerAggregate
+ *           ・Adapteeのメソッドを Targetで利用できるように 
+ *             継承/委譲させているクラス
  */
 #region Class Chart 〔AdapterInherit〕
 /*
