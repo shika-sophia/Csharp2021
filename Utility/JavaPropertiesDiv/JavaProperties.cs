@@ -1,7 +1,7 @@
 /** 
  *@title CsharpBegin / Utility / JavaProperties.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 山田祥寛『独習 Java [新版] 』 翔泳社, 2019 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference DJ 山田祥寛『独習 Java [新版] 』 翔泳社, 2019 
  *@content JavaProperties
  *         [Java] Propertiesクラスと同様の動作を [C#]で自己定義
  *
