@@ -1,0 +1,7 @@
+# loadSample.txt
+JP = Japan
+US = United States of Amerika
+UK = United Kingdom
+UR = Ukraine
+RS = Russia
+

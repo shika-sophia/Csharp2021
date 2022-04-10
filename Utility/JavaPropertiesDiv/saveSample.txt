@@ -1,0 +1,4 @@
+# saveJavaProperties.txt
+Alice = Alaska
+Bobby = Brazil
+
