@@ -1,5 +1,5 @@
 /** 
- *@title CsharpBegin / Utility / JavaProperties.cs 
+ *@title CsharpBegin / Utility / JavaPropertiesDiv / JavaProperties.cs 
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference DJ 山田祥寛『独習 Java [新版] 』 翔泳社, 2019 
  *@content JavaProperties
@@ -14,7 +14,7 @@
  *          String getProperty(string key [, string default])
  *          void   setProperty(string key, string value)
  *          
- *@subject [C#] CsharpBegin / Utility / JavaProperties.cs
+ *@subject [C#] CsharpBegin / Utility / JavaPropertiesDiv / JavaProperties.cs
  *         (thisクラスを自己定義)
  *         / - Dictionary<string,string> dic
  *           - char[] separateAry /
