@@ -33,16 +33,13 @@
  *@date 2022-04-10 
 */
 
-using System; 
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO; 
-using System.Linq; 
-using System.Text; 
-using System.Threading.Tasks; 
- 
-namespace CsharpBegin.Utility.JavaPropertiesDiv 
-{ 
+using System.IO;
+using System.Text;
+
+namespace CsharpBegin.Utility.JavaPropertiesDiv
+{
     public class JavaProperties 
     { 
         private Dictionary<string,string> dic; 
@@ -89,24 +86,7 @@ namespace CsharpBegin.Utility.JavaPropertiesDiv
  
             return bld.ToString(); 
         }//ToStringAll() 
-
-        public string SeekFile()
-        {
-            StackTrace trace = new StackTrace(true);
-            StackFrame frame = trace.GetFrame(trace.FrameCount - 1); //static Main()          
-            return frame.GetFileName();
-        }//SeekFile() 
-
-        public string SeekDirectory(out string fileName)
-        {
-            string thisFileName = SeekFile();
-            string dir = thisFileName.Substring(0, thisFileName.LastIndexOf("\\"));
-                
-            fileName = thisFileName
-                .Substring(thisFileName.LastIndexOf("\\") + 1); //先頭の「\」を除去
-
-            return dir;
-        }
+        
         public void Load(string dir, string fileName) 
         {
             string path = $"{dir}\\{fileName}";
@@ -197,12 +177,10 @@ namespace CsharpBegin.Utility.JavaPropertiesDiv
         //    here.SetDictionary("Bobby", "Brazil");
         //    Console.WriteLine($"Alice = {here.GetValue("Alice")}");
         //    Console.WriteLine(here.ToStringAll("Test Main()"));
-
-        //    //==== Test SeekFile(), SeekDirectory() ====
-        //    string thisFileName = here.SeekFile();
-        //    string dir = SeekDirectory(out string fileName);
         //
-        //    //==== Teat Store() ====
+        //    //==== Test Store() ====
+        //    var seek = new SeekPath();
+        //    string dir = seek.SeekDirectory();
         //    string saveFileName = "saveSample.txt";          
         //    here.Store(dir, saveFileName, saveFileName);
 
