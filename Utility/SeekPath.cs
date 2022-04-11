@@ -5,7 +5,7 @@
  *         static Main()を起動したクラスファイルの
  *         ディレクトリと ファイル名を取得するクラス
  *
- *@subject ◆StackTrace
+ *@subject ◆StackTrace 〔CS 99〕
  *         System.Diagnostics.StackTrace
  *         System.Diagnostics.StackFrame
  *         new StackTrace(); メソッド呼出を記録する StackTraceを初期化
