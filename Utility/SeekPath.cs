@@ -1,7 +1,9 @@
 /** 
  *@title CsharpBegin / Utility / SeekPath.cs 
  *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@content SeekMainPath
+ *@content SeekPath
+ *         static Main()を起動したクラスファイルの
+ *         ディレクトリと ファイル名を取得するクラス
  *
  *@subject ◆StackTrace
  *         System.Diagnostics.StackTrace
