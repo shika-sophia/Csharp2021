@@ -57,9 +57,14 @@ namespace CsharpBegin.Utility.JavaPropertiesDiv
         } 
  
         public void SetDictionary(string key, string value) 
-        { 
+        {
+            if (dic.ContainsKey(key)) //key重複時は上書き
+            {
+                dic.Remove(key);
+            }
+
             dic.Add(key, value); 
-        } 
+        }//SetDicitionary()
  
         public string GetValue(string key) 
         { 
@@ -74,7 +79,7 @@ namespace CsharpBegin.Utility.JavaPropertiesDiv
             } 
         }//GetValue() 
  
-        public string ToStringAll(string header) 
+        public string ToStringAll(string header = "") 
         { 
             var bld = new StringBuilder(dic.Count * 20); 
             bld.Append($"# {header}\n"); 
