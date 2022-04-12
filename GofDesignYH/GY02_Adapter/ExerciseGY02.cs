@@ -44,7 +44,7 @@ namespace CsharpBegin.GofDesignYH.GY02_Adapter
 
 ◆〔2〕2-2 
 ○ (1) Propertiesクラスを ファイルに書き込むコード 
-○ (2) => 別フォルダ〔〕 
+○ (2) => 別フォルダ〔AdapterProperties〕 
 */ 
 /*==== Appendix ==== 
  *@date: 2022-04-09 (土) 

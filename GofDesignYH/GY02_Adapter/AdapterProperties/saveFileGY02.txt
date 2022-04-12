@@ -1,0 +1,6 @@
+# written by FilePropertiesGY02
+# 2022/04/12 12:55:40
+year = 2000
+month = 01
+day = 15
+
