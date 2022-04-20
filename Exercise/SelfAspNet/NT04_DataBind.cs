@@ -1,7 +1,7 @@
 /**  
  *@title CsharpBegin / Exercise / SelfAspNet / NT04_DataBind.cs  
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
  *@content NT 第４章 DataBind / p129, p142, p174, p184, p640
  *@subject 練習問題 4-1, 4-2, 4-3, 4-4,  
  *@subject 章末問題 １, ２, ３, ４, ５, ６, 
@@ -30,8 +30,8 @@ namespace CsharpBegin.Exercise.SelfAspNet
 {  
     class NT04_DataBind  
     {  
-        static void Main(string[] args)  
-        //public void Main(string[] args)  
+        //static void Main(string[] args)  
+        public void Main(string[] args)  
         {  
             new CsharpBegin.Exercise.ExerciseEditor("");  
         }//Main()   
