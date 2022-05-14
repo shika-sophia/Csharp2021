@@ -14,6 +14,17 @@
  *       - string InputModify()
  *       + string CalcCorrectRate()
  *
+ *@NOTE【註】String.Contains("(1)")により、本文中に「(1)」を含むと
+ *      indexオーバーの例外発生。
+ *      => 入力時に「(1)」を含んでないかの適正判定が必要
+ *      
+ *      ◆MultiScan.ActionLogic()に下記を追加
+ *      if (input.Contains("(1)"))
+ *      {
+ *           Console.WriteLine("<!> 「 (1) 」は利用できません。");
+ *           return "next";
+ *      }
+ *       
  *@see ConfirmScan.cs
  *@see IntScan.cs
  *@see MultiScan.cs

@@ -123,6 +123,12 @@ namespace CsharpBegin.Utility.ScanDiv
         {
             if (String.IsNullOrEmpty(input)) { return "next"; }
 
+            if (input.Contains("(1)"))
+            {
+                Console.WriteLine("<!> 「 (1) 」は利用できません。");
+                return "next";
+            }
+
             if (input.Contains("-99") || input.Contains("ー９９"))
             {
                 if (count == 1)
