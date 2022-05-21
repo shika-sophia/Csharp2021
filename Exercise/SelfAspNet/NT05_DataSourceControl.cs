@@ -1,8 +1,8 @@
 /**  
  *@title CsharpBegin / Exercise / SelfAspNet / NT05_DataSourceControl.cs  
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
- *@content 第５章 DataSourceControl / p231, p252, p297
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
+ *@content NT 第５章 DataSourceControl / p231, p252, p297
  *@subject 練習問題 5-1, 5-2
  *@subject 章末問題 １, ２, ３, ４, 
  *  
