@@ -1,8 +1,8 @@
 /**  
  *@title CsharpBegin / Exercise / SelfAspNet / NT06_ImplicitObject.cs  
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
- *@content 第６章 ImplicitObject 組込オブジェクト / p310, p326, p331章末問題 １, ２, ３, ４, 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
+ *@content NT 第６章 ImplicitObject 組込オブジェクト / p310, p326, p331章末問題 １, ２, ３, ４, 
  *         [英] implicit : 暗黙的 <-> explicit: 明示的 
  *          
  *@subject 練習問題 6-1, 6-2,  
