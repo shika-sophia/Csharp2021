@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / Exercise / SelfAspNet / NT07_StateVariable.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020 
- *@content 第７章 StateVariable / p342, p351, p355, p373
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020 
+ *@content NT 第７章 StateVariable / p342, p351, p355, p373
  *
  *@subject 練習問題 7-1, 7-2, 7-3, 
  * 
