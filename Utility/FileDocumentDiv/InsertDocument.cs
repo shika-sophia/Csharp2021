@@ -72,6 +72,11 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
+                    if (String.IsNullOrWhiteSpace(line))
+                    {
+                        continue;
+                    }
+
                     if (line.Contains(@"/**"))
                     {
                         Console.WriteLine("<!> the Document already existed.");

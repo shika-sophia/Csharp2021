@@ -39,18 +39,15 @@
  *@date 2021-10-22  
 */
 
-using System;           
-using System.Collections.Generic;           
-using System.Diagnostics;           
-using System.IO;           
-using System.Linq;           
+using System;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;           
-           
-namespace CsharpBegin.Utility.FileDocumentDiv           
-{           
-    class FileDocExecute           
+
+namespace CsharpBegin.Utility.FileDocumentDiv
+{
+    public class FileDocExecute           
     {           
         private readonly FileDocument doc;                               
         public string Path { get; private set; }
@@ -141,7 +138,9 @@ namespace CsharpBegin.Utility.FileDocumentDiv
                 {           
                     string line = reader.ReadLine();
                     
-                    if (line.TrimStart().StartsWith("using") && !isContent)
+                    if ((line.TrimStart().StartsWith("using") 
+                        || line.TrimStart().StartsWith("namespace") )
+                        && !isContent)
                     {
                         Console.WriteLine($"documentRead: {bld.Length}");
                         this.documentRead = bld.ToString();
