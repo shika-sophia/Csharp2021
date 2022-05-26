@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / Exercise / SelfAspNet / NT08_AspNetIdentity.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020 
- *@content 第８章 ASP.NET Identity / p384, p423
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020 
+ *@content NT 第８章 ASP.NET Identity / p384, p423
  *
  *@subject 練習問題 8-1, 
  * 
