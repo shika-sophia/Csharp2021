@@ -1,8 +1,8 @@
 /** 
  *@title CsharpBegin / Exercise / SelfAspNet / NT09_RichControl.cs 
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020 
- *@content 第９章 RichControl / p448, p460, p465, p471, p481
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020 
+ *@content NT 第９章 RichControl / p448, p460, p465, p471, p481
  *
  *@subject 練習問題 9-1, 9-2, 9-3, 9-4, 
  * 
