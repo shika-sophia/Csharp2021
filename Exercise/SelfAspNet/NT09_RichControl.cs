@@ -2,13 +2,13 @@
  *@title CsharpBegin / Exercise / SelfAspNet / NT09_RichControl.cs  
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
  *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
- *@content NT 第９章 RichControl / p448, p460, p465, p471, p481
+ *@content NT 第９章 RichControl / p448, p460, p465, p471 / p481
  * 
  *@subject 練習問題 9-1, 9-2, 9-3, 9-4,  
  *@subject 章末問題 １, ２, ３, ４, 
  *
  *@author shika  
- *@date 2022-06-01  
+ *@date 2022-06-01, 06-02
 */
 /*==== Appendix ====  
  *@date: 2022-06-01 (水)  
@@ -31,7 +31,7 @@ namespace CsharpBegin.Exercise.SelfAspNet
             new CsharpBegin.Exercise.ExerciseEditor("");  
         }//Main()   
     }//class  
-}  
+}
 /*  
 2022-06-01 (水) 
 ==== Exercise Result ====  
@@ -64,12 +64,12 @@ namespace CsharpBegin.Exercise.SelfAspNet
   => ○: break; 
   １つでも「●」が出力されたら、foreachループを抜ける 
   さもないと、すべてのスケジュールの数だけ「●」を出力 
-*/  
+*/
 /*==== Appendix ====  
  *@date: 2022-06-01 (水)  
  *@time: 16:17 ～ 16:26 (9分)  
  *@rate: 57.89％ (○ 11 問 / 全 19 問)  
-*/  
+*/
 /* 
 2022-06-02 (木)
 ==== Exercise Result ==== 
@@ -94,9 +94,10 @@ namespace CsharpBegin.Exercise.SelfAspNet
 
 ◆〔4〕４ 
 ○ (1) 別プロジェクト 
-*/ 
+  =>〔SelfAspNet / SampleAsp / NT09_RichControl / MultiViewControl〕
+*/
 /*==== Appendix ==== 
  *@date: 2022-06-02 (木) 
  *@time: 14:54 ～ 15:11 (17分) 
  *@rate: 63.64％ (○ 7 問 / 全 11 問) 
-*/ 
+*/
