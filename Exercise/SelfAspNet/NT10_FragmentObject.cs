@@ -1,8 +1,8 @@
 /**     
  *@title CsharpBegin / Exercise / SelfAspNet / NT10_FragmentObject.cs     
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017     
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020     
- *@content 第10章 FragmentObject / p491, p511, p537, p544, p555 / p565 
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017     
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020     
+ *@content NT 第10章 FragmentObject / p491, p511, p537, p544, p555 / p565 
  *    
  *@subject 練習問題 10-1, 10-2, 10-3, 10-4, 10-5,  
  *@subject 章末問題 １, ２, ３, ４, ５, 
