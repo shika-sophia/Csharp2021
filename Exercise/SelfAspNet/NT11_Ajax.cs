@@ -1,8 +1,8 @@
 /**  
  *@title CsharpBegin / Exercise / SelfAspNet / NT11_Ajax.cs  
- *@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
- *@reference 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
- *@content 第11章 Ajax / p572, p580 | 章末 p616 / 解答 p646
+ *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017  
+ *@reference NT 山田祥寛『独習 ASP.NET 第６版』翔泳社, 2020  
+ *@content NT 第11章 Ajax / p572, p580 | 章末 p616 / 解答 p646
  *@subject 練習問題 11-1, 11-2, 
  *@subject 章末問題 １, ２, ３, 
  *  
