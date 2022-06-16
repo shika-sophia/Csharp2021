@@ -12,8 +12,28 @@ namespace CsharpBegin.GofDesignYH.GY03_TemplateMethod.TemplateSample
         public StringDisplayConcrete(string str)
         {
             this.str = str;
-            this.width = str.Length;
+            this.width = BuildWidth(str);
         }
+
+        private int BuildWidth(string str)
+        {
+            int width = 0;
+            char[] charAry = str.ToCharArray();
+            
+            foreach (char c in charAry)
+            {
+                if ((int) c > '\u007E') //width: 半角'~'以上は 2文字
+                {
+                    width += 2;
+                }
+                else
+                {
+                    width += 1;
+                }
+            }//foreach
+
+            return width;
+        }//BuildWidth()
 
         public override void Open()
         {
