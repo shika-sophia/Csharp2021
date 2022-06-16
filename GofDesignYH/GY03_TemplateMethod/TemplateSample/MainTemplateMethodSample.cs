@@ -1,7 +1,7 @@
 /** 
 *@title CsharpBegin / GofDesignYH / GY03_TemplateMethod / TemplateSample / MainTemplateSample.cs 
-*@reference 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
-*@reference 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
+*@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
+*@reference GY 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
 *@content MainTemplateSample
 *
 *@subject System.Grlbalization.StringInfoクラス 〔CS17〕
