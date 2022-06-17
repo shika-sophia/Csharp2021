@@ -3,13 +3,30 @@
 *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
 *@reference GY 結城 浩 『デザインパターン入門 Java言語 [増補改訂版]』SB Creative, 2004 
 *@content 第３章 TemplateMethod / p32 / List 3-1 ～ 3-4
-*         ||TemplateMethod||
-*         ・抽象クラスで設計図を定義
+*         || TemplateMethod ||
+*         ・Abstract: 抽象クラスで設計図を定義
 *            abstractメソッドで継承すべきメソッドを規定
-*            TemplateMethodで 各メソッドの呼出方法を規定
-*            
-*         ・
-*        
+*            TemplateMethodで 各メソッドの呼出方法を規定 
+*            TemplateMethodは overrideさせるべきではない。
+*         ・Concrete: サブクラスで具体的なメソッドの処理内容を定義
+*         
+*         ・「サブクラスの責任」subclass responsibility
+*            サブクラスには基底クラスで宣言されているメソッドを overrideする責任がある。
+*         ・「設計の責任」どのレベルの処理を共通化しておくかは設計者に任されている。
+*         
+*         ・ロジックの共通化: アルゴリズムが Abstractに一元化されているので、
+*           各Concreteクラスにアルゴリズムを記述する必要がなくなる
+*           => 変更時に１か所だけ修正すれば済む。(保守性)
+*         ・メソッドの呼出は TemplateMethodである Display()で記述。
+*           各Concreteクラスのメソッド処理の記述は呼出される経緯を理解しておく必要がある。
+*         ・Abstractによって各Concreteクラスを同一視
+*           [Java] instanceof演算子 / [C#] is演算子で判定せずとも実行時に振り分けられる。
+*         ・LSP (= The Liskov Substitution Principle リスコフ置換法則) by バーバラ・リスコフ:
+*           基底クラスの変数に、どの派生クラスのインスタンスを代入しても、
+*           正しく動作し、コードの妥当性は損なわれない。〔JG5, DJ102, CS64〕
+*           
+*         ・|| TemplateMethod || 継承を利用
+*         ・|| Strategy ||       委譲を利用
 */
 #region Class Chart 〔TemplateSample〕
 /*
