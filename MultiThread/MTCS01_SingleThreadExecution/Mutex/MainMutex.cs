@@ -3,6 +3,12 @@
  *@reference CS 山田祥寛『独習 C＃ [新版] 』 翔泳社, 2017 
  *@reference MT 結城 浩『デザインパターン入門 マルチスレッド編 [増補改訂版]』SB Creative, 2006 
  *@content MT 練習問題 1-7 / p84, p478 / List 1-17, A1-9
+ *         ここでは MutexSample という 自己定義クラスで、
+ *         排他アルゴリズムを自作する練習をしている。
+ *         
+ *         C# には、相互排他を行う [Mutexクラス -- System.Threading.] が存在する。
+ *         => 〔WinFormGUI / WinFormSample / ReverseReference / RR17_WindowsSystem / MainMutexWaitOneSample.cs〕
+ *
  *@subject ◆Mutex: Mutual Exclusion (= 相互排他)
  *         lock()を用いずに、排他制御を行うプログラム。
  *         
@@ -19,7 +25,7 @@
  *         [Java] synchronizedにあたる [C#] lock()と volatileを併用した上に、
  *         Lock()した ownerしか、Unlock()できないため、非常に時間が掛かるが、
  *         Lock() とUnlock()が同じThreadで callされることは確保できる。
- *         しかし、やはりGateに lock()を利用した SageGateのほうがパフォーマンスがいいし、
+ *         しかし、やはりGateに lock()を利用した SafeGateのほうがパフォーマンスがいいし、
  *         コードもシンプルである。
  *         
  *@author shika 
