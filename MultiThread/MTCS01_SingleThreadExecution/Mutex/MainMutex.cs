@@ -17,7 +17,7 @@
  *         bool lockFlag = true / false によって　ロック状態か否かを判定。
  *         
  *         [Java] synchronizedにあたる [C#] lock()と volatileを併用しているので、
- *         Gateに lock()を利用した SageGateのほうがパフォーマンスがいいし、
+ *         Gateに lock()を利用した SafeGateのほうがパフォーマンスがいいし、
  *         コードもシンプルである。
  *           ↓
  *@subject ◆MutexAnswerクラス
@@ -32,15 +32,11 @@
  *@date 2021-12-15
 */
 using CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.UnsafeGate;
-using System; 
-using System.Collections.Generic; 
-using System.Linq; 
-using System.Text;
+using System;
 using System.Threading;
-using System.Threading.Tasks; 
- 
-namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex 
-{ 
+
+namespace CsharpBegin.MultiThread.MTCS01_SingleThreadExecution.Mutex
+{
     class MainMutex 
     { 
         //static void Main(string[] args) 
